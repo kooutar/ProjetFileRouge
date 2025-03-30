@@ -20,3 +20,8 @@ Route::get('/login',function(){
 Route::get('/inscriptionProf',function(){
     return view('pages.profPage.inscriptionProf');
 });
+
+Route::get('/courses',function(){
+    return view('pages.EtudiantPage.courses');
+});
+

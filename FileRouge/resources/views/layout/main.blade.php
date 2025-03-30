@@ -42,7 +42,7 @@
                         <a href="/" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
                         <a href="/about" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">About</a>
                         <a href="#" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Services</a>
-                        <a href="#" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Cours</a>
+                        <a href="/courses" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Cours</a>
                     </div>
                 </div>
 
@@ -71,7 +71,7 @@
                 <a href="/" class="text-gray-700 hover:text-primary block px-3 py-2 text-base font-medium">Home</a>
                 <a href="/about" class="text-gray-700 hover:text-primary block px-3 py-2 text-base font-medium">About</a>
                 <a href="#" class="text-gray-700 hover:text-primary block px-3 py-2 text-base font-medium">Services</a>
-                <a href="#" class="text-gray-700 hover:text-primary block px-3 py-2 text-base font-medium">Cours</a>
+                <a href="/courses" class="text-gray-700 hover:text-primary block px-3 py-2 text-base font-medium">Cours</a>
             </div>
             <div class="pt-4 pb-3 border-t border-gray-200">
                 <div class="flex flex-col space-y-3 px-4">

@@ -8,3 +8,11 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('About');
 });
+
+Route::get('/inscriptionEtudiant',function(){
+    return view('pages.EtudiantPage.inscrire');
+});
+
+Route::get('/login',function(){
+    return view('login');
+});

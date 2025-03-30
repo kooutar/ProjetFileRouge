@@ -18,7 +18,7 @@
                     colors: {
                         primary: '#9333EA',
                         primaryDark: '#7B28D1',
-                        custompurple: '#A1A5D3',
+                        custompurple: '#A1A5D3',//for about
                     }
                 }
             }
@@ -39,7 +39,7 @@
                 <!-- Menu desktop -->
                 <div class="hidden md:flex items-center justify-center flex-1">
                     <div class="flex space-x-8">
-                        <a href="#" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="/" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Home</a>
                         <a href="/about" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">About</a>
                         <a href="#" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Services</a>
                         <a href="#" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Cours</a>
@@ -49,8 +49,8 @@
                 <!-- Boutons d'authentification desktop -->
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="#" class="text-primary border border-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition duration-200">S'inscrire comme prof</a>
-                    <a href="#" class="text-primary border border-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition duration-200">Login</a>
-                    <a href="#" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primaryDark transition duration-200">S'inscrire</a> 
+                    <a href="/login" class="text-primary border border-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition duration-200">Login</a>
+                    <a href="/inscriptionEtudiant" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primaryDark transition duration-200">S'inscrire</a> 
                 </div>
 
                 <!-- Bouton hamburger mobile -->
@@ -68,7 +68,7 @@
         <!-- Menu mobile -->
         <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#" class="text-gray-700 hover:text-primary block px-3 py-2 text-base font-medium">Home</a>
+                <a href="/" class="text-gray-700 hover:text-primary block px-3 py-2 text-base font-medium">Home</a>
                 <a href="/about" class="text-gray-700 hover:text-primary block px-3 py-2 text-base font-medium">About</a>
                 <a href="#" class="text-gray-700 hover:text-primary block px-3 py-2 text-base font-medium">Services</a>
                 <a href="#" class="text-gray-700 hover:text-primary block px-3 py-2 text-base font-medium">Cours</a>
@@ -76,8 +76,8 @@
             <div class="pt-4 pb-3 border-t border-gray-200">
                 <div class="flex flex-col space-y-3 px-4">
                   
-                    <a href="#" class="text-primary border border-primary px-4 py-2 rounded text-center hover:bg-primary hover:text-white transition duration-200">Login</a>
-                    <a href="#" class="bg-primary text-white px-4 py-2 rounded text-center hover:bg-primaryDark transition duration-200">S'inscrire</a>
+                    <a href="/login" class="text-primary border border-primary px-4 py-2 rounded text-center hover:bg-primary hover:text-white transition duration-200">Login</a>
+                    <a href="/inscriptionEtudiant" class="bg-primary text-white px-4 py-2 rounded text-center hover:bg-primaryDark transition duration-200">S'inscrire</a>
                     <a href="#" class="bg-primary text-white px-4 py-2 rounded text-center hover:bg-primaryDark transition duration-200">S'inscrire comme prof</a>
                    
                 </div>

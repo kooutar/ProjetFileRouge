@@ -16,3 +16,7 @@ Route::get('/inscriptionEtudiant',function(){
 Route::get('/login',function(){
     return view('login');
 });
+
+Route::get('/inscriptionProf',function(){
+    return view('pages.profPage.inscriptionProf');
+});

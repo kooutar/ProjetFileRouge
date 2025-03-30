@@ -48,7 +48,7 @@
 
                 <!-- Boutons d'authentification desktop -->
                 <div class="hidden md:flex items-center space-x-4">
-                    <a href="#" class="text-primary border border-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition duration-200">S'inscrire comme prof</a>
+                    <a href="/inscriptionProf" class="text-primary border border-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition duration-200">S'inscrire comme prof</a>
                     <a href="/login" class="text-primary border border-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition duration-200">Login</a>
                     <a href="/inscriptionEtudiant" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primaryDark transition duration-200">S'inscrire</a> 
                 </div>
@@ -78,7 +78,7 @@
                   
                     <a href="/login" class="text-primary border border-primary px-4 py-2 rounded text-center hover:bg-primary hover:text-white transition duration-200">Login</a>
                     <a href="/inscriptionEtudiant" class="bg-primary text-white px-4 py-2 rounded text-center hover:bg-primaryDark transition duration-200">S'inscrire</a>
-                    <a href="#" class="bg-primary text-white px-4 py-2 rounded text-center hover:bg-primaryDark transition duration-200">S'inscrire comme prof</a>
+                    <a href="/inscriptionProf" class="bg-primary text-white px-4 py-2 rounded text-center hover:bg-primaryDark transition duration-200">S'inscrire comme prof</a>
                    
                 </div>
             </div>

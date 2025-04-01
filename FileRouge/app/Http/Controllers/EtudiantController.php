@@ -45,7 +45,8 @@ class EtudiantController extends Controller
         $user = Socialite::driver($provider)->stateless()->user();
         $etudiant = $this->EtudiantService->socialLoginService($user);
 
-        return response()->json(['success' => $etudiant]);
+        // return response()->json(['success' => $etudiant]);
+        return redirect('/courses');
     }
 
 }

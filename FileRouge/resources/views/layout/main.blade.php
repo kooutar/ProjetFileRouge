@@ -45,13 +45,19 @@
                         <a href="/courses" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Cours</a>
                     </div>
                 </div>
-
-                <!-- Boutons d'authentification desktop -->
+                 @guest
+                             <!-- Boutons d'authentification desktop -->
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="/inscriptionProf" class="text-primary border border-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition duration-200">S'inscrire comme prof</a>
                     <a href="/login" class="text-primary border border-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition duration-200">Login</a>
                     <a href="/inscriptionEtudiant" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primaryDark transition duration-200">S'inscrire</a> 
                 </div>
+                 
+                 @endguest
+               
+                @auth
+                    <p>hi</p>
+                @endauth
 
                 <!-- Bouton hamburger mobile -->
                 <div class="flex md:hidden items-center">

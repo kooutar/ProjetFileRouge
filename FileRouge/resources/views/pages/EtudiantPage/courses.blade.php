@@ -290,3 +290,16 @@
     </div>
 </main>
 @endSection
+{{-- 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const profileButton = document.querySelector('.flex.items-center.space-x-2');
+    const dropdownMenu = document.querySelector('.absolute.right-0.mt-2.w-48');
+    
+    if (profileButton && dropdownMenu) {
+        profileButton.addEventListener('click', function() {
+            dropdownMenu.classList.toggle('hidden');
+        });
+    }
+});
+</script> --}}

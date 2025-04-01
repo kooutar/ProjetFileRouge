@@ -2,13 +2,19 @@
 
 namespace App\services;
 
+use Illuminate\Support\Facades\Hash;
+use App\repositories\Professeur as RespositoryProf;
+
 class ServiceProfesseur
 {
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
+    private $RespositoryProf;
+    public function __construct(RespositoryProf $RespositoryProf)
     {
-        //
+        $this->RespositoryProf=$RespositoryProf;
+    }
+
+    public function RegistreService(array $data){
+        $data['password']=Hash::make($data['password']);
+        return $this->RespositoryProf->registre($data);
     }
 }

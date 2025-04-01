@@ -26,15 +26,7 @@ class EtudiantController extends Controller
      return  redirect('/login');
    }
 
-   public function login(Request $request){
-    $datavalidate=$request->validate([
-        'email' => 'required|email|max:255',
-        'password' => 'required|min:6',
-         ]);
-         $etudiant =$this->EtudiantService->loginService($datavalidate);
-        //  return response()->json(['Sussus'=>$etudiant]);
-   }
-
+  
     // Rediriger vers le fournisseur OAuth
     public function redirectToProvider($provider)
     {

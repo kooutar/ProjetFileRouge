@@ -27,7 +27,7 @@ class ProfesseurController extends Controller
         ]);
     
         $this->ProfService->RegistreService($datavalidate);
-        return  redirect('/login');
+        return  redirect('/inscriptionProf')->with('success', 'Utilisateur ajouté avec succès ,attend le traitement de votre dossier !');;
       }
    
 }

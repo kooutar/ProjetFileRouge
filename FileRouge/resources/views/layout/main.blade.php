@@ -6,6 +6,7 @@
     <title>@yield('title', 'Mon Site')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -240,6 +241,17 @@ const mobileServicesDropdown = document.getElementById('mobile-services-dropdown
 mobileServicesButton.addEventListener('click', function() {
     mobileServicesDropdown.classList.toggle('hidden');
 });
+
 </script>
+@if(session('success'))
+    <script>
+        Swal.fire({
+            title: 'Succès !',
+            text: "{{ session('success') }}",
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif
 </body>
 </html>

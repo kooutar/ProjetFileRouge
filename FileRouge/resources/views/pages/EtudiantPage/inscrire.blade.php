@@ -8,6 +8,10 @@
             <h1 class="text-3xl font-bold text-gray-800 mb-8">Sign up</h1>
             <form>
                 <div class="mb-6">
+                    <a href="{{ url('/auth/google') }}" class="flex items-center justify-center w-full mb-6 px-4 py-3 border border-gray-300 rounded-md bg-white text-gray-700 font-medium hover:bg-gray-50 hover:shadow-md transition duration-300">
+                        <img src="{{ asset('images/google-logo.jpg') }}" alt="Google Logo" class="h-5 w-5 mr-3">
+                        <span>Se connecter avec Google</span>
+                    </a>
                     <label class="flex items-center mb-2 text-gray-600">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -56,10 +60,7 @@
                         </span>
                     </label>
                 </div>
-                <a href="{{ url('/auth/google') }}" class="btn-google">
-                    <img src="{{ asset('images/google-logo.png') }}" alt="Google Logo" class="google-icon">
-                    Se connecter avec Google
-                </a>
+                
                 
                 <button type="submit" class="w-full bg-primary hover:bg-purple-800 text-white font-bold py-3 px-4 rounded-md transition duration-300">
                     Register

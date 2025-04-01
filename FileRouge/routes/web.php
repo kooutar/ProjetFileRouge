@@ -29,3 +29,5 @@ Route::get('/courses',function(){
 Route::get('/auth/{google}', [EtudiantController::class, 'redirectToProvider']);
 Route::get('/auth/{google}/callback', [EtudiantController::class, 'handleProviderCallback']);
 
+Route::post('/register', [EtudiantController::class, 'store'])->name('register');
+

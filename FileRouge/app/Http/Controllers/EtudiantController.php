@@ -15,13 +15,15 @@ class EtudiantController extends Controller
    }
     // for socailite
    public function store(Request $request){
+  
      $datavalidate=$request->validate([
     'name' => 'required|string|max:255',
     'email' => 'required|email|unique:users|max:255',
     'password' => 'required|min:6|confirmed',
      ]);
-     $etudiant =$this->EtudiantService->RegistreService($datavalidate);
-     return response()->json(['Sussus'=>$etudiant]);
+    
+     $this->EtudiantService->RegistreService($datavalidate);
+     return  redirect('/login');
    }
 
    public function login(Request $request){

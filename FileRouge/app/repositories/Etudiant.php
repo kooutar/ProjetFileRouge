@@ -44,5 +44,10 @@ class Etudiant implements InterfaceUser ,InterfaceEtudiant
         public function changeStatus($id){
             
         }
+
+        public function findByEmail($email)
+    {
+        return ModelsUser::where('email', $email)->first();
+    }
   
 }

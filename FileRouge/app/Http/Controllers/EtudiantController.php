@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\services\ServiceEtudiant;
 use Illuminate\Http\Request;
+use App\services\ServiceEtudiant;
+use Laravel\Socialite\Facades\Socialite;
 
 class EtudiantController extends Controller
 {
@@ -12,7 +13,7 @@ class EtudiantController extends Controller
    {
      $this->EtudiantService=$EtudiantService;
    }
-    
+    // for socailite
    public function store(Request $request){
      $datavalidate=$request->validate([
     'name' => 'required|string|max:255',
@@ -31,5 +32,20 @@ class EtudiantController extends Controller
          $etudiant =$this->EtudiantService->loginService($datavalidate);
         //  return response()->json(['Sussus'=>$etudiant]);
    }
+
+    // Rediriger vers le fournisseur OAuth
+    public function redirectToProvider($provider)
+    {
+        return Socialite::driver($provider)->redirect();
+    }
+
+    // Gérer le retour du fournisseur
+    public function handleProviderCallback($provider)
+    {
+        $user = Socialite::driver($provider)->stateless()->user();
+        $etudiant = $this->EtudiantService->socialLoginService($user);
+
+        return response()->json(['success' => $etudiant]);
+    }
 
 }

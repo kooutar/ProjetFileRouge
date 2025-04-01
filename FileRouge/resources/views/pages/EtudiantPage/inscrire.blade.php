@@ -56,6 +56,10 @@
                         </span>
                     </label>
                 </div>
+                <a href="{{ url('/auth/google') }}" class="btn-google">
+                    <img src="{{ asset('images/google-logo.png') }}" alt="Google Logo" class="google-icon">
+                    Se connecter avec Google
+                </a>
                 
                 <button type="submit" class="w-full bg-primary hover:bg-purple-800 text-white font-bold py-3 px-4 rounded-md transition duration-300">
                     Register

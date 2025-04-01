@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EtudiantController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,4 +25,7 @@ Route::get('/inscriptionProf',function(){
 Route::get('/courses',function(){
     return view('pages.EtudiantPage.courses');
 });
+
+Route::get('/auth/{google}', [EtudiantController::class, 'redirectToProvider']);
+Route::get('/auth/{google}/callback', [EtudiantController::class, 'handleProviderCallback']);
 

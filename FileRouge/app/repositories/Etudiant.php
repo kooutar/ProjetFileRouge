@@ -17,6 +17,8 @@ class Etudiant implements InterfaceUser ,InterfaceEtudiant
            $user= ModelsUser::create($data);
             return ModelsEtudiant::create([
                 'id_user'=>$user->id,
+                'social_id'=>$data['social_id'],
+                'social_type'=>$data['social_type']
             ]);
    
         }
@@ -44,5 +46,10 @@ class Etudiant implements InterfaceUser ,InterfaceEtudiant
         public function changeStatus($id){
             
         }
+
+        public function findByEmail($email)
+    {
+        return ModelsUser::where('email', $email)->first();
+    }
   
 }

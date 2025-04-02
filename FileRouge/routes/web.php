@@ -27,7 +27,13 @@ Route::get('/inscriptionProf',function(){
 Route::get('/courses',function(){
     return view('pages.EtudiantPage.courses');
 });
+Route::get('/statistiqueAdmin ',function(){
+    return view('pages.AdminPage.pageStatistique');
+});
 
+Route::get('/ProfesseursAdmin ',function(){
+    return view('pages.AdminPage.professeurs');
+});
 Route::get('/auth/{google}', [EtudiantController::class, 'redirectToProvider']);
 Route::get('/auth/{google}/callback', [EtudiantController::class, 'handleProviderCallback']);
 

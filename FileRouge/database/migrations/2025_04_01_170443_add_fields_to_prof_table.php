@@ -16,7 +16,6 @@ return new class extends Migration
            $table->string('telephone');
            $table->enum('deplome',['Licence','Master', 'Doctorat','Autre']);
            $table->string('domaine');
-
         });
     }
 

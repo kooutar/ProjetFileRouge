@@ -14,9 +14,9 @@ class Professeur  implements InterfaceUser ,InterfaceProfesseur
      return ModelsProfesseur::create([
         'id_user'=>$user->id,
         'path_cv' => $data['path_cv'],
-       'telephone' => $data['telephone'],
-       'deplome' => $data['deplome'],
-       'domaine' => $data['domaine'],
+        'telephone' => $data['telephone'],
+        'deplome' => $data['deplome'],
+        'domaine' => $data['domaine'],
     ]);
     }
     public function login(array $data){

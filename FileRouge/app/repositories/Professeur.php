@@ -54,6 +54,18 @@ class Professeur  implements InterfaceUser ,InterfaceProfesseur
     return redirect()->back()->with('error', 'Professeur non trouvé.');
     }
 
+
+    public function refuserprof($id){
+        $prof=$this->findById($id);
+        if ($prof) { // Vérifier si le professeur existe
+          $prof->status = 'Desactiver';
+          $prof->save();
+          return redirect()->back()->with('success', 'Professeur activé avec succès !');
+      }
+  
+      return redirect()->back()->with('error', 'Professeur non trouvé.');
+      }
+
     public function findByEmail($email)
     {
         

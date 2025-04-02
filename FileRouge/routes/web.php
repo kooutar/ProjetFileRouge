@@ -45,4 +45,6 @@ Route::post('/registreProf',[ProfesseurController::class,'store'])->name('regist
 
 Route::get('/accepter-prof/{id}', [ProfesseurController::class, 'accepterprof'])->name('accepter.prof');
 
+Route::get('/refuser-prof/{id}', [ProfesseurController::class, 'refuserprof'])->name('refuser.prof');
+
 

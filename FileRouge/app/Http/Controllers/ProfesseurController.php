@@ -40,6 +40,11 @@ class ProfesseurController extends Controller
       $this->ProfService->accepterprofService($id);
       return  redirect('/ProfesseursAdmin');
     }
+
+    public function refuserprof($id){
+      $this->ProfService->refuserprofService($id);
+      return  redirect('/ProfesseursAdmin');
+    }
 }
 
 

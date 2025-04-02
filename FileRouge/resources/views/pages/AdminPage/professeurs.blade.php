@@ -171,7 +171,7 @@
                                         <a href="/accepter-prof/{{$prof->id}}" class="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 text-xs">
                                             Accepter
                                         </a>
-                                        <a class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 text-xs">
+                                        <a href="/refuser-prof/{{$prof->id}}" class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 text-xs">
                                             Refuser
                                         </a>
                                         {{-- <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 text-xs">

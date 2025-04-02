@@ -25,4 +25,7 @@ class ServiceProfesseur
     public function accepterprofService($id){
         return $this->RespositoryProf->accepterprof($id);
     }
+    public function refuserprofService($id){
+        return $this->RespositoryProf->refuserprof($id);
+    }
 }

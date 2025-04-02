@@ -119,6 +119,7 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             <!-- Row 1 -->
+                            @foreach ($profs as $prof)
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
@@ -126,14 +127,14 @@
                                             <img class="h-10 w-10 rounded-full" src="/api/placeholder/40/40" alt="Profile">
                                         </div>
                                         <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">Michel Dupont</div>
-                                            <div class="text-sm text-gray-500">michel.dupont@email.com</div>
+                                            <div class="text-sm font-medium text-gray-900">{{ $prof->name }}</div>
+                                            <div class="text-sm text-gray-500">{{$prof->telephone}}</div>
                                         </div>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-custom-purple-10 text-custom-purple">
-                                        Développement Web
+                                       {{$prof->domaine}}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4">
@@ -155,11 +156,11 @@
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    12 Mars 2025
+                                    {{ \Carbon\Carbon::parse($prof->created_at)->translatedFormat('d F Y') }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                        En attente
+                                       {{ $prof->status}}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -179,9 +180,11 @@
                                     </div>
                                 </td>
                             </tr>
+                            @endforeach
+                           
                             
                             <!-- Row 2 -->
-                            <tr>
+                            {{-- <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-10 w-10">
@@ -234,10 +237,10 @@
                                         </button>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --}}
                             
                             <!-- Row 3 -->
-                            <tr>
+                            {{-- <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-10 w-10">
@@ -290,10 +293,10 @@
                                         </button>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --}}
                             
                             <!-- Row 4 -->
-                            <tr>
+                            {{-- <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-10 w-10">
@@ -326,6 +329,22 @@
                                                 <a href="#" class="text-custom-purple hover:underline">Télécharger CV complet</a>
                                             </div>
                                         </div>
+
+                                        <div id="cvModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+                                            <div class="bg-white p-5 rounded-lg shadow-lg max-w-lg w-full">
+                                                <h2 class="text-lg font-bold mb-3">Curriculum Vitae</h2>
+                                                <p class="font-medium">Expérience: 8 ans</p>
+                                                <p class="mb-1">• <strong>Développeur Senior</strong>, Techno Solutions (2020-présent)</p>
+                                                <p class="mb-1">• <strong>Développeur Full Stack</strong>, Web Experts (2017-2020)</p>
+                                                <p class="mb-2">• <strong>Développeur Junior</strong>, StartupXYZ (2015-2017)</p>
+                                                <p class="font-medium">Compétences:</p>
+                                                <p>JavaScript, React, Node.js, PHP, Laravel, AWS</p>
+                                                <div class="mt-3 flex justify-between">
+                                                    <a href="#" class="text-custom-purple hover:underline">Télécharger CV complet</a>
+                                                    <button onclick="closeModal('cvModal')" class="px-3 py-1 bg-gray-300 rounded">Fermer</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -346,9 +365,9 @@
                                         </button>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --}}
                             
-                            <tr>
+                            {{-- <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-10 w-10">
@@ -401,7 +420,7 @@
                                         </button>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
                 </div>

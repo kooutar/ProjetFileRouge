@@ -31,9 +31,7 @@ Route::get('/statistiqueAdmin ',function(){
     return view('pages.AdminPage.pageStatistique');
 });
 
-Route::get('/ProfesseursAdmin ',function(){
-    return view('pages.AdminPage.professeurs');
-});
+Route::get('/ProfesseursAdmin ',[ProfesseurController::class,'getAllProf'])->name('allProf');
 Route::get('/auth/{google}', [EtudiantController::class, 'redirectToProvider']);
 Route::get('/auth/{google}/callback', [EtudiantController::class, 'handleProviderCallback']);
 

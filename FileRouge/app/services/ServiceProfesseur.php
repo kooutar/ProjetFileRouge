@@ -17,4 +17,8 @@ class ServiceProfesseur
         $data['password']=Hash::make($data['password']);
         return $this->RespositoryProf->registre($data);
     }
+
+    public function getAllprofService(){
+        return $this->RespositoryProf->getAllprof();
+    }
 }

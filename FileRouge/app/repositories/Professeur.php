@@ -6,6 +6,7 @@ use App\Models\Professeur as ModelsProfesseur;
 use App\repositories\Interfaces\InterfaceUser;
 use App\repositories\Interfaces\InterfaceProfesseur;
 use App\Models\user as ModelsUser;
+use App\Models\vueProf;
 
 class Professeur  implements InterfaceUser ,InterfaceProfesseur
 {
@@ -38,6 +39,10 @@ class Professeur  implements InterfaceUser ,InterfaceProfesseur
     public function findByEmail($email)
     {
         
+    }
+
+    public function getAllprof(){
+         return vueProf::all();
     }
    
 }

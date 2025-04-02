@@ -168,15 +168,15 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     <div class="flex space-x-2">
-                                        <button class="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 text-xs">
+                                        <a href="/accepter-prof/{{$prof->id}}" class="px-3 py-1 bg-green-500 text-white rounded-lg hover:bg-green-600 text-xs">
                                             Accepter
-                                        </button>
-                                        <button class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 text-xs">
+                                        </a>
+                                        <a class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 text-xs">
                                             Refuser
-                                        </button>
-                                        <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 text-xs">
+                                        </a>
+                                        {{-- <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 text-xs">
                                             Détails
-                                        </button>
+                                        </button> --}}
                                     </div>
                                 </td>
                             </tr>

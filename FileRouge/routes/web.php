@@ -43,3 +43,6 @@ Route::post('/logout',[UserController::class,'logout'])->name('logout');
 Route::post('/registreProf',[ProfesseurController::class,'store'])->name('registreProf');
 
 
+Route::get('/accepter-prof/{id}', [ProfesseurController::class, 'accepterprof'])->name('accepter.prof');
+
+

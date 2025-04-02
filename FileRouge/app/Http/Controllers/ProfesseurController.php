@@ -35,6 +35,11 @@ class ProfesseurController extends Controller
      $profs=$this->ProfService->getAllprofService();
       return view('pages.AdminPage.professeurs', compact('profs'));
     }
+
+    public function accepterprof($id){
+      $this->ProfService->accepterprofService($id);
+      return  redirect('/ProfesseursAdmin');
+    }
 }
 
 

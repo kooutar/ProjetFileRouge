@@ -21,4 +21,8 @@ class ServiceProfesseur
     public function getAllprofService(){
         return $this->RespositoryProf->getAllprof();
     }
+
+    public function accepterprofService($id){
+        return $this->RespositoryProf->accepterprof($id);
+    }
 }

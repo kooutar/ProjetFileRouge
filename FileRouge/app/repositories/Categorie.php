@@ -9,7 +9,7 @@ class Categorie implements InterfaceCategorie
 {
 
     public function create( array $data){
-        
+
         return ModelsCategorie::create($data);
     }
     public function update(array $data ,$id){
@@ -22,7 +22,9 @@ class Categorie implements InterfaceCategorie
         
     }
     public function GetAll(){
-        
+        return ModelsCategorie::all();
     }
+
+    
     
 }

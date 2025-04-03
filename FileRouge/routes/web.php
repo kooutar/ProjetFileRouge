@@ -32,9 +32,7 @@ Route::get('/statistiqueAdmin ',function(){
     return view('pages.AdminPage.pageStatistique');
 });
 
-Route::get('/tageCategorie ',function(){
-    return view('pages.AdminPage.tag_categorie');
-});
+Route::get('/tageCategorie ',[CategorieController::class,'getAllcategories']);
 Route::get('/ProfesseursAdmin ',[ProfesseurController::class,'getAllProf'])->name('allProf');
 Route::get('/auth/{google}', [EtudiantController::class, 'redirectToProvider']);
 Route::get('/auth/{google}/callback', [EtudiantController::class, 'handleProviderCallback']);
@@ -54,4 +52,5 @@ Route::get('/refuser-prof/{id}', [ProfesseurController::class, 'refuserprof'])->
 Route::get('/get-cv/{id}', [ProfesseurController::class, 'getCv']);
 
 Route::post('/ajoutCatecegorie',[CategorieController::class,'store'])->name('ajoutCatecegorie');
+
 

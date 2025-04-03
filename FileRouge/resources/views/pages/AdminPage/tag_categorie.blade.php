@@ -78,9 +78,11 @@
                                     <label for="parentCategory" class="block text-sm font-medium text-gray-700 mb-1">Catégorie parente (optionnel)</label>
                                     <select id="parentCategory" name="parent_id" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-purple focus:border-transparent">
                                         <option value="none">Aucune - Catégorie principale</option>
-                                        <option value="1">Développement</option>
-                                        <option value="2">Design</option>
-                                        <option value="3">Marketing</option>
+                                        @foreach($categories as $categorie) 
+                                        <option  value="{{ $categorie->id }}">{{$categorie->categorie}}</option>
+                                        @endforeach
+                                       
+                                        
                                     </select>
                                 </div>
                             </div>

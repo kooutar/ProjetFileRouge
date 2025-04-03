@@ -14,10 +14,16 @@ class CategorieController extends Controller
    }
 
    public function store(Request $request){
+
      $validate =$request->validate([
         'categorie'=>'required',
         'parent_id',
      ]);
-     $this->ServiceCategorie->addcategorieService($validate);
+     
+     $this->ServiceCategorie->addcategorieService($request->all());
+   }
+   public function getAllcategories(){
+    $categories=$this->ServiceCategorie->GetAllService();
+    return view('pages.AdminPage.tag_categorie', compact('categories'));
    }
 }

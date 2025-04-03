@@ -116,15 +116,29 @@
             }
         });
 
-        // resume
 
-        function openModal(id) {
-    document.getElementById(id).classList.remove("hidden");
-}
+function toggleResume(cvPath) {
+    
+        var modal = document.getElementById("cvModal");
+        var iframe = document.getElementById("cvIframe");
+        
+       
+        if (cvPath) {
+            console.log('hiii'+cvPath);
+            iframe.src = cvPath;
+            modal.classList.remove("hidden"); 
+        } else {
+            alert("CV non disponible !");
+        }
+    }
 
-function closeModal(id) {
-    document.getElementById(id).classList.add("hidden");
-}
+    function closeModal() {
+        var modal = document.getElementById("cvModal");
+        var iframe = document.getElementById("cvIframe");
+        
+        modal.classList.add("hidden"); // Cache la modal
+        iframe.src = ""; // Réinitialise l'iframe
+    }
     </script>
 </body>
 </html>

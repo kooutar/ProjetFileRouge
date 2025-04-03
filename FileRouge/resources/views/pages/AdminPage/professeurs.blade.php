@@ -139,20 +139,9 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="text-sm text-gray-900 max-w-xs">
-                                        <button class="text-custom-purple hover:text-custom-purple-dark focus:outline-none" onclick="toggleResume('resume1')">
+                                        <button class="text-custom-purple hover:text-custom-purple-dark focus:outline-none" onclick="toggleResume('{{ asset('storage/' . $prof->path_cv) }}')">
                                             Voir CV
-                                        </button>
-                                        <div id="resume1" class="hidden mt-2 bg-gray-50 p-3 rounded-lg border border-gray-200 text-xs">
-                                            <p class="font-medium">Expérience: 8 ans</p>
-                                            <p class="mb-1">• <strong>Développeur Senior</strong>, Techno Solutions (2020-présent)</p>
-                                            <p class="mb-1">• <strong>Développeur Full Stack</strong>, Web Experts (2017-2020)</p>
-                                            <p class="mb-2">• <strong>Développeur Junior</strong>, StartupXYZ (2015-2017)</p>
-                                            <p class="font-medium">Compétences:</p>
-                                            <p>JavaScript, React, Node.js, PHP, Laravel, AWS</p>
-                                            <div class="mt-2 flex justify-end">
-                                                <a href="#" class="text-custom-purple hover:underline">Télécharger CV complet</a>
-                                            </div>
-                                        </div>
+                                        </button>  
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -182,7 +171,15 @@
                             </tr>
                             @endforeach
                            
-                            
+                            <div id="cvModal" class="hidden fixed  items-center justify-center bg-gray-900 bg-opacity-50">
+                                <div class="bg-white rounded-lg shadow-lg p-5 max-w-2xl w-full">
+                                    <div class="flex justify-between items-center">
+                                        <h2 class="text-lg font-semibold">CV du Professeur</h2>
+                                        <button onclick="closeModal()" class="text-gray-600 hover:text-red-500">&times;</button>
+                                    </div>
+                                    <iframe id="cvIframe" class="w-full h-96 mt-4" src="" frameborder="0"></iframe>
+                                </div>
+                            </div>
                             <!-- Row 2 -->
                             {{-- <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">

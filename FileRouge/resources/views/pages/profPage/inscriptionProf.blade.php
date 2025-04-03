@@ -15,7 +15,7 @@
 
         <!-- Formulaire d'inscription -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
-            <form action="{{ route('registreProf')}}" method="POST">
+            <form action="{{ route('registreProf')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- Informations personnelles -->
                 <div class="mb-8">

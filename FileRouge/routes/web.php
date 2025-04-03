@@ -47,4 +47,5 @@ Route::get('/accepter-prof/{id}', [ProfesseurController::class, 'accepterprof'])
 
 Route::get('/refuser-prof/{id}', [ProfesseurController::class, 'refuserprof'])->name('refuser.prof');
 
+Route::get('/get-cv/{id}', [ProfesseurController::class, 'getCv']);
 

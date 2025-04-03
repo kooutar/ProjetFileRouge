@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategorieController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EtudiantController;
@@ -31,6 +32,9 @@ Route::get('/statistiqueAdmin ',function(){
     return view('pages.AdminPage.pageStatistique');
 });
 
+Route::get('/tageCategorie ',function(){
+    return view('pages.AdminPage.tag_categorie');
+});
 Route::get('/ProfesseursAdmin ',[ProfesseurController::class,'getAllProf'])->name('allProf');
 Route::get('/auth/{google}', [EtudiantController::class, 'redirectToProvider']);
 Route::get('/auth/{google}/callback', [EtudiantController::class, 'handleProviderCallback']);
@@ -48,4 +52,6 @@ Route::get('/accepter-prof/{id}', [ProfesseurController::class, 'accepterprof'])
 Route::get('/refuser-prof/{id}', [ProfesseurController::class, 'refuserprof'])->name('refuser.prof');
 
 Route::get('/get-cv/{id}', [ProfesseurController::class, 'getCv']);
+
+Route::post('/ajoutCatecegorie',[CategorieController::class,'store'])->name('ajoutCatecegorie');
 

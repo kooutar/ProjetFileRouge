@@ -43,14 +43,14 @@ Route::post('/logout',[UserController::class,'logout'])->name('logout');
 
 
 Route::post('/registreProf',[ProfesseurController::class,'store'])->name('registreProf');
-
-
 Route::get('/accepter-prof/{id}', [ProfesseurController::class, 'accepterprof'])->name('accepter.prof');
-
 Route::get('/refuser-prof/{id}', [ProfesseurController::class, 'refuserprof'])->name('refuser.prof');
-
 Route::get('/get-cv/{id}', [ProfesseurController::class, 'getCv']);
 
+
 Route::post('/ajoutCatecegorie',[CategorieController::class,'store'])->name('ajoutCatecegorie');
+Route::delete('/deleteCategorie/{id}',[CategorieController::class,'deleteCategorie'])->name('deleteCategorie');
+Route::put('/updateCategorie/{id}',[CategorieController::class,'updateCategorie'])->name('updateCategorie');
+
 
 

@@ -99,46 +99,7 @@
             </svg>
         </button>
     </div>
-
-    <script>
-        // Simple mobile menu toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const sidebar = document.querySelector('.bg-white.border-r');
-            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-            
-            if (mobileMenuBtn && sidebar) {
-                mobileMenuBtn.addEventListener('click', function() {
-                    sidebar.classList.toggle('hidden');
-                    sidebar.classList.toggle('fixed');
-                    sidebar.classList.toggle('inset-0');
-                    sidebar.classList.toggle('z-50');
-                });
-            }
-        });
-
-
-function toggleResume(cvPath) {
-    
-        var modal = document.getElementById("cvModal");
-        var iframe = document.getElementById("cvIframe");
-        
-       
-        if (cvPath) {
-            console.log('hiii'+cvPath);
-            iframe.src = cvPath;
-            modal.classList.remove("hidden"); 
-        } else {
-            alert("CV non disponible !");
-        }
-    }
-
-    function closeModal() {
-        var modal = document.getElementById("cvModal");
-        var iframe = document.getElementById("cvIframe");
-        
-        modal.classList.add("hidden"); // Cache la modal
-        iframe.src = ""; // Réinitialise l'iframe
-    }
-    </script>
+    <script src="{{ asset('js/gestionModal.js')}}"></script>
+    <script src="{{ asset('js/burggerMenuDashboord.js')}}"></script>
 </body>
 </html>

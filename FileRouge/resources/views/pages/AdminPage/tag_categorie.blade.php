@@ -76,7 +76,7 @@
                                 </div>
                                 <div>
                                     <label for="parentCategory" class="block text-sm font-medium text-gray-700 mb-1">Catégorie parente (optionnel)</label>
-                                    <select id="parentCategory" name="parent_id" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-purple focus:border-transparent">
+                                    <select id="parentCategory36" name="parent_id" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-purple focus:border-transparent">
                                         <option value="none">Aucune - Catégorie principale</option>
                                         @foreach($categories as $categorie) 
                                         <option  value="{{ $categorie->id }}">{{$categorie->categorie}}</option>
@@ -118,9 +118,7 @@
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Sous-catégorie
                                     </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Description
-                                    </th>
+                                    
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Nombre de cours
                                     </th>
@@ -131,63 +129,39 @@
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200">
                                 <!-- Row 1 -->
+                                @foreach($categories as $categorie) 
                                 <tr>
                                     <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">Développement Web</div>
+                                        <div class="text-sm font-medium text-gray-900"> {{$categorie->categorie}}</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-custom-purple-10 text-custom-purple">
                                             Développement
                                         </span>
                                     </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900 max-w-xs truncate">
-                                            Cours sur les technologies de développement web
-                                        </div>
-                                    </td>
+                                    
                                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                         42
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <div class="flex space-x-2">
-                                            <button class="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-xs">
+                                            <button onclick="editModal({{$categorie->id}}, '{{$categorie->categorie}}' , {{$categorie->parent_id}})" class="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-xs">
                                                 Modifier
                                             </button>
-                                            <button class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 text-xs">
-                                                Supprimer
-                                            </button>
+                                            <form action="{{ route('deleteCategorie', $categorie->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 text-xs">
+                                                    Supprimer
+                                                </button>
+                                            </form>
+                                            
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
                                 <!-- Row 2 -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm font-medium text-gray-900">Design UX/UI</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-custom-purple-10 text-custom-purple">
-                                            Design
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4">
-                                        <div class="text-sm text-gray-900 max-w-xs truncate">
-                                            Principes de design d'interface utilisateur
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        28
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                        <div class="flex space-x-2">
-                                            <button class="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-xs">
-                                                Modifier
-                                            </button>
-                                            <button class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 text-xs">
-                                                Supprimer
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                
                                 <!-- Add more rows as needed -->
                             </tbody>
                         </table>
@@ -313,7 +287,7 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <div class="flex space-x-2">
-                                            <button class="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-xs">
+                                            <button  class="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-xs">
                                                 Modifier
                                             </button>
                                             <button class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 text-xs">
@@ -378,100 +352,56 @@
                     </div>
                 </div>
             </div>
-             {{-- <div class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 md:p-8">
-    <!-- Add Category Section -->
-    <h1 class="text-purple-600 text-center text-2xl font-bold mb-6">Ajouter Categories</h1>
-    
-    <div class="mb-8">
-      <label class="block text-gray-700 mb-2">categorie</label>
-      <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500">
-      
-      <div class="flex justify-center mt-6">
-        <button class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-full transition-colors duration-300">
-          Ajouter
-        </button>
-      </div>
-    </div>
-    
-    <!-- Add Subcategory Section -->
-    <h1 class="text-purple-600 text-center text-2xl font-bold mb-6">Ajouter sous Categories</h1>
-    
-    <div>
-      <select class="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white appearance-none">
-        <option>select categorie</option>
-      </select>
-      
-      <div class="mt-4">
-        <label class="block text-gray-700 mb-2">sous-categorie</label>
-        <div class="flex items-start">
-          <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500">
-          <button class="text-purple-600 text-2xl ml-2 mt-1 focus:outline-none">+</button>
+
+            
         </div>
-      </div>
-      
-      <button class="bg-purple-600 hover:bg-purple-700 text-white w-full px-6 py-3 rounded-full mt-6 transition-colors duration-300">
-        Ajout sous-categorie
-      </button>
-    </div>
-  </div> --}}
+   {{-- modal ici --}}
+
+
+<!-- Overlay + Modal -->
+<div id="modaleedit" class="fixed inset-0 bg-black bg-opacity-50 hidden   z-50">
+    <div class="flex items-center justify-center min-h-screen">
+        <div id="" class="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 md:p-8 relative">
+        
+            <!-- Bouton de fermeture -->
+            <button onclick="closeEditModal()" class="absolute top-3 right-3 text-gray-500 hover:text-red-600 text-2xl font-bold">&times;</button>
+            
+            <form id="editCategorieForm" method="post">
+                @csrf
+                @method('PUT')
+    
+                <h1 class="text-purple-600 text-center text-2xl font-bold mb-6">Modifier Categorie</h1>
+                
+                <div class="mt-4">
+                    <label class="block text-gray-700 mb-2">Categorie</label>
+                    <div class="flex items-start">
+                        <input id="categorieName" type="text" name="categorie" class="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                </div>
+    
+                <div class="mt-4">
+                    <select id="categorieParentName" name="parent_id" class="w-full px-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-purple-500 bg-white appearance-none">
+                        @foreach($categories as $categorie) 
+                            <option value="{{ $categorie->id }}">{{ $categorie->categorie }}</option>
+                        @endforeach
+                    </select>
+                    
+                    <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white w-full px-6 py-3 rounded-full mt-6 transition-colors duration-300">
+                        Modifier categorie
+                    </button>
+                </div>
+            </form>
         </div>
-
-
-
+    </div>
+   
+</div>
 
 
 
         
-        <script>
-            // Tab switching functionality
-            document.addEventListener('DOMContentLoaded', function() {
-                const categoriesTab = document.getElementById('categoriesTab');
-                const tagsTab = document.getElementById('tagsTab');
-                const categoriesSection = document.getElementById('categoriesSection');
-                const tagsSection = document.getElementById('tagsSection');
-                
-                categoriesTab.addEventListener('click', function() {
-                    // Show categories, hide tags
-                    categoriesSection.classList.remove('hidden');
-                    tagsSection.classList.add('hidden');
-                    
-                    // Update tab styling
-                    categoriesTab.classList.add('border-custom-purple', 'text-custom-purple');
-                    categoriesTab.classList.remove('border-transparent', 'text-gray-500');
-                    
-                    tagsTab.classList.remove('border-custom-purple', 'text-custom-purple');
-                    tagsTab.classList.add('border-transparent', 'text-gray-500');
-                });
-                
-                tagsTab.addEventListener('click', function() {
-                    // Show tags, hide categories
-                    tagsSection.classList.remove('hidden');
-                    categoriesSection.classList.add('hidden');
-                    
-                    // Update tab styling
-                    tagsTab.classList.add('border-custom-purple', 'text-custom-purple');
-                    tagsTab.classList.remove('border-transparent', 'text-gray-500');
-                    
-                    categoriesTab.classList.remove('border-custom-purple', 'text-custom-purple');
-                    categoriesTab.classList.add('border-transparent', 'text-gray-500');
-                });
-            });
-            
-            // Function to toggle CV modals
-            function toggleResume(cvPath) {
-                const modal = document.getElementById('cvModal');
-                const iframe = document.getElementById('cvIframe');
-                
-                iframe.src = cvPath;
-                modal.classList.remove('hidden');
-                modal.classList.add('fixed', 'inset-0', 'z-50', 'flex');
-            }
-            
-            function closeModal() {
-                const modal = document.getElementById('cvModal');
-                modal.classList.add('hidden');
-                modal.classList.remove('fixed', 'inset-0', 'z-50', 'flex');
-            }
-        </script>
+       <script src="{{ asset('js/switchingTagCategorie.js')}}"></script>
+
+       <script src="{{ asset('js/editCategorie.js')}}"></script>
+       
 
 @endSection

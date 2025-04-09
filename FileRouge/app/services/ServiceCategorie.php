@@ -19,4 +19,12 @@ class ServiceCategorie
     public function GetAllService(){
         return $this->categorieRepositery->GetAll();
     }
+
+    public function deleteService($id){
+        return $this->categorieRepositery->delete($id);
+    }
+
+    public function updateService($data,$id){
+        return $this->categorieRepositery->update($data,$id);
+    }
 }

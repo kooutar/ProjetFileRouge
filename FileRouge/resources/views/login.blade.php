@@ -27,10 +27,6 @@
                     </label>
                     <input type="password" name="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
                 </div>
-                
-                
-                
-                
                 <button type="submit" class="w-full bg-primary hover:bg-purple-800 text-white font-bold py-3 px-4 rounded-md transition duration-300">
                     Connecter
                 </button>

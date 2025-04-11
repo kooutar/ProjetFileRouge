@@ -6,7 +6,8 @@
         <!-- Form Section -->
         <div class="w-full md:w-1/2 p-8 md:p-12">
             <h1 class="text-3xl font-bold text-gray-800 mb-8">Sign up</h1>
-            <form>
+            <form action="{{ route('register') }}" method="POST">
+                @csrf
                 <div class="mb-6">
                     <a href="{{ url('/auth/google') }}" class="flex items-center justify-center w-full mb-6 px-4 py-3 border border-gray-300 rounded-md bg-white text-gray-700 font-medium hover:bg-gray-50 hover:shadow-md transition duration-300">
                         <img src="{{ asset('images/google-logo.jpg') }}" alt="Google Logo" class="h-5 w-5 mr-3">
@@ -18,7 +19,7 @@
                         </svg>
                         <span>Your Name</span>
                     </label>
-                    <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                    <input type="text" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
                 </div>
                 
                 <div class="mb-6">
@@ -28,7 +29,7 @@
                         </svg>
                         <span>Your Email</span>
                     </label>
-                    <input type="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                    <input type="email"  name="email" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
                 </div>
                 
                 <div class="mb-6">
@@ -38,7 +39,7 @@
                         </svg>
                         <span>Password</span>
                     </label>
-                    <input type="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                    <input type="password" name="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
                 </div>
                 
                 <div class="mb-6">
@@ -48,7 +49,7 @@
                         </svg>
                         <span>Repeat your password</span>
                     </label>
-                    <input type="password" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
+                    <input type="password" name="password_confirmation" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" required>
                 </div>
                 
                 <div class="mb-6">

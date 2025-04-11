@@ -15,7 +15,8 @@
 
         <!-- Formulaire d'inscription -->
         <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
-            <form action="#" method="POST">
+            <form action="{{ route('registreProf')}}" method="POST">
+                @csrf
                 <!-- Informations personnelles -->
                 <div class="mb-8">
                     <h2 class="text-xl font-semibold text-gray-800 mb-4 pb-2 border-b border-gray-200">
@@ -29,7 +30,7 @@
                         </div>
                         <div>
                             <label for="lastName" class="block text-sm font-medium text-gray-700 mb-1">Nom*</label>
-                            <input type="text" id="lastName" name="lastName" required
+                            <input type="text" id="lastName" name="name" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
                         </div>
                         <div>
@@ -39,21 +40,18 @@
                         </div>
                         <div>
                             <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Téléphone*</label>
-                            <input type="tel" id="phone" name="phone" required
+                            <input type="tel" id="phone" name="telephone" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
                         </div>
                         <div>
-                            <label for="birthdate" class="block text-sm font-medium text-gray-700 mb-1">Date de naissance*</label>
-                            <input type="date" id="birthdate" name="birthdate" required
+                            <label for="birthdate" class="block text-sm font-medium text-gray-700 mb-1">Mot de passe*</label>
+                            <input type="password" id="birthdate" name="password" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
                         </div>
                         <div>
-                            <label for="gender" class="block text-sm font-medium text-gray-700 mb-1">Genre</label>
-                            <select id="gender" name="gender"
+                            <label for="birthdate" class="block text-sm font-medium text-gray-700 mb-1"> confirme Mot de passe*</label>
+                            <input type="password" id="birthdate" name="password_confirmation" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-                                <option value="">Sélectionner</option>
-                                <option value="male">Homme</option>
-                                <option value="female">Femme</option>
                                 
                             </select>
                         </div>
@@ -68,30 +66,21 @@
                     <div class="grid md:grid-cols-2 gap-6">
                         <div>
                             <label for="highestDegree" class="block text-sm font-medium text-gray-700 mb-1">Diplôme le plus élevé*</label>
-                            <select id="highestDegree" name="highestDegree" required
+                            <select id="highestDegree" name="deplome" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
                                 <option value="">Sélectionner</option>
-                                <option value="license">Licence</option>
-                                <option value="master">Master</option>
-                                <option value="doctorate">Doctorat</option>
-                                <option value="other">Autre</option>
+                                <option value="Licence">Licence</option>
+                                <option value="Master">Master</option>
+                                <option value="Doctorat">Doctorat</option>
+                                <option value="Autre">Autre</option>
                             </select>
                         </div>
                         <div>
                             <label for="field" class="block text-sm font-medium text-gray-700 mb-1">Domaine d'études*</label>
-                            <input type="text" id="field" name="field" required
+                            <input type="text" id="field" name="domaine" required
                                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
                         </div>
-                        <div>
-                            <label for="university" class="block text-sm font-medium text-gray-700 mb-1">Université/École*</label>
-                            <input type="text" id="university" name="university" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-                        </div>
-                        <div>
-                            <label for="yearsExperience" class="block text-sm font-medium text-gray-700 mb-1">Années d'expérience*</label>
-                            <input type="number" id="yearsExperience" name="yearsExperience" min="0" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-                        </div>
+                       
                     </div>
 
                   
@@ -110,7 +99,7 @@
                     </h2>
                     <div class="mt-6">
                         <label for="resume" class="block text-sm font-medium text-gray-700 mb-1">CV (PDF)*</label>
-                        <input type="file" id="resume" name="resume" accept=".pdf" required
+                        <input type="file" id="resume" name="path_cv" accept=".pdf" required
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
                     </div>
                     

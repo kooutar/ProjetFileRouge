@@ -43,6 +43,7 @@ class ServiceEtudiant
     }
 
     public function RegistreService(array $data){
+       
         $data['password']=Hash::make($data['password']);
         return $this->EtudiantRepositery->registre($data);
     }

@@ -17,8 +17,8 @@ class Etudiant implements InterfaceUser ,InterfaceEtudiant
            $user= ModelsUser::create($data);
             return ModelsEtudiant::create([
                 'id_user'=>$user->id,
-                'social_id'=>$data['social_id'],
-                'social_type'=>$data['social_type']
+                'social_id' => isset($data['social_id']) ? $data['social_id'] : null,
+                'social_type' => isset($data['social_type']) ? $data['social_type'] : null,
             ]);
    
         }

@@ -6,6 +6,7 @@
     <title>@yield('title', 'Mon Site')</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -45,13 +46,19 @@
                         <a href="/courses" class="text-gray-700 hover:text-primary px-3 py-2 text-sm font-medium">Cours</a>
                     </div>
                 </div>
-
-                <!-- Boutons d'authentification desktop -->
+                 @guest
+                             <!-- Boutons d'authentification desktop -->
                 <div class="hidden md:flex items-center space-x-4">
                     <a href="/inscriptionProf" class="text-primary border border-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition duration-200">S'inscrire comme prof</a>
                     <a href="/login" class="text-primary border border-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition duration-200">Login</a>
                     <a href="/inscriptionEtudiant" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primaryDark transition duration-200">S'inscrire</a> 
                 </div>
+                 
+                 @endguest
+               
+                @auth
+                    <p>hi</p>
+                @endauth
 
                 <!-- Bouton hamburger mobile -->
                 <div class="flex md:hidden items-center">
@@ -234,6 +241,17 @@ const mobileServicesDropdown = document.getElementById('mobile-services-dropdown
 mobileServicesButton.addEventListener('click', function() {
     mobileServicesDropdown.classList.toggle('hidden');
 });
+
 </script>
+@if(session('success'))
+    <script>
+        Swal.fire({
+            title: 'Succès !',
+            text: "{{ session('success') }}",
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif
 </body>
 </html>

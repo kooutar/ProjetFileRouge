@@ -76,13 +76,10 @@
                             <span class="mr-3">⚙️</span>
                             <span>Paramètres</span>
                         </a>
-                         <form action="{{ route('logout') }}" method="POST" class="mt-4">
-                        @csrf
-                        <button class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
+                        <a href="#" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
                             <span class="mr-3">⚙️</span>
                             <span>Deconnexion</span>
-                        </button>
-                    </form>
+                        </a>
                     </nav>
                 </div>
             </div>

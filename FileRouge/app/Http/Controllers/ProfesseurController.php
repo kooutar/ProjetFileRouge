@@ -8,7 +8,8 @@ use App\services\ServiceProfesseur;
 class ProfesseurController extends Controller
 {
     private $ProfService;
-    public function __construct(ServiceProfesseur $ProfService)
+    private $categorieService;
+    public function __construct(ServiceProfesseur $ProfService,)
     {
       $this->ProfService=$ProfService;
     }
@@ -57,6 +58,11 @@ class ProfesseurController extends Controller
     return response()->download(public_path('uploads/' . $prof->cv_path));
       
   }
+
+  public  function toFormAddCours(){
+
+    return view('pages.profPage.addCours');
+}
 }
 
 

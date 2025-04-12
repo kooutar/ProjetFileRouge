@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\repositories\Tag;
 use App\repositories\Admin;
+use App\repositories\Cours;
 use App\repositories\Chapitre;
 use App\repositories\Etudiant;
 use App\repositories\Categorie;
@@ -13,6 +14,7 @@ use App\repositories\UserRepository;
 use Illuminate\Support\ServiceProvider;
 use App\repositories\Interfaces\InterfaceUser;
 use App\repositories\Interfaces\InterfaceAdmin;
+use App\repositories\Interfaces\InterfaceCours;
 use App\repositories\Interfaces\InterfaceChapitre;
 use App\repositories\Interfaces\InterfaceEtudiant;
 use App\repositories\Interfaces\InterfaceCategorie;
@@ -35,6 +37,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             InterfaceUser::class,
             UserRepository::class
+        );
+
+        $this->app->bind(
+            InterfaceCours::class,
+            Cours::class
         );
         
         // $this->app->bind(Tag::class,interfaceT)// add interface tag

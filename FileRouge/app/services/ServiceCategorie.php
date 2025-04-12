@@ -16,7 +16,7 @@ class ServiceCategorie
         return $this->categorieRepositery->create($data);
     }
 
-    public function GetAllService(){
+    public function GetAllCategoiesService(){
         return $this->categorieRepositery->GetAll();
     }
 

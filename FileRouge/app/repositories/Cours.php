@@ -2,23 +2,35 @@
 
 namespace App\repositories;
 
+use App\Models\vueCours;
 use App\repositories\Interfaces\InterfaceCours;
 
 class Cours implements InterfaceCours
 {
-    public function create( array $data){
-        
+    public function all()
+    {
+        return vueCours::all();
     }
-    public function update(array $data ,$id){
-        
+
+    public function find($id)
+    {
+        return Cours::findOrFail($id);
     }
-    public function delete($id){
-        
+
+    public function create(array $data)
+    {
+        return Cours::create($data);
     }
-    public function findById($id){
-        
+
+    public function update($id, array $data)
+    {
+        $Cours = Cours::findOrFail($id);
+        $Cours->update($data);
+        return $Cours;
     }
-    public function GetAll(){
-        
+
+    public function delete($id)
+    {
+        return Cours::destroy($id);
     }
 }

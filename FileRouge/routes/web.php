@@ -5,6 +5,7 @@ use App\Http\Middleware\ProfMiddleware;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\CoursController;
 use App\Http\Middleware\EtudiantMiddleware;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\CategorieController;
@@ -46,13 +47,14 @@ Route::middleware(['auth',ProfMiddleware::class])->group(function(){
         return view('pages.profPage.DashboordProf');
     });
     // go to add cours
-    Route::get('/addCours',function(){
-    return view('pages.profPage.addCours');
-});
+    Route::get('/addCours',[ProfesseurController::class,'toFormAddCours'])->name('addCours');
 
 Route::get('/mesCours',function(){
     return view('pages.profPage.mesCours');
 });
+Route::get('/mescours',[CoursController::class,'index'])->name('mesCours');
+
+Route::post('/addCours',[CoursController::class,'store'])->name('addCours');
 });
 
 

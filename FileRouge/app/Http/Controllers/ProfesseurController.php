@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\services\ServiceCategorie;
 use Illuminate\Http\Request;
 use App\services\ServiceProfesseur;
 
@@ -9,9 +10,11 @@ class ProfesseurController extends Controller
 {
     private $ProfService;
     private $categorieService;
-    public function __construct(ServiceProfesseur $ProfService,)
+    public function __construct(ServiceProfesseur $ProfService, ServiceCategorie $categorieService)
     {
-      $this->ProfService=$ProfService;
+        $this->categorieService = $categorieService;
+    
+        $this->ProfService=$ProfService;
     }
 
     public function store(Request $request){
@@ -60,8 +63,8 @@ class ProfesseurController extends Controller
   }
 
   public  function toFormAddCours(){
-
-    return view('pages.profPage.addCours');
+   $categories=$this->categorieService->GetAllCategoiesService();
+    return view('pages.profPage.addCours', compact('categories'));
 }
 }
 

@@ -1,4 +1,4 @@
-@extends('pages.AdminPage.main')
+@extends('pages.profPage.main')
 @section('content')
 
         <!-- Main Content -->

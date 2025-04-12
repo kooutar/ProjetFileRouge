@@ -49,6 +49,10 @@ Route::middleware(['auth',ProfMiddleware::class])->group(function(){
     Route::get('/addCours',function(){
     return view('pages.profPage.addCours');
 });
+
+Route::get('/mesCours',function(){
+    return view('pages.profPage.mesCours');
+});
 });
 
 

@@ -17,8 +17,8 @@ return new class extends Migration
        SELECT c.*, p.name as nom_professeur,cat.categorie as nom_categorie
        FROM cours c
        INNER JOIN users p ON c.id_professeur = p.id
-       INNER JOIN categorie cat ON c.id_categrie = cat.id
-       inner join chapitres ch on c.id = ch.id_cours;
+       INNER JOIN categorie cat ON c.id_categrie = cat.id;
+    //    inner join chapitres ch on c.id = ch.id_cours;
        ");
     }
 

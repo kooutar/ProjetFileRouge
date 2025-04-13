@@ -33,6 +33,7 @@ Route::get('/inscriptionProf',function(){
 });
 
 Route::post('/logout',[UserController::class,'logout'])->name('logout');
+
 Route::middleware(['auth',EtudiantMiddleware::class])->group(function(){
     Route::get('/courses',function(){
         return view('pages.EtudiantPage.courses');
@@ -49,10 +50,11 @@ Route::middleware(['auth',ProfMiddleware::class])->group(function(){
     // go to add cours
     Route::get('/addCours',[ProfesseurController::class,'toFormAddCours'])->name('addCours');
 
-Route::get('/mesCours',function(){
-    return view('pages.profPage.mesCours');
-});
-Route::get('/mescours',[CoursController::class,'index'])->name('mesCours');
+// Route::get('/mesCours',function(){
+//     return view('pages.profPage.mesCours');
+// });
+
+Route::get('/mesCours',[CoursController::class,'index'])->name('mesCours');
 
 Route::post('/addCours',[CoursController::class,'store'])->name('addCours');
 });

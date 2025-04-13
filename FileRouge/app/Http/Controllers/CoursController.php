@@ -49,7 +49,7 @@ class CoursController extends Controller
     public function index()
     {
         $cours = $this->courService->getAll();
-        // $categories = $this->categorieService->GetAllCategoiesService();
+
         return view('pages.profPage.mesCours', compact('cours'));
     }
 }

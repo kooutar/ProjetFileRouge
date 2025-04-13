@@ -118,47 +118,45 @@
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            {{-- @foreach ($cours as $course) --}}
+                            @foreach ($cours as $course)
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-10 w-10">
-                                            <img class="h-10 w-10 rounded object-cover" src="" alt="Couverture du cours">
+                                            <img class="h-10 w-10 rounded object-cover" src="{{ asset('storage/'.$course->image)}}" alt="Couverture du cours">
                                         </div>
                                         <div class="ml-4">
-                                            <div class="text-sm font-medium text-gray-900">titre</div>
-                                            <div class="text-sm text-gray-500">Description</div>
+                                            <div class="text-sm font-medium text-gray-900">{{$course->titre}}</div>
+        
                                         </div>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-custom-purple-10 text-custom-purple">
-                                        {{-- {{ $course->categorie->nom }} --}}
+                                        {{ $course->nom_categorie }}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                     {{-- {{ $course->etudiants_count }} --}}
+                                    0
                                     <div class="text-xs text-gray-500 mt-1">
                                         {{-- {{ $course->completed_count }} terminés --}}
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{-- {{ \Carbon\Carbon::parse($course->created_at)->translatedFormat('d F Y') }} --}}
+                                    {{ \Carbon\Carbon::parse($course->created_at)->translatedFormat('d F Y') }}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    {{-- @if($course->statut == 'publié') --}}
+                                    @if($course->status == 'accepted')
                                     <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                         Publié
                                     </span>
-                                    {{-- @elseif($course->statut == 'brouillon') --}}
+                                    @elseif($course->status == 'pending')
                                     <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                        Brouillon
+                                        en attente
                                     </span>
-                                    {{-- @else --}}
-                                    <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
-                                        En révision
-                                    </span>
-                                    {{-- @endif --}}
+                                    
+                                    @endif
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     <div class="flex items-center">
@@ -183,7 +181,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            {{-- @endforeach --}}
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

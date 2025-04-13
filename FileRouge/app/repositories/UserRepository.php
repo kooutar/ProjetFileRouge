@@ -23,9 +23,15 @@ class UserRepository implements InterfaceUser
             if ($user->admin) {
                 // $redirect_url = '/statistiqueAdmin';
                 return redirect('/statistiqueAdmin');
-            } elseif ($user->professeur) {     
+            } elseif ($user->professeur ) {     
                 // $redirect_url = '/dashboardProf';
-                return redirect('/dashboardProf');
+                if($user->professeur->status=='activer'){
+                    return redirect('/dashboardProf');
+                }else{
+                    return redirect('/login')->with('message', "Votre compte n'est pas encore activé.");
+                }
+
+                
             } elseif ($user->etudiant) {
                 return redirect('/courses');
                 // $redirect_url = '/courses';
@@ -33,7 +39,7 @@ class UserRepository implements InterfaceUser
            return redirect('/page');
         }
         else{
-           redirect('/login')->with('error', 'Identifiants invalides');
+          return redirect('/login')->with('message', 'Identifiants invalides');
         }
  
     }

@@ -5,7 +5,7 @@
     <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8">
         <h1 class="text-3xl font-bold text-center text-indigo-600 mb-8">Ajouter Cours</h1>
   
-        <form action="{{route('addCours')}}"  method="POST" class="space-y-10">
+        <form action="{{route('addCours')}}"  method="POST" class="space-y-10" enctype="multipart/form-data">
             @csrf
           <!-- Informations générales -->
           <div>
@@ -48,7 +48,7 @@
             <div class="space-y-4">
               <div>
                 <label class="block text-gray-600 font-medium">Catégorie</label>
-                <select name="categorie" class="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-300">
+                <select name="id_categrie" class="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-300">
                     <option>-- Sélectionner une catégorie --</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->categorie }}</option>

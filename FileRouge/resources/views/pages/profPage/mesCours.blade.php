@@ -82,7 +82,7 @@
                             <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
                                 Exporter Statistiques
                             </button>
-                            <a href="/addCours" class="px-4 py-2 custom-purple text-white rounded-lg hover:bg-opacity-90">
+                            <a href="{{ route('addCours')}}" class="px-4 py-2 custom-purple text-white rounded-lg hover:bg-opacity-90">
                                 Nouveau Cours
                             </a>
                         </div>

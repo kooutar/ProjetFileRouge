@@ -61,7 +61,14 @@
                         </button>
                     </div>
                 </div>
+                @if (session('success'))
+                <div class="bg-green-200 p-4">
+                    
+                        <p>{{session('success')}}</p> 
 
+
+                </div>
+                @endif
                 <!-- Categories Section -->
                 <div id="categoriesSection">
                     <!-- Category Form -->
@@ -77,7 +84,7 @@
                                 <div>
                                     <label for="parentCategory" class="block text-sm font-medium text-gray-700 mb-1">Catégorie parente (optionnel)</label>
                                     <select id="parentCategory36" name="parent_id" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-custom-purple focus:border-transparent">
-                                        <option value="none">Aucune - Catégorie principale</option>
+                                        <option >Aucune - Catégorie principale</option>
                                         @foreach($categories as $categorie) 
                                         <option  value="{{ $categorie->id }}">{{$categorie->categorie}}</option>
                                         @endforeach

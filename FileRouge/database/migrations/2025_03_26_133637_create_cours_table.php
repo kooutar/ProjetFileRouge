@@ -20,7 +20,7 @@ return new class extends Migration
             $table->double('prix');
             $table->unsignedBigInteger('id_professeur');
             $table->unsignedBigInteger('id_categrie');
-            $table->foreign('id_professeur')->references('id')->on('professeurs');
+            $table->foreign('id_professeur')->references('id')->on('users');
             $table->foreign('id_categrie')->references('id')->on('categorie');
             $table->timestamps();
         });

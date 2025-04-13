@@ -20,15 +20,17 @@ class CategorieController extends Controller
         'parent_id',
      ]);
      
-     $this->ServiceCategorie->addcategorieService($request->all());
+     $this->ServiceCategorie->addcategorieService($validate);
+     return redirect('/tageCategorie')->with('success', 'Categorie ajoutée avec succès !');
    }
    public function getAllcategories(){
-    $categories=$this->ServiceCategorie->GetAllService();
+    $categories=$this->ServiceCategorie->GetAllCategoiesService();
     return view('pages.AdminPage.tag_categorie', compact('categories'));
    }
 
    public function deleteCategorie($id){
      $this->ServiceCategorie->deleteService($id);
+     return redirect('/tageCategorie')->with('success', 'Categorie supprimmée avec succès !');
    }
 
    public function updateCategorie(Request $request, $id){
@@ -38,5 +40,7 @@ class CategorieController extends Controller
          'parent_id',
       ]);
       $this->ServiceCategorie->updateService($request->all(),$id);
+      
+     return redirect('/tageCategorie')->with('success', 'Categorie modifié avec succès !');
    }
 }

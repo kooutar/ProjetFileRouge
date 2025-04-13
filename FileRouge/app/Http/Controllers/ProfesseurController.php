@@ -63,7 +63,7 @@ class ProfesseurController extends Controller
   }
 
   public  function toFormAddCours(){
-   $categories=$this->categorieService->GetAllCategoiesService();
+   $categories = $this->categorieService->GetAllCategoiesService();
     return view('pages.profPage.addCours', compact('categories'));
 }
 }

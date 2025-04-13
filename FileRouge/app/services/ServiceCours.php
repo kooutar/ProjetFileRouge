@@ -23,8 +23,9 @@ class ServiceCours
         return $this->courRepo->find($id);
     }
 
-    public function create(array $data)
+    public function create( $data)
     {
+        //  dd($data);
         return $this->courRepo->create($data);
     }
 

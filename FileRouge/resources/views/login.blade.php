@@ -6,6 +6,11 @@
         <!-- Form Section -->
         <div class="w-full md:w-1/2 p-8 md:p-12">
             <h1 class="text-3xl font-bold text-gray-800 mb-8">Login</h1>
+            @if (session('message'))
+           <div class="bg-green-200 p-4 rounded-lg mb-4">
+        {{ session('message') }}
+    </div>
+          @endif
             <form action="{{ route('login')}}" method="POST">
                 @csrf
                 <div class="mb-6">

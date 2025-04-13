@@ -25,15 +25,23 @@ class CoursController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'titre' => 'required|string',
-            'Description' => 'required|string',
-            'image' => 'required|string',
-            'status' => 'in:pending,rejected,accepted',
-            'prix' => 'required|numeric',
-            'id_professeur' => 'required|exists:professeurs,id',
-            'id_categorie' => 'required|exists:categories,id',
-        ]);
-
+        'titre' => 'required',
+        'Description' => 'required',
+        'image' => 'required',
+        'id_categrie' => 'required',
+    ]);
+    
+    // Ajoute dynamiquement l'ID du professeur après la validation
+    $data['id_professeur'] = auth()->user()->id;
+    // dd($data['id_professeur']);
+    
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('ficheCours', 'public'); // Enregistre dans /storage/app/public/ficheCours
+        $data['image'] = $imagePath; // Ajoute le chemin de l'image au tableau des données
+    }
+    
+    
+        // dd($request->all());
         $this->courService->create($data);
         return redirect('/mesCours')->with('success', 'Cours créé avec succès !');
     }

@@ -4,6 +4,7 @@ namespace App\repositories;
 
 use App\Models\vueCours;
 use App\repositories\Interfaces\InterfaceCours;
+use App\Models\Cours as CoursModel;
 
 class Cours implements InterfaceCours
 {
@@ -14,23 +15,30 @@ class Cours implements InterfaceCours
 
     public function find($id)
     {
-        return Cours::findOrFail($id);
+        return CoursModel::findOrFail($id);
     }
 
-    public function create(array $data)
+    public function create( $data)
     {
-        return Cours::create($data);
+      
+        try {
+            return CoursModel::create($data);
+        } catch (\Exception $e) {
+            error_log($e->getMessage());
+            die('Erreur : ' . $e->getMessage());
+        }
+       
     }
 
     public function update($id, array $data)
     {
-        $Cours = Cours::findOrFail($id);
+        $Cours = CoursModel::findOrFail($id);
         $Cours->update($data);
         return $Cours;
     }
 
     public function delete($id)
     {
-        return Cours::destroy($id);
+        return CoursModel::destroy($id);
     }
 }

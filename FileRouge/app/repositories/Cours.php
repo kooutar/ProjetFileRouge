@@ -15,7 +15,7 @@ class Cours implements InterfaceCours
 
     public function find($id)
     {
-        return CoursModel::findOrFail($id);
+        return vueCours::findOrFail($id);
     }
 
     public function create( $data)

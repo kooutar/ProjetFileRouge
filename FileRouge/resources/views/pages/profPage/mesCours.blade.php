@@ -175,7 +175,7 @@
                                         <a href="" class="px-3 py-1 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 text-xs">
                                             Voir
                                         </a>
-                                        <button onclick="" class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 text-xs">
+                                        <button onclick="confirmerSuppression({{$course->id}})" class="px-3 py-1 bg-red-500 text-white rounded-lg hover:bg-red-600 text-xs">
                                             Supprimer
                                         </button>
                                     </div>
@@ -238,7 +238,7 @@
         </div>
 
         <!-- Modal de confirmation de suppression -->
-        <div id="deleteModal" class="fixed inset-0 bg-gray-800 bg-opacity-75 hidden flex items-center justify-center z-50">
+        <div id="deleteModal" class="fixed inset-0 bg-gray-800 bg-opacity-75  hidden flex items-center justify-center z-50">
             <div class="bg-white rounded-lg p-6 max-w-sm w-full">
                 <h3 class="text-lg font-bold text-gray-900 mb-4">Confirmer la suppression</h3>
                 <p class="text-gray-700 mb-6">Êtes-vous sûr de vouloir supprimer ce cours ? Cette action est irréversible.</p>
@@ -259,7 +259,7 @@
 
         <script>
             function confirmerSuppression(id) {
-                document.getElementById('deleteForm').action = `/professeur/supprimer-cours/${id}`;
+                document.getElementById('deleteForm').action = `/supprimer-cours/${id}`;
                 document.getElementById('deleteModal').classList.remove('hidden');
             }
             

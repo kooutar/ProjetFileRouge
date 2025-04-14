@@ -52,4 +52,23 @@ class CoursController extends Controller
 
         return view('pages.profPage.mesCours', compact('cours'));
     }
+    public function delete($id)
+    {
+        $this->courService->delete($id);
+        return redirect('/mesCours')->with('success', 'Cours supprimé avec succès !');
+    }
+
+
+    public function afficheCouresdansDachboordEtudiant()
+    {
+        $courses = $this->courService->getAll();
+
+        return view('pages.EtudiantPage.courses', compact('courses'));
+    }
+
+    public function detailleCoures($id)
+    {
+       $cours = $this->courService->getById($id);
+        return view('pages.EtudiantPage.detailleCours' ,compact('cours'));
+    }
 }

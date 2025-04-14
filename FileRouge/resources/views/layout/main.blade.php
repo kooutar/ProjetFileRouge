@@ -7,6 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- paypale --}}
+
+    <script src="https://www.paypal.com/sdk/js?client-id=AbQ3AeJ82FHNHCCIm4L9wcmFIhnmsLUR9yTTeK2kd5PVzaj5jgfHBE9Dp_6cjR3R18OWkygI7fOpC1jw&currency=EUR"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -291,5 +294,6 @@ mobileServicesButton.addEventListener('click', function() {
         });
     </script>
 @endif
+@yield('scripts');
 </body>
 </html>

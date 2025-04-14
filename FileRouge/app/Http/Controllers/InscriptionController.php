@@ -17,13 +17,23 @@ class InscriptionController extends Controller
 
     public function inscrire(Request $request, $idcours)
     {
-        // Validation des données
-       $data= ['id_cours' => $idcours];
+        
+        $data= ['id_cours' => $idcours];
         $data['id_etudiant'] = auth()->user()->id;
 
         $this->inscriptionService->inscrire($data);
-        // dd($data);
+       $estIncrite= $this->EstInscrite($data['id_cours']);
 
-        return redirect()->back()->with('success', 'Inscription réussie !');
+       return redirect()->back()->with([
+        'success' => 'Inscription réussie !',
+        'estInscrit' => $estIncrite
+    ]);
+    }
+
+    public function EstInscrite($idcours)
+    {
+        $idEtudiant = auth()->user()->id;
+        $inscription = $this->inscriptionService->findById($idcours, $idEtudiant);
+        return $inscription;
     }
 }

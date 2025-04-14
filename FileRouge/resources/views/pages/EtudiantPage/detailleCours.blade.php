@@ -38,12 +38,18 @@
   
         <div class="flex flex-wrap gap-4 mt-6">
           @if($cours->prix == 0)
+          @if (session('estInscrit') == true)
           <form action="/inscrireCours/{{$cours->id}}" method="POST">
             @csrf
             <button onclick="" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-xl font-medium">S'inscrire gratutement</button>
-            <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-xl font-medium">Ajouter aux favoris</button>
-          </form>
-          
+            
+          </form> 
+          @else
+              <p class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-xl font-medium">deja inscrit</p> 
+          @endif
+
+           
+          <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-xl font-medium">Ajouter aux favoris</button>
           @else
           <button onclick="document.getElementById('paypalModal').classList.remove('hidden')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-xl font-medium">S'inscrire au cours</button>
           <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-xl font-medium">Ajouter au panier</button>

@@ -19,4 +19,8 @@ class ServiceInscription
     public function inscrire($data){
         return $this->inscriptionRepository->create($data);
     }
+
+    public function findById($idcours, $idEtudiant){
+        return $this->inscriptionRepository->findById($idcours, $idEtudiant);
+    }
 }

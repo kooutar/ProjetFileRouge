@@ -2,13 +2,21 @@
 
 namespace App\services;
 
+use App\repositories\Interfaces\InterfaceInscription;
+
 class ServiceInscription
 {
     /**
      * Create a new class instance.
      */
-    public function __construct()
+    private $inscriptionRepository;
+    public function __construct(InterfaceInscription $inscriptionRepository)
     {
-        //
+        $this->inscriptionRepository = $inscriptionRepository;
+    }
+   
+
+    public function inscrire($data){
+        return $this->inscriptionRepository->create($data);
     }
 }

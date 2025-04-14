@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\ProfMiddleware;
-use App\Http\Controllers\FilmController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\CoursController;
@@ -10,6 +9,7 @@ use App\Http\Middleware\EtudiantMiddleware;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProfesseurController;
+use App\Http\Controllers\InscriptionController;
 
 
 
@@ -37,6 +37,7 @@ Route::post('/logout',[UserController::class,'logout'])->name('logout');
 Route::middleware(['auth',EtudiantMiddleware::class])->group(function(){
     Route::get('/detailleCoures/{id}',[CoursController::class,'detailleCoures'])->name('detailleCoures');
     Route::get('/courses',[CoursController::class,'afficheCouresdansDachboordEtudiant']);
+    Route::post('/inscrireCours/{idcours}',[InscriptionController::class,'inscrire'])->name('inscrireCours');
 });
 
 
@@ -47,9 +48,9 @@ Route::middleware(['auth',ProfMiddleware::class])->group(function(){
         return view('pages.profPage.DashboordProf');
     });
     // go to add cours
-    Route::get('/addCours',[ProfesseurController::class,'toFormAddCours'])->name('addCours');
+Route::get('/addCours',[ProfesseurController::class,'toFormAddCours'])->name('addCours');
 
- Route::delete('/supprimer-cours/{id}',[CoursController::class,'delete'])->name('supprimer.cours');
+Route::delete('/supprimer-cours/{id}',[CoursController::class,'delete'])->name('supprimer.cours');
 
 
 Route::get('/mesCours',[CoursController::class,'index'])->name('mesCours');

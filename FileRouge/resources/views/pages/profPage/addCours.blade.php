@@ -40,7 +40,7 @@
             </label>
           </div>
   
-          <!-- Catégorisation -->
+          <!-- Catégorisation   -->
           <div>
             <h2 class="text-xl font-semibold text-gray-700 mb-4 flex items-center gap-2">
               <span class="text-indigo-600">🏷️</span> Catégorisation

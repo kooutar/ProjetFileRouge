@@ -27,20 +27,20 @@ class EtudiantController extends Controller
    }
 
   
-    // Rediriger vers le fournisseur OAuth
-    public function redirectToProvider($provider)
-    {
-        return Socialite::driver($provider)->redirect();
-    }
+    // // Rediriger vers le fournisseur OAuth
+    // public function redirectToProvider($provider)
+    // {
+    //     return Socialite::driver($provider)->redirect();
+    // }
 
-    // Gérer le retour du fournisseur
-    public function handleProviderCallback($provider)
-    {
-        $user = Socialite::driver($provider)->stateless()->user();
-        $etudiant = $this->EtudiantService->socialLoginService($user);
+    // // Gérer le retour du fournisseur
+    // public function handleProviderCallback($provider)
+    // {
+    //     $user = Socialite::driver($provider)->stateless()->user();
+    //     $etudiant = $this->EtudiantService->socialLoginService($user);
 
-        // return response()->json(['success' => $etudiant]);
-        return redirect('/courses');
-    }
+    //     // return response()->json(['success' => $etudiant]);
+    //     return redirect('/courses');
+    // }
 
 }

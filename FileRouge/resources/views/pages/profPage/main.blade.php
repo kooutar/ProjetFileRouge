@@ -48,18 +48,19 @@
                     </div>
                     
                     <nav class="space-y-2">
-                        <a href="#" class="flex items-center px-4 py-3 rounded-lg custom-purple text-white">
+                        <a href="/dashboardProf" class="flex items-center px-4 py-3 rounded-lg custom-purple text-white">
                             <span class="mr-3">📊</span>
                             <span>Tableau de bord</span>
                         </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
-                            <span class="mr-3">👥</span>
-                            <span>Professeurs</span>
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
+                        <a href="/mesCours" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
                             <span class="mr-3">📚</span>
                             <span>Cours</span>
                         </a>
+                        {{-- <a href="#" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
+                            <span class="mr-3">👥</span>
+                            <span>Professeurs</span>
+                        </a> --}}
+                        
                         <a href="#" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
                             <span class="mr-3">📝</span>
                             <span>Évaluations</span>
@@ -76,13 +77,13 @@
                             <span class="mr-3">⚙️</span>
                             <span>Paramètres</span>
                         </a>
-                         <form action="{{ route('logout') }}" method="POST" class="mt-4">
-                        @csrf
-                        <button class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
-                            <span class="mr-3">⚙️</span>
-                            <span>Deconnexion</span>
-                        </button>
-                    </form>
+                        <form action="{{ route('logout') }}" method="POST" class="mt-4">
+                            @csrf
+                            <button class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
+                                <span class="mr-3">⚙️</span>
+                                <span>Deconnexion</span>
+                            </button>
+                        </form>
                     </nav>
                 </div>
             </div>

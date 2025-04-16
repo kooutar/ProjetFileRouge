@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\services\ServiceCategorie;
 use Illuminate\Http\Request;
 use App\services\ServiceProfesseur;
 
 class ProfesseurController extends Controller
 {
     private $ProfService;
-    public function __construct(ServiceProfesseur $ProfService)
+    private $categorieService;
+    public function __construct(ServiceProfesseur $ProfService, ServiceCategorie $categorieService)
     {
-      $this->ProfService=$ProfService;
+        $this->categorieService = $categorieService;
+    
+        $this->ProfService=$ProfService;
     }
 
     public function store(Request $request){
@@ -57,6 +61,11 @@ class ProfesseurController extends Controller
     return response()->download(public_path('uploads/' . $prof->cv_path));
       
   }
+
+  public  function toFormAddCours(){
+   $categories = $this->categorieService->GetAllCategoiesService();
+    return view('pages.profPage.addCours', compact('categories'));
+}
 }
 
 

@@ -6,10 +6,10 @@
         <div class="flex flex-col-reverse md:flex-row items-center">
             <!-- Left Side Content -->
             <div class="md:w-1/2 mt-8 md:mt-0">
-                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">Find The Right Influencer For Your Business</h1>
-                <p class="mt-4 text-gray-600 md:pr-12">Taciti ad mollis dolor sit amet consectetur vel felis efficitur. Accumsan molestie habitasse libero ornare a turpis sed finibus fermentum.</p>
+                <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">Apprenez à votre rythme, où que vous soyez.</h1>
+                <p class="mt-4 text-gray-600 md:pr-12">Découvrez des cours interactifs, conçus par des experts, pour développer vos compétences et atteindre vos objectifs. Rejoignez notre communauté d’apprenants dès aujourd’hui !</p>
                 <button class="mt-6 bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-8 rounded-full transition duration-300">
-                    Discover More
+                   Savoir plus
                 </button>
             </div>
             
@@ -406,7 +406,7 @@
     <div class=" flex-col gap-2 mx-auto md:flex">
       <!-- Header Section -->
       <div class="mb-10">
-        <p class="text-green-500 font-medium mb-2">What We Offer</p>
+        <p class="text-green-500 font-medium mb-2">Nos services </p>
         <h2 class="text-4xl font-bold text-gray-800 mb-4">Our influencer marketing services</h2>
         <p class="text-gray-600 max-w-2xl">
           Mattis etiam curae mesti lacus eq curabitur. Per maecenas hendrerit nulla amet dictumst pretium parturient. Nuam nam consectetur erat tellus a maecenas fusco bibendum.
@@ -425,9 +425,9 @@
               <path d="M13.8 9l-2.9 3-1.8-1.5L7.5 12l3.4 3 4.1-4.5z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-3">Content Ideas</h3>
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Cours en ligne certifiés</h3>
           <p class="text-gray-600">
-            In pharetra ultrices mus eros senectus non laoreet metus. Feugiat senectus consequat sit malesuada integer turpis.
+            Accédez à une large sélection de cours certifiés, dispensés par des professionnels du domaine. Apprenez à votre rythme avec des contenus clairs, structurés et toujours à jour.
           </p>
         </div>
   
@@ -438,9 +438,9 @@
               <path d="M21.6 2.7c-.3-.2-.7-.2-1 0L16 5.9V4c0-.6-.4-1-1-1H3C2.4 3 2 3.4 2 4v12c0 .6.4 1 1 1h12c.6 0 1-.4 1-1v-1.9l4.6 3.2c.2.1.4.2.6.2.2 0 .3 0 .5-.1.3-.2.5-.5.5-.9V3.6c0-.4-.2-.7-.6-.9zM14 15H4V5h10v10zm6-1.9l-4-2.8V9.7l4-2.8v6.2z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-3">Marketing Ads</h3>
+          <h3 class="text-xl font-semibold text-gray-800 mb-3"> Formateurs expérimentés</h3>
           <p class="text-gray-600">
-            In pharetra ultrices mus eros senectus non laoreet metus. Feugiat senectus consequat sit malesuada integer turpis.
+            Bénéficiez de l’expertise de nos formateurs passionnés. Chaque cours est conçu pour être pratique, interactif et directement applicable à votre vie professionnelle.
           </p>
         </div>
   
@@ -452,9 +452,9 @@
               <path fill="none" d="M0 0h24v24H0z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-3">Media Analytic</h3>
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Accès 24/7 sur tous les appareils</h3>
           <p class="text-gray-600">
-            In pharetra ultrices mus eros senectus non laoreet metus. Feugiat senectus consequat sit malesuada integer turpis.
+            Apprenez où vous voulez, quand vous voulez. Notre plateforme est accessible sur ordinateur, tablette et mobile pour un apprentissage flexible et fluide.
           </p>
         </div>
   
@@ -465,9 +465,9 @@
               <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58s1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41s-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z"/>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-3">Product Branding</h3>
+          <h3 class="text-xl font-semibold text-gray-800 mb-3">Suivi personnalisé de votre progression</h3>
           <p class="text-gray-600">
-            In pharetra ultrices mus eros senectus non laoreet metus. Feugiat senectus consequat sit malesuada integer turpis.
+            Suivez vos progrès en temps réel, obtenez des recommandations de cours, et atteignez vos objectifs grâce à des outils de suivi intelligents.
           </p>
         </div>
       </div>

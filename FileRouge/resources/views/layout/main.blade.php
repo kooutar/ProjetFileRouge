@@ -7,6 +7,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {{-- paypale --}}
+
+    <script src="https://www.paypal.com/sdk/js?client-id=AbQ3AeJ82FHNHCCIm4L9wcmFIhnmsLUR9yTTeK2kd5PVzaj5jgfHBE9Dp_6cjR3R18OWkygI7fOpC1jw&currency=EUR"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -57,7 +60,29 @@
                  @endguest
                
                 @auth
-                    <p>hi</p>
+                    <!-- Menu déroulant pour utilisateurs connectés -->
+                    <div class="relative hidden md:block">
+                        <button id="user-menu-button" class="flex items-center text-gray-700 hover:text-primary focus:outline-none" 
+                                onclick="document.getElementById('user-dropdown').classList.toggle('hidden')">
+                            <span class="mr-2">{{ Auth::user()->name }}</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                        
+                        <!-- Dropdown menu -->
+                        <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                            <a href="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mon profil</a>
+                            <a href="/dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Tableau de bord</a>
+                            <div class="border-t border-gray-100"></div>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                    Déconnexion
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 @endauth
 
                 <!-- Bouton hamburger mobile -->
@@ -80,18 +105,34 @@
                 <a href="#" class="text-gray-700 hover:text-primary block px-3 py-2 text-base font-medium">Services</a>
                 <a href="/courses" class="text-gray-700 hover:text-primary block px-3 py-2 text-base font-medium">Cours</a>
             </div>
+            
+            @guest
             <div class="pt-4 pb-3 border-t border-gray-200">
                 <div class="flex flex-col space-y-3 px-4">
-                  
                     <a href="/login" class="text-primary border border-primary px-4 py-2 rounded text-center hover:bg-primary hover:text-white transition duration-200">Login</a>
                     <a href="/inscriptionEtudiant" class="bg-primary text-white px-4 py-2 rounded text-center hover:bg-primaryDark transition duration-200">S'inscrire</a>
                     <a href="/inscriptionProf" class="bg-primary text-white px-4 py-2 rounded text-center hover:bg-primaryDark transition duration-200">S'inscrire comme prof</a>
-                   
                 </div>
             </div>
+            @endguest
+            
+            @auth
+            <div class="pt-4 pb-3 border-t border-gray-200">
+                <div class="flex flex-col space-y-3 px-4">
+                    <span class="text-gray-700 font-medium px-3 py-2">{{ Auth::user()->name }}</span>
+                    <a href="/profile" class="text-gray-700 hover:text-primary block px-3 py-2 text-base">Mon profil</a>
+                    <a href="/dashboard" class="text-gray-700 hover:text-primary block px-3 py-2 text-base">Tableau de bord</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="text-gray-700 hover:text-primary block w-full text-left px-3 py-2 text-base">
+                            Déconnexion
+                        </button>
+                    </form>
+                </div>
+            </div>
+            @endauth
         </div>
     </nav>
-
 
   @yield('content')
 
@@ -253,5 +294,6 @@ mobileServicesButton.addEventListener('click', function() {
         });
     </script>
 @endif
+@yield('scripts');
 </body>
 </html>

@@ -5,24 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\services\ServiceEtudiant;
 use Illuminate\Support\Facades\Auth;
+use App\repositories\Interfaces\InterfaceUser;
 
 class UserController extends Controller
 {
     //
-    private $userService;
-    public function __construct(ServiceEtudiant $userService)
+    private $userRepo;
+    public function __construct(InterfaceUser $userRepo)
     {
-      $this->userService=$userService;
+        $this->userRepo = $userRepo;
     }
-    public function login(Request $request){
 
-        $datavalidate=$request->validate([
-            'email' => 'required|email|max:255',
-            'password' => 'required|min:6',
-             ]);
-             $etudiant =$this->userService->loginService($datavalidate);
-           return redirect('/courses');
-       }
+
+
+    public function login(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
+
+        return $this->userRepo->login($request->only('email', 'password'));
+    }
 
  public function logout(Request $request){
    Auth::logout();

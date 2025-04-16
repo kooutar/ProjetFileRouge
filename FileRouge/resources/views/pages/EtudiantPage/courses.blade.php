@@ -58,14 +58,15 @@
         <!-- Course grid -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             <!-- Course card 1 -->
+            @foreach ($courses as $course)
             <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105">
                 <div class="h-48 bg-gray-200 relative">
-                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Marketing Strategy" class="w-full h-full object-cover">
+                    <img src="{{ asset('storage/'.$course->image)}}" alt="Marketing Strategy" class="w-full h-full object-cover">
                     <div class="absolute top-4 left-4 bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium">Bestseller</div>
                 </div>
                 <div class="p-6">
                     <div class="flex justify-between items-center mb-3">
-                        <span class="text-blue-500 font-medium">Marketing</span>
+                        <span class="text-blue-500 font-medium">{{$course->nom_categorie}}</span>
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
                                 <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
@@ -73,26 +74,28 @@
                             <span class="text-gray-700 ml-1">4.9 (128)</span>
                         </div>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Stratégies avancées de marketing d'influence</h3>
-                    <p class="text-gray-600 mb-4">
-                        Maîtrisez les techniques les plus efficaces pour créer des campagnes d'influence à fort impact et mesurer précisément vos résultats.
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">{{$course->titre}}</h3>
+                    <p class="text-gray-600 mb-4 truncate">
+                      {{$course->Description}}
                     </p>
                     <div class="flex justify-between items-center mb-4">
-                        <span class="text-purple-600 font-bold text-lg">299€</span>
+                        <span class="text-purple-600 font-bold text-lg">{{$course->prix}}€</span>
                         <span class="text-gray-500 text-sm">12 modules • 6h de contenu</span>
                     </div>
 
-                    <button class="w-full py-3 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center">
+                    <a href="{{ route('detailleCoures',$course->id)}}" class="w-full py-3 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                         </svg>
                         Inscrivez-vous
-                    </button>
+                    </a >
                 </div>
             </div>
+            @endforeach
 
+            {{-- <!-- Course card 1 -->
             <!-- Course card 2 -->
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105">
+            {{-- <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105">
                 <div class="h-48 bg-gray-200 relative">
                     <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Web Development" class="w-full h-full object-cover">
                 </div>
@@ -121,10 +124,10 @@
                         Inscrivez-vous
                     </button>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Course card 3 -->
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105">
+            {{-- <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105">
                 <div class="h-48 bg-gray-200 relative">
                     <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Business Strategy" class="w-full h-full object-cover">
                     <div class="absolute top-4 left-4 bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium">Bestseller</div>
@@ -154,10 +157,10 @@
                         Inscrivez-vous
                     </button>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Course card 4 -->
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105">
+            {{-- <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105">
                 <div class="h-48 bg-gray-200 relative">
                     <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Personal Development" class="w-full h-full object-cover">
                 </div>
@@ -186,10 +189,10 @@
                         Inscrivez-vous
                     </button>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Course card 5 -->
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105">
+            {{-- <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105">
                 <div class="h-48 bg-gray-200 relative">
                     <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Design" class="w-full h-full object-cover">
                 </div>
@@ -219,9 +222,9 @@
                         Inscrivez-vous
                     </button>
                 </div>
-            </div>
+            </div> --}}
 
-            <!-- Course card 6 -->
+            {{-- <!-- Course card 6 -->
             <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105">
                 <div class="h-48 bg-gray-200 relative">
                     <img src="https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Social Media" class="w-full h-full object-cover">
@@ -252,9 +255,9 @@
                         Inscrivez-vous
                     </button>
                 </div>
-            </div>
+            </div> --}}
 
-            <!-- Course card 7 -->
+            {{-- <!-- Course card 7 -->
             <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105">
                 <div class="h-48 bg-gray-200 relative">
                     <img src="https://images.unsplash.com/photo-1543269664-76bc3997d9ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Data Science" class="w-full h-full object-cover">
@@ -284,7 +287,7 @@
                         Inscrivez-vous
                     </button>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
     </div>

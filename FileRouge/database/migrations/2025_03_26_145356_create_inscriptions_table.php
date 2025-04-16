@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('inscriptions', function (Blueprint $table) {
             $table->id();
-            $table->double('progress');
-            $table->integer('note');
+            $table->double('progress')->default(0.0);
+            $table->integer('note')->default(0);
             $table->unsignedBigInteger('id_cours');
             $table->unsignedBigInteger('id_etudiant');
             $table->foreign('id_cours')->references('id')->on('cours')->onDelete('cascade');
-            $table->foreign('id_etudiant')->references('id')->on('etudiants')->onDelete('cascade');
+            $table->foreign('id_etudiant')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

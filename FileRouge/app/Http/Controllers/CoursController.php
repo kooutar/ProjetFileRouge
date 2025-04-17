@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\services\ServiceCours;
 use App\services\ServiceCategorie;
-use App\services\ServiceInscription;
+
 
 class CoursController extends Controller
 {
@@ -14,13 +14,15 @@ class CoursController extends Controller
     protected $courService;
     protected $categorieService;
     protected $InscriptionController;
+    protected $chapitreController;
 
-    public function __construct(ServiceCours $courService ,ServiceCategorie $categorieService, InscriptionController $InscriptionController)
+    public function __construct(ServiceCours $courService ,ServiceCategorie $categorieService, InscriptionController $InscriptionController,chapitreController $chapitreController)
     {
        
         $this->InscriptionController = $InscriptionController;
         $this->categorieService = $categorieService; 
         $this->courService = $courService;
+        $this->chapitreController = $chapitreController;
     }
 
 
@@ -32,8 +34,11 @@ class CoursController extends Controller
         'Description' => 'required',
         'image' => 'required',
         'id_categrie' => 'required',
+        'chapters.*.titrechapitre' => 'required|string|max:255',
+        'chapters.*.pathVedio' => 'required|file|mimes:mp4,mov,avi,wmv|max:2048',
     ]);
-    
+   
+  
     // Ajoute dynamiquement l'ID du professeur après la validation
     $data['id_professeur'] = auth()->user()->id;
     // dd($data['id_professeur']);
@@ -43,9 +48,11 @@ class CoursController extends Controller
         $data['image'] = $imagePath; // Ajoute le chemin de l'image au tableau des données
     }
     
-    
         // dd($request->all());
-        $this->courService->create($data);
+       $cours= $this->courService->create($data);
+       $cours->id;
+      
+        $this->chapitreController->store($data['chapters'], $cours->id);
         return redirect('/mesCours')->with('success', 'Cours créé avec succès !');
     }
 

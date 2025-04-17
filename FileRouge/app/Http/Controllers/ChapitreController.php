@@ -17,17 +17,18 @@ class ChapitreController extends Controller
     {
        
             foreach ($data as $chapter) {
-                        $chapitreData[] = [
+                        $chapitreData= [
                             'titrechapitre' => $chapter['titrechapitre'],
                             'pathVedio' => $chapter['pathVedio']->store('chapitres', 'public'),
                             'id_cours' => $coursid,
                         ];
 
                     // dd($data);
+                   
                     $this->chapitreService->create($chapitreData);
-                  
-                }
 
+                }
+               
                 return redirect('/mesCours')->with('success', 'Chapitre créé avec succès !');
       }
 }

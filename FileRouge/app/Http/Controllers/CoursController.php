@@ -32,7 +32,7 @@ class CoursController extends Controller
         $data = $request->validate([
         'titre' => 'required',
         'Description' => 'required',
-        'image' => 'required',
+        'image' => 'required|file|mimes:jpeg,png,jpg,gif|max:2048',
         'id_categrie' => 'required',
         'chapters.*.titrechapitre' => 'required|string|max:255',
         'chapters.*.pathVedio' => 'required|file|mimes:mp4,mov,avi,wmv|max:2048',

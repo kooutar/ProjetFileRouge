@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\services\ServiceCours;
 use App\services\ServiceCategorie;
+use App\services\ServiceInscription;
 
 class CoursController extends Controller
 {
@@ -12,11 +13,13 @@ class CoursController extends Controller
 
     protected $courService;
     protected $categorieService;
+    protected $InscriptionController;
 
-    public function __construct(ServiceCours $courService ,ServiceCategorie $categorieService)
+    public function __construct(ServiceCours $courService ,ServiceCategorie $categorieService, InscriptionController $InscriptionController)
     {
-        $this->categorieService = $categorieService;
-    
+       
+        $this->InscriptionController = $InscriptionController;
+        $this->categorieService = $categorieService; 
         $this->courService = $courService;
     }
 
@@ -69,6 +72,7 @@ class CoursController extends Controller
     public function detailleCoures($id)
     {
        $cours = $this->courService->getById($id);
-        return view('pages.EtudiantPage.detailleCours' ,compact('cours'));
+       $estInscrite = $this->InscriptionController->EstInscrite($id);
+       return view('pages.EtudiantPage.detailleCours' ,compact('cours','estInscrite'));
     }
 }

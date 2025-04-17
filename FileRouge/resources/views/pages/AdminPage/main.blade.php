@@ -52,7 +52,7 @@
                             <span class="mr-3">📊</span>
                             <span>Tableau de bord</span>
                         </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
+                        <a href="/ProfesseursAdmin" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
                             <span class="mr-3">👥</span>
                             <span>Professeurs</span>
                         </a>
@@ -60,9 +60,9 @@
                             <span class="mr-3">📚</span>
                             <span>Cours</span>
                         </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
+                        <a href="/tageCategorie" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
                             <span class="mr-3">📝</span>
-                            <span>Évaluations</span>
+                            <span>tag & categories</span>
                         </a>
                         <a href="#" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
                             <span class="mr-3">💬</span>

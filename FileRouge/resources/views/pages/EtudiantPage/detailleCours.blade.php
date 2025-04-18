@@ -68,32 +68,34 @@
       8 chapitres · 42 vidéos · Durée totale : 35h
       <a href="#" class="text-indigo-600 hover:underline float-right">Tout développer</a>
     </div>
-   
-    <!-- Chapitre 1 -->
-    <details open class="mb-4">
-      <summary class="cursor-pointer bg-gray-100 p-4 rounded-md font-medium text-gray-800 flex items-center justify-between">
-        <span>Chapitre 1 : Introduction à Python et configuration</span>
-        <span class="text-sm text-gray-500">4 vidéos • 2h30min</span>
-      </summary>
-      <div class="mt-3 space-y-3 px-4">
-        <div class="flex items-start justify-between bg-gray-50 p-3 rounded-md border">
-          <span class="text-gray-700">1.1 Présentation de Python et son écosystème</span>
-          <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button>
-        </div>
-        <div class="flex items-start justify-between bg-gray-50 p-3 rounded-md border">
-          <span class="text-gray-700">1.2 Installation de Python et configuration de l’environnement</span>
-          <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button>
-        </div>
-        <div class="flex items-start justify-between bg-gray-50 p-3 rounded-md border">
-          <span class="text-gray-700">1.3 Utilisation des éditeurs et IDE pour Python</span>
-          <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button>
-        </div>
-        <div class="flex items-start justify-between bg-gray-50 p-3 rounded-md border">
-          <span class="text-gray-700">1.4 Votre premier programme Python</span>
-          <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button>
-        </div>
+   @foreach($chapitres as $chapitre)
+   <details open class="mb-4">
+    <summary class="cursor-pointer bg-gray-100 p-4 rounded-md font-medium text-gray-800 flex items-center justify-between">
+      <span>Chapitre 1 :{{$chapitre->titrechapitre}}</span>
+      <span class="text-sm text-gray-500">4 vidéos • 2h30min</span>
+    </summary>
+    <div class="mt-3 space-y-3 px-4">
+      <div class="flex items-start justify-between bg-gray-50 p-3 rounded-md border">
+        <span class="text-gray-700">1.1 Présentation de Python et son écosystème</span>
+        <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button>
       </div>
-    </details>
+      <div class="flex items-start justify-between bg-gray-50 p-3 rounded-md border">
+        <span class="text-gray-700">1.2 Installation de Python et configuration de l’environnement</span>
+        <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button>
+      </div>
+      <div class="flex items-start justify-between bg-gray-50 p-3 rounded-md border">
+        <span class="text-gray-700">1.3 Utilisation des éditeurs et IDE pour Python</span>
+        <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button>
+      </div>
+      <div class="flex items-start justify-between bg-gray-50 p-3 rounded-md border">
+        <span class="text-gray-700">1.4 Votre premier programme Python</span>
+        <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button>
+      </div>
+    </div>
+  </details>
+   @endforeach
+    <!-- Chapitre 1 -->
+    
    
     <!-- Autres chapitres (collapsed) -->
     {{-- <details class="mb-2">

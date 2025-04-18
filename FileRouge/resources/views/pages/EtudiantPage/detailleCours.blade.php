@@ -78,21 +78,16 @@
         <div class="mt-3 space-y-3 px-4">
           <div class="mt-3 space-y-3 px-4">
             <div class="flex items-start justify-between bg-gray-50 p-3 rounded-md border">
-              <span class="text-gray-700">1.1 Présentation de Python et son écosystème</span>
-              <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button>
+              {{-- <span class="text-gray-700">1.1 Présentation de Python et son écosystème</span>
+              <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button> --}}
+              <video controls>
+                <source src="{{ asset('storage/'.$chapitre->pathVedio) }}" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+              </video>
             </div>
-            <div class="flex items-start justify-between bg-gray-50 p-3 rounded-md border">
-              <span class="text-gray-700">1.2 Installation de Python et configuration de l’environnement</span>
-              <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button>
-            </div>
-            <div class="flex items-start justify-between bg-gray-50 p-3 rounded-md border">
-              <span class="text-gray-700">1.3 Utilisation des éditeurs et IDE pour Python</span>
-              <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button>
-            </div>
-            <div class="flex items-start justify-between bg-gray-50 p-3 rounded-md border">
-              <span class="text-gray-700">1.4 Votre premier programme Python</span>
-              <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button>
-            </div>
+            
+            
+           
           </div>
         </div>
     </details>

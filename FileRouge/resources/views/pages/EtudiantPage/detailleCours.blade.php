@@ -68,7 +68,7 @@
       8 chapitres · 42 vidéos · Durée totale : 35h
       <a href="#" class="text-indigo-600 hover:underline float-right">Tout développer</a>
     </div>
-  
+   
     <!-- Chapitre 1 -->
     <details open class="mb-4">
       <summary class="cursor-pointer bg-gray-100 p-4 rounded-md font-medium text-gray-800 flex items-center justify-between">
@@ -94,9 +94,9 @@
         </div>
       </div>
     </details>
-  
+   
     <!-- Autres chapitres (collapsed) -->
-    <details class="mb-2">
+    {{-- <details class="mb-2">
       <summary class="cursor-pointer bg-gray-100 p-4 rounded-md font-medium text-gray-800 flex items-center justify-between">
         <span>Chapitre 2 : Variables, types de données et opérateurs</span>
         <span class="text-sm text-gray-500">6 vidéos • 4h15min</span>
@@ -115,7 +115,7 @@
         <span>Chapitre 4 : Fonctions et modules</span>
         <span class="text-sm text-gray-500">5 vidéos • 4h</span>
       </summary>
-    </details>
+    </details> --}}
   
     <div class="mt-4 text-center">
       <a href="#" class="text-indigo-600 hover:underline text-sm font-medium">Voir les 4 autres chapitres ↓</a>

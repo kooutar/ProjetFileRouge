@@ -16,7 +16,7 @@ class Chapitre extends Model
     {
         return $this->belongsTo(Cours::class, 'id_cours');
     }
-
+   
 
     
 }

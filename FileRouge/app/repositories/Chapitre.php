@@ -27,4 +27,8 @@ class Chapitre implements InterfaceChapitre
     public function GetAll(){
 
     }
+    public function getchapitresCours($idcours)
+    {
+        return ChapitreModel::where('id_cours', $idcours)->get();
+    }
 }

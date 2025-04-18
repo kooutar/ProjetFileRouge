@@ -29,4 +29,8 @@ class ServiceChapitre
         // }
         return $this->chapitreRepository->create($data);
     }
+    public function getchapitresCours($idcours)
+    {
+        return $this->chapitreRepository->getchapitresCours($idcours);
+    }
 }

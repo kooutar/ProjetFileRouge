@@ -29,31 +29,24 @@ class CoursController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->validate([
-        'titre' => 'required',
-        'Description' => 'required',
-        'image' => 'required|file|mimes:jpeg,png,jpg,gif|max:2048',
-        'id_categrie' => 'required',
-        'chapters.*.titrechapitre' => 'required|string|max:255',
-        'chapters.*.pathVedio' => 'required|file|mimes:mp4,mov,avi,wmv|max:2048',
-    ]);
-   
-  
-    // Ajoute dynamiquement l'ID du professeur après la validation
-    $data['id_professeur'] = auth()->user()->id;
-    // dd($data['id_professeur']);
-    
-    if ($request->hasFile('image')) {
-        $imagePath = $request->file('image')->store('ficheCours', 'public'); // Enregistre dans /storage/app/public/ficheCours
-        $data['image'] = $imagePath; // Ajoute le chemin de l'image au tableau des données
-    }
-    
-        // dd($request->all());
-       $cours= $this->courService->create($data);
-       $cours->id;
-      
-        $this->chapitreController->store($data['chapters'], $cours->id);
-        return redirect('/mesCours')->with('success', 'Cours créé avec succès !');
+                $data = $request->validate([
+                'titre' => 'required',
+                'Description' => 'required',
+                'image' => 'required|file|mimes:jpeg,png,jpg,gif|max:2048',
+                'prix' => 'required|numeric',
+                'id_categrie' => 'required',
+                'chapters.*.titrechapitre' => 'required|string|max:255',
+                'chapters.*.pathVedio' => 'required|file|mimes:mp4,mov,avi,wmv|max:2048',
+            ]);
+            $data['id_professeur'] = auth()->user()->id;
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('ficheCours', 'public'); 
+                $data['image'] = $imagePath; 
+            }
+            $cours= $this->courService->create($data);
+            $cours->id;
+            $this->chapitreController->store($data['chapters'], $cours->id);
+            return redirect('/mesCours')->with('success', 'Cours créé avec succès !');
     }
 
     public function index()
@@ -62,11 +55,14 @@ class CoursController extends Controller
 
         return view('pages.profPage.mesCours', compact('cours'));
     }
+
+
     public function delete($id)
     {
         $this->courService->delete($id);
         return redirect('/mesCours')->with('success', 'Cours supprimé avec succès !');
     }
+
 
 
     public function afficheCouresdansDachboordEtudiant()
@@ -76,10 +72,12 @@ class CoursController extends Controller
         return view('pages.EtudiantPage.courses', compact('courses'));
     }
 
+
     public function detailleCoures($id)
     {
        $cours = $this->courService->getById($id);
        $estInscrite = $this->InscriptionController->EstInscrite($id);
-       return view('pages.EtudiantPage.detailleCours' ,compact('cours','estInscrite'));
+        $chapitres = $this->chapitreController->getchapitresCours($id);
+       return view('pages.EtudiantPage.detailleCours' ,compact('cours','estInscrite','chapitres'));
     }
 }

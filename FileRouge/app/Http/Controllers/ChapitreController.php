@@ -30,5 +30,9 @@ class ChapitreController extends Controller
                 }
                
                 return redirect('/mesCours')->with('success', 'Chapitre créé avec succès !');
-      }
+    }
+    public function getchapitresCours($idcours)
+    {
+        return  $this->chapitreService->getchapitresCours($idcours);  
+    }
 }

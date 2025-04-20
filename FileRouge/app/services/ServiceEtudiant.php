@@ -50,4 +50,8 @@ class ServiceEtudiant
     public function LoginService(array $data){
          $this->EtudiantRepositery->login($data);
     }
+
+    public function getCoursEtudiant($idetudiant){
+        return $this->EtudiantRepositery->getCoursEtudiant($idetudiant);
+    }
 }

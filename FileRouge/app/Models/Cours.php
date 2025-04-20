@@ -19,4 +19,11 @@ class Cours extends Model
     {
         return $this->belongsTo(Categorie::class, 'id_categorie');
     }
+
+    public function etudiants()
+    {
+        return $this->belongsToMany(Etudiant::class, 'inscriptions', 'id_cours', 'id_etudiant');
+    }
+
+    
 }

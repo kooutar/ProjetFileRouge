@@ -2,6 +2,7 @@
 
 namespace App\repositories;
 
+use App\Models\etudiantCoursView;
 use App\Models\user as ModelsUser;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Auth;
@@ -48,8 +49,14 @@ class Etudiant implements InterfaceUser ,InterfaceEtudiant
         }
 
         public function findByEmail($email)
-    {
-        return ModelsUser::where('email', $email)->first();
-    }
+        {
+          return ModelsUser::where('email', $email)->first();
+        }
+
+        public function getCoursEtudiant($idetudiant){
+            return etudiantCoursView::where('id_user', $idetudiant)->get();
+        }
+
+
   
 }

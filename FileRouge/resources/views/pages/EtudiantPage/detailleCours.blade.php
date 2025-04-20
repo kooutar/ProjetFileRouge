@@ -80,7 +80,7 @@
             <div class="flex items-start justify-between bg-gray-50 p-3 rounded-md border">
               {{-- <span class="text-gray-700">1.1 Présentation de Python et son écosystème</span>
               <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button> --}}
-              <video controls>
+              <video controls id="myVideo">
                 <source src="{{ asset('storage/'.$chapitre->pathVedio) }}" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
               </video>
@@ -325,6 +325,17 @@
 @endSection
 @section('scripts')
 <script>
+
+var video = document.getElementById('myVideo');
+
+// Événement lorsque la vidéo est terminée
+video.addEventListener('ended', function() {
+    alert('La vidéo est terminée!');
+    // Vous pouvez envoyer cette information à votre serveur si nécessaire
+    // par exemple via AJAX
+});
+
+
   paypal.Buttons({
     style: {
       layout: 'vertical',   // 'horizontal' ou 'vertical'
@@ -348,5 +359,8 @@
     }
   }).render('#paypal-button-container');
 </script>
-    
+
+
+
+
 @endSection

@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\services\ServiceCours;
 use App\services\ServiceEtudiant;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 
 class EtudiantController extends Controller
 {
    private $EtudiantService;
-   public function __construct(ServiceEtudiant $EtudiantService)
+   private $coursService;
+   public function __construct(ServiceEtudiant $EtudiantService, ServiceCours $coursService)
    {
+     $this->coursService=$coursService;
+   
      $this->EtudiantService=$EtudiantService;
    }
     // for socailite
@@ -26,21 +31,17 @@ class EtudiantController extends Controller
      return  redirect('/login');
    }
 
-  
-    // // Rediriger vers le fournisseur OAuth
-    // public function redirectToProvider($provider)
-    // {
-    //     return Socialite::driver($provider)->redirect();
-    // }
 
-    // // Gérer le retour du fournisseur
-    // public function handleProviderCallback($provider)
-    // {
-    //     $user = Socialite::driver($provider)->stateless()->user();
-    //     $etudiant = $this->EtudiantService->socialLoginService($user);
+   public function getProfile()
+   {
+       $idetudiant=Auth::user()->id;
+       $etudiant = $this->EtudiantService->getCoursEtudiant($idetudiant);
+       return view('pages.EtudiantPage.profile',compact('etudiant'));
 
-    //     // return response()->json(['success' => $etudiant]);
-    //     return redirect('/courses');
-    // }
+   }
+   
 
 }
+
+
+

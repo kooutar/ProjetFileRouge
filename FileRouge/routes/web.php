@@ -35,9 +35,10 @@ Route::get('/inscriptionProf',function(){
 Route::post('/logout',[UserController::class,'logout'])->name('logout');
 
 Route::middleware(['auth',EtudiantMiddleware::class])->group(function(){
-    Route::get('/detailleCoures/{id}',[CoursController::class,'detailleCoures'])->name('detailleCoures');
-    Route::get('/courses',[CoursController::class,'afficheCouresdansDachboordEtudiant']);
-    Route::post('/inscrireCours/{idcours}',[InscriptionController::class,'inscrire'])->name('inscrireCours');
+        Route::get('/detailleCoures/{id}',[CoursController::class,'detailleCoures'])->name('detailleCoures');
+        Route::get('/courses',[CoursController::class,'afficheCouresdansDachboordEtudiant']);
+        Route::post('/inscrireCours/{idcours}',[InscriptionController::class,'inscrire'])->name('inscrireCours');
+        Route::get('/profile',[EtudiantController::class,'getProfile'])->name('profile');
 });
 
 

@@ -10,4 +10,6 @@ class Inscription extends Model
         'id_cours',
         'id_etudiant',
     ];
+
+     
 }

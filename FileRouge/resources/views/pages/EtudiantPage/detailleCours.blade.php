@@ -80,7 +80,7 @@
             <div class="flex items-start justify-between bg-gray-50 p-3 rounded-md border">
               {{-- <span class="text-gray-700">1.1 Présentation de Python et son écosystème</span>
               <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button> --}}
-              <video controls id="myVideo">
+              <video controls class="myVideo" data-chapitre-id="{{ $chapitre->id }}" >
                 <source src="{{ asset('storage/'.$chapitre->pathVedio) }}" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
               </video>
@@ -326,15 +326,36 @@
 @section('scripts')
 <script>
 
-var video = document.getElementById('myVideo');
+// Récupérer toutes les vidéos avec la classe .myVideo
+var videos = document.querySelectorAll('.myVideo');
 
-// Événement lorsque la vidéo est terminée
-video.addEventListener('ended', function() {
-    alert('La vidéo est terminée!');
-    // Vous pouvez envoyer cette information à votre serveur si nécessaire
-    // par exemple via AJAX
+// Ajouter un écouteur à chaque vidéo
+videos.forEach(function(video) {
+    video.addEventListener('ended', function() {
+        var chapitreId = this.getAttribute('data-chapitre-id');
+
+        fetch('/chapitre/' + chapitreId + '/terminer', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify({ videoTerminee: true })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Chapitre ' + chapitreId + ' terminé. Réponse :', data);
+        })
+        .catch((error) => {
+            console.error('Erreur lors de la requête :', error);
+        });
+    });
 });
 
+
+
+
+// PayPal Button Integration
 
   paypal.Buttons({
     style: {

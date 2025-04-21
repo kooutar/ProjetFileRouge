@@ -1,11 +1,13 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\ProfMiddleware;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\CoursController;
 use App\Http\Middleware\EtudiantMiddleware;
+use App\Http\Controllers\ChapitreController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProfesseurController;
@@ -39,6 +41,10 @@ Route::middleware(['auth',EtudiantMiddleware::class])->group(function(){
         Route::get('/courses',[CoursController::class,'afficheCouresdansDachboordEtudiant']);
         Route::post('/inscrireCours/{idcours}',[InscriptionController::class,'inscrire'])->name('inscrireCours');
         Route::get('/profile',[EtudiantController::class,'getProfile'])->name('profile');
+
+        Route::post('/chapitre/{id}/terminer', [ChapitreController::class, 'terminer'])->name('chapitre.terminer');
+        Route::get('/chapitre/{id}/terminer', [ChapitreController::class, 'terminer'])->name('chapitre.terminer');
+
 });
 
 
@@ -95,6 +101,21 @@ Route::get('/statistiqueAdmin ',function(){
 
 
 
+Route::get('/test-progress', function () {
+    // Simuler un étudiant connecté (par exemple user ID 1)
+    $etudiant = \App\Models\User::find(1); // change ID selon ton cas
+    auth()->login($etudiant);
+
+    // Créer une requête vide
+    $request = Request::create('/fake-url', 'POST');
+
+    // Appeler la méthode terminer en lui passant le chapitre_id (ex: 3)
+    $chapitreId = 6; // à adapter selon tes données
+
+    app(ChapitreController::class)->terminer($request, $chapitreId);
+
+    return 'Progression mise à jour !';
+});
 
 
 

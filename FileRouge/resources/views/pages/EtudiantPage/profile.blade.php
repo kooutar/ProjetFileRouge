@@ -28,7 +28,6 @@
       <p class="text-gray-500">Aucun cours suivi pour le moment.</p>
       @else 
       <p class="text-gray-500">Vous suivez {{ $etudiant->count() }} Cours.</p>
-      @endif
       @foreach($etudiant as $coursItem)
       <div class="bg-gray-50 p-4 rounded-xl shadow-sm mb-4">
         <div class="flex items-center justify-between">
@@ -43,6 +42,8 @@
         </div>
       </div>
       @endforeach
+      @endif
+     
     </div>
   </div>
 @endSection

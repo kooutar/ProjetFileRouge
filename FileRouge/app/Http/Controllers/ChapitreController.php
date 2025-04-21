@@ -52,6 +52,7 @@ class ChapitreController extends Controller
                         ->from('chapitres')
                         ->where('id_cours', $coursId);
                 })->count();
+               
 
             // Étape 3 : Calculer le pourcentage de progression
             $progress = 0;
@@ -61,20 +62,21 @@ class ChapitreController extends Controller
         
         
             // Étape 4 : Mettre à jour la table inscriptions
-            Inscription::where('id_etudiant', $etudiantId)
+            $updated = Inscription::where('id_etudiant', $etudiantId)
                 ->where('id_cours', $coursId)
                 ->update(['progress' => $progress]);
+        
     }
 
 
     public function terminer(Request $request, $id)
         {
             $etudiantId = auth()->id();
-
+          
             $dejaFait = Completion::where('etudiant_id', $etudiantId)
                 ->where('chapitre_id', $id)
                 ->exists();
-                dd($dejaFait);
+                // dd($dejaFait);
 
             if (!$dejaFait) {
                 Completion::create([
@@ -84,8 +86,8 @@ class ChapitreController extends Controller
                 ]);
 
                 // Optionnel : mise à jour de la progression
-                $coursId = Chapitre::find($id)->cours_id;
-            dd($coursId);
+                $coursId = Chapitre::find($id)->id_cours;
+           
                 $this->updateProgress($etudiantId, $coursId);
             }
 

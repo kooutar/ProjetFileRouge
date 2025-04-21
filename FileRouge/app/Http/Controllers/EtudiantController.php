@@ -32,12 +32,12 @@ class EtudiantController extends Controller
    }
 
 
+   
    public function getProfile()
    {
        $idetudiant=Auth::user()->id;
        $etudiant = $this->EtudiantService->getCoursEtudiant($idetudiant);
        return view('pages.EtudiantPage.profile',compact('etudiant'));
-
    }
    
 

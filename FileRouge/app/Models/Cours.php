@@ -25,5 +25,8 @@ class Cours extends Model
         return $this->belongsToMany(Etudiant::class, 'inscriptions', 'id_cours', 'id_etudiant');
     }
 
+    public function chapitres() {
+        return $this->hasMany(Chapitre::class);
+    }
     
 }

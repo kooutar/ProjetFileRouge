@@ -12,7 +12,7 @@ use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\InscriptionController;
-use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 Route::get('/', function () {
@@ -101,19 +101,19 @@ Route::get('/statistiqueAdmin ',function(){
 
 
 
-Route::get('/user/invoice/{invoice}', function () {
+Route::get('/certificat', function () {
     $user = auth()->user();
+
     $data = [
-        'nom' => $user->name,
+        'nom' => $user->name ?? 'Nom Inconnu',
         'formation' => 'Laravel E-Learning',
         'date' => now()->format('d/m/Y'),
     ];
-   
-    $pdf = PDF::loadView('certificat', $data);
 
-    return $pdf->download('certificat-' . $user->id . '.pdf');
+    $pdf = Pdf::loadView('certificat', $data);
+
+    return $pdf->download('certificat.pdf');
 });
-
 
 
 

@@ -12,7 +12,7 @@ use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\InscriptionController;
-
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 
 
 Route::get('/', function () {
@@ -101,20 +101,17 @@ Route::get('/statistiqueAdmin ',function(){
 
 
 
-Route::get('/test-progress', function () {
-    // Simuler un étudiant connecté (par exemple user ID 1)
-    $etudiant = \App\Models\User::find(1); // change ID selon ton cas
-    auth()->login($etudiant);
+Route::get('/user/invoice/{invoice}', function () {
+    $user = auth()->user();
+    $data = [
+        'nom' => $user->name,
+        'formation' => 'Laravel E-Learning',
+        'date' => now()->format('d/m/Y'),
+    ];
+   
+    $pdf = PDF::loadView('certificat', $data);
 
-    // Créer une requête vide
-    $request = Request::create('/fake-url', 'POST');
-
-    // Appeler la méthode terminer en lui passant le chapitre_id (ex: 3)
-    $chapitreId = 6; // à adapter selon tes données
-
-    app(ChapitreController::class)->terminer($request, $chapitreId);
-
-    return 'Progression mise à jour !';
+    return $pdf->download('certificat-' . $user->id . '.pdf');
 });
 
 

@@ -40,6 +40,14 @@
         <div class="w-full h-3 bg-gray-200 rounded-full mt-3">
         <div class="h-3 bg-indigo-500 rounded-full" style="width: {{ $coursItem->progress }}%"></div>
         </div>
+        <p>{{$coursItem->id_user}}</p>
+        <div class="flex justify-centre mt-4">
+      @if ($coursItem->progress == 100)
+            <a href="/user/invoice/{{$coursItem->id_user}}" class="p-4 bg-indigo-400 rounded-3xl text-white hover:bg-indigo-700">telecharger certificat</a>
+        @else
+            <button class="p-4 bg-indigo-400 rounded-3xl text-white hover:bg-indigo-700">voir cours</button> 
+        @endif
+      </div>
       </div>
       @endforeach
       @endif

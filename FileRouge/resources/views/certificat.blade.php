@@ -61,14 +61,14 @@
         <div class="title">Certificat de Formation</div>
 
         <div class="subtitle">Décerné à :</div>
-        <div class="content"><strong>{{ $nom }}</strong></div>
+        <div class="content"><strong>{{ auth()->user()->name}}</strong></div>
 
         <div class="content">
             Pour avoir complété avec succès la formation<br>
-            <strong>{{ $formation }}</strong>
+            <strong>{{ $certificat->titre }}</strong>
         </div>
 
-        <div class="content">Date de délivrance : <strong>{{ $date }}</strong></div>
+        <div class="content">Date de délivrance : <strong>{{now()->format('d/m/Y')}}</strong></div>
 
         <div class="signature">
             ___________________________<br>

@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Http\Controllers\certificat;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\ProfMiddleware;
 use App\Http\Controllers\UserController;
@@ -12,7 +14,6 @@ use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\InscriptionController;
-use Barryvdh\DomPDF\Facade\Pdf;
 
 
 Route::get('/', function () {
@@ -44,6 +45,7 @@ Route::middleware(['auth',EtudiantMiddleware::class])->group(function(){
 
         Route::post('/chapitre/{id}/terminer', [ChapitreController::class, 'terminer'])->name('chapitre.terminer');
         Route::get('/chapitre/{id}/terminer', [ChapitreController::class, 'terminer'])->name('chapitre.terminer');
+        Route::get('/certificat/{iduser}/{idcours}', [certificat::class, 'generateCertificat'])->name('certificat.generate');
 
 });
 
@@ -101,19 +103,19 @@ Route::get('/statistiqueAdmin ',function(){
 
 
 
-Route::get('/certificat', function () {
-    $user = auth()->user();
+// Route::get('/certificat', function () {
+//     $user = auth()->user();
 
-    $data = [
-        'nom' => $user->name ?? 'Nom Inconnu',
-        'formation' => 'Laravel E-Learning',
-        'date' => now()->format('d/m/Y'),
-    ];
+//     $data = [
+//         'nom' => $user->name ?? 'Nom Inconnu',
+//         'formation' => 'Laravel E-Learning',
+//         'date' => now()->format('d/m/Y'),
+//     ];
 
-    $pdf = Pdf::loadView('certificat', $data);
+//     $pdf = Pdf::loadView('certificat', $data);
 
-    return $pdf->download('certificat.pdf');
-});
+//     return $pdf->download('certificat.pdf');
+// });
 
 
 

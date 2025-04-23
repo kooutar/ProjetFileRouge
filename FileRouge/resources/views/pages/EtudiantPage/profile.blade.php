@@ -43,7 +43,7 @@
         <p>{{$coursItem->id_user}}</p>
         <div class="flex justify-centre mt-4">
       @if ($coursItem->progress == 100)
-            <a href="/certificat" class="p-4 bg-indigo-400 rounded-3xl text-white hover:bg-indigo-700">telecharger certificat</a>
+            <a href="/certificat/{{$coursItem->id_user}}/{{$coursItem->titre}}" class="p-4 bg-indigo-400 rounded-3xl text-white hover:bg-indigo-700">telecharger certificat</a>
         @else
             <button class="p-4 bg-indigo-400 rounded-3xl text-white hover:bg-indigo-700">voir cours</button> 
         @endif

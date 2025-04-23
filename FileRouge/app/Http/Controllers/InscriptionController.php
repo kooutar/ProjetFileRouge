@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cours;
 use App\Models\Inscription;
 use Illuminate\Http\Request;
 use App\services\ServiceInscription;
@@ -56,5 +57,18 @@ class InscriptionController extends Controller
 
     return back()->with('success', 'Merci pour votre note !');
 }
+
+public function show($idCours)
+{
+    $cours = Cours::findOrFail($idCours);
+
+    // inscription de l’étudiant connecté (s’il existe)
+    $inscription = Inscription::where('id_cours', $idCours)
+                              ->where('id_etudiant', auth()->id())
+                              ->first();
+
+    return view('cours.show', compact('cours', 'inscription'));
+}
+
 
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Inscription;
 use Illuminate\Http\Request;
 use App\services\ServiceCours;
 use App\services\ServiceCategorie;
@@ -77,7 +78,13 @@ class CoursController extends Controller
     {
        $cours = $this->courService->getById($id);
        $estInscrite = $this->InscriptionController->EstInscrite($id);
-        $chapitres = $this->chapitreController->getchapitresCours($id);
-       return view('pages.EtudiantPage.detailleCours' ,compact('cours','estInscrite','chapitres'));
+      $chapitres = $this->chapitreController->getchapitresCours($id);
+      $inscription = Inscription::where('id_cours', $id)
+      ->where('id_etudiant', auth()->id())
+      ->first();
+       return view('pages.EtudiantPage.detailleCours' ,compact('cours','estInscrite','chapitres','inscription'));
     }
+
+
+    
 }

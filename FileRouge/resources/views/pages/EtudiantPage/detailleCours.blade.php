@@ -209,7 +209,7 @@
   
   <section class="mt-10 bg-white p-6 rounded-xl shadow-md max-w-6xl mx-auto mb-10">
     <h3 class="text-xl font-semibold text-gray-800 mb-4">Évaluations et avis</h3>
-    <form action="{{ route('cours.noter', $cours->id) }}" method="POST">
+    {{-- <form action="{{ route('cours.noter', $cours->id) }}" method="POST">
       @csrf
       <div class="flex flex-row-reverse justify-center">
                 @for($i = 5; $i >= 1; $i--)
@@ -229,7 +229,40 @@
       <button type="submit" class="mt-2 px-4 py-1 bg-blue-600 text-white rounded">
           Noter
       </button>
-  </form>
+  </form> --}}
+
+  @if($inscription )
+    {{-- FORMULAIRE POUR NOTER --}}
+    <form action="{{ route('cours.noter', $cours->id) }}" method="POST">
+        @csrf
+        <div class="flex flex-row-reverse justify-center">
+            @for($i = 5; $i >= 1; $i--)
+                <input  type="radio"
+                        name="note"
+                        id="star-{{ $i }}"
+                        value="{{ $i }}"
+                        class="peer hidden">
+                <label for="star-{{ $i }}" class="cursor-pointer text-3xl text-gray-300
+                       peer-checked:text-yellow-400 peer-hover:text-yellow-500">
+                    ★
+                </label>
+            @endfor
+        </div>
+        <button type="submit" class="mt-2 px-4 py-1 bg-blue-600 text-white rounded">
+            Noter
+        </button>
+    </form>
+@else
+    {{-- L’ÉTUDIANT A DÉJÀ NOTÉ : AFFICHAGE LECTURE SEULE --}}
+    <p class="text-2xl">
+        @for($i = 1; $i <= 5; $i++)
+            <span class="{{ $i <= ($inscription->note ?? 0) ? 'text-yellow-400' : 'text-gray-300' }}">
+                ★
+            </span>
+        @endfor
+    </p>
+@endif
+
   
     <!-- Note globale -->
    

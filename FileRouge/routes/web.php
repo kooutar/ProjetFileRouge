@@ -40,7 +40,8 @@ Route::post('/logout',[UserController::class,'logout'])->name('logout');
 Route::middleware(['auth',EtudiantMiddleware::class])->group(function(){
         Route::get('/detailleCoures/{id}',[CoursController::class,'detailleCoures'])->name('detailleCoures');
         Route::get('/courses',[CoursController::class,'afficheCouresdansDachboordEtudiant']);
-        Route::post('/inscrireCours/{idcours}',[InscriptionController::class,'inscrire'])->name('inscrireCours');
+        Route::match(['get', 'post'], '/inscrireCours/{idcours}', [InscriptionController::class, 'inscrire'])->name('inscrireCours');
+
         Route::get('/profile',[EtudiantController::class,'getProfile'])->name('profile');
 
         Route::post('/chapitre/{id}/terminer', [ChapitreController::class, 'terminer'])->name('chapitre.terminer');
@@ -52,19 +53,19 @@ Route::middleware(['auth',EtudiantMiddleware::class])->group(function(){
 
 
 Route::middleware(['auth',ProfMiddleware::class])->group(function(){
-    // go to dachboord prof
-    Route::get('/dashboardProf',function(){
-        return view('pages.profPage.DashboordProf');
-    });
-    // go to add cours
-Route::get('/addCours',[ProfesseurController::class,'toFormAddCours'])->name('addCours');
+            // go to dachboord prof
+        Route::get('/dashboardProf',function(){
+                return view('pages.profPage.DashboordProf');
+            });
+            // go to add cours
+        Route::get('/addCours',[ProfesseurController::class,'toFormAddCours'])->name('addCours');
 
-Route::delete('/supprimer-cours/{id}',[CoursController::class,'delete'])->name('supprimer.cours');
+        Route::delete('/supprimer-cours/{id}',[CoursController::class,'delete'])->name('supprimer.cours');
 
 
-Route::get('/mesCours',[CoursController::class,'index'])->name('mesCours');
+        Route::get('/mesCours',[CoursController::class,'index'])->name('mesCours');
 
-Route::post('/addCours',[CoursController::class,'store'])->name('addCours');
+        Route::post('/addCours',[CoursController::class,'store'])->name('addCours');
 
 });
 
@@ -86,36 +87,21 @@ Route::post('/registreProf',[ProfesseurController::class,'store'])->name('regist
 
 Route::middleware(['auth',AdminMiddleware::class])->group(function(){  
 
-Route::get('/accepter-prof/{id}', [ProfesseurController::class, 'accepterprof'])->name('accepter.prof');
-Route::get('/refuser-prof/{id}', [ProfesseurController::class, 'refuserprof'])->name('refuser.prof');
-Route::get('/get-cv/{id}', [ProfesseurController::class, 'getCv']);
-Route::post('/ajoutCatecegorie',[CategorieController::class,'store'])->name('ajoutCatecegorie');
-Route::delete('/deleteCategorie/{id}',[CategorieController::class,'deleteCategorie'])->name('deleteCategorie');
-Route::put('/updateCategorie/{id}',[CategorieController::class,'updateCategorie'])->name('updateCategorie');
-Route::get('/tageCategorie ',[CategorieController::class,'getAllcategories']);
-Route::get('/ProfesseursAdmin ',[ProfesseurController::class,'getAllProf'])->name('allProf');
-Route::get('/statistiqueAdmin ',function(){
-    return view('pages.AdminPage.pageStatistique');
-});
+        Route::get('/accepter-prof/{id}', [ProfesseurController::class, 'accepterprof'])->name('accepter.prof');
+        Route::get('/refuser-prof/{id}', [ProfesseurController::class, 'refuserprof'])->name('refuser.prof');
+        Route::get('/get-cv/{id}', [ProfesseurController::class, 'getCv']);
+        Route::post('/ajoutCatecegorie',[CategorieController::class,'store'])->name('ajoutCatecegorie');
+        Route::delete('/deleteCategorie/{id}',[CategorieController::class,'deleteCategorie'])->name('deleteCategorie');
+        Route::put('/updateCategorie/{id}',[CategorieController::class,'updateCategorie'])->name('updateCategorie');
+        Route::get('/tageCategorie ',[CategorieController::class,'getAllcategories']);
+        Route::get('/ProfesseursAdmin ',[ProfesseurController::class,'getAllProf'])->name('allProf');
+        Route::get('/statistiqueAdmin ',function(){
+            return view('pages.AdminPage.pageStatistique');
+        });
 
 
 });
 
-
-
-// Route::get('/certificat', function () {
-//     $user = auth()->user();
-
-//     $data = [
-//         'nom' => $user->name ?? 'Nom Inconnu',
-//         'formation' => 'Laravel E-Learning',
-//         'date' => now()->format('d/m/Y'),
-//     ];
-
-//     $pdf = Pdf::loadView('certificat', $data);
-
-//     return $pdf->download('certificat.pdf');
-// });
 
 
 

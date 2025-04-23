@@ -357,7 +357,7 @@ videos.forEach(function(video) {
 
 // PayPal Button Integration
 var prixDuCours = @json($cours->prix); // Assurez-vous que le prix est bien un nombre
-
+ var coursid=@json($cours->id);
 paypal.Buttons({
     style: {
         layout: 'vertical',
@@ -375,10 +375,12 @@ paypal.Buttons({
         });
     },
     onApprove: function(data, actions) {
-        return actions.order.capture().then(function(details) {
-            alert('Transaction complétée par ' + details.payer.name.given_name);
-            // Tu peux rediriger ici ou faire un appel AJAX pour enregistrer le paiement
-        });
+      return actions.order.capture().then(function(details) {
+        alert("good")
+    // Rediriger vers la route Laravel après paiement
+    window.location.href = `/inscrireCours/${coursid}`;
+    
+    });
     }
 }).render('#paypal-button-container');
 </script>

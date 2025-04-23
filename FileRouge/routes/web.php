@@ -48,6 +48,9 @@ Route::middleware(['auth',EtudiantMiddleware::class])->group(function(){
         Route::get('/chapitre/{id}/terminer', [ChapitreController::class, 'terminer'])->name('chapitre.terminer');
         Route::get('/certificat/{iduser}/{idcours}', [certificat::class, 'generateCertificat'])->name('certificat.generate');
 
+        Route::post('/cours/{id}/noter', [InscriptionController::class, 'noter'])->name('cours.noter');
+
+
 });
 
 

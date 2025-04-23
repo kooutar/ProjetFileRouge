@@ -356,29 +356,31 @@ videos.forEach(function(video) {
 
 
 // PayPal Button Integration
+var prixDuCours = @json($cours->prix); // Assurez-vous que le prix est bien un nombre
 
-  paypal.Buttons({
+paypal.Buttons({
     style: {
-      layout: 'vertical',   // 'horizontal' ou 'vertical'
-      color: 'gold',        // 'gold', 'blue', 'silver', 'white', 'black'
-      shape: 'rect',        // 'rect' ou 'pill'
-      label: 'checkout'     // 'paypal', 'checkout', 'buynow', etc.
+        layout: 'vertical',
+        color: 'gold',
+        shape: 'rect',
+        label: 'checkout'
     },
     createOrder: function(data, actions) {
-      return actions.order.create({
-        purchase_units: [{
-          amount: {
-            value: '10.00'
-          }
-        }]
-      });
+        return actions.order.create({
+            purchase_units: [{
+                amount: {
+                    value: prixDuCours // pour s'assurer que ce soit bien une string "49.99"
+                }
+            }]
+        });
     },
     onApprove: function(data, actions) {
-      return actions.order.capture().then(function(details) {
-        alert('Transaction completed by ' + details.payer.name.given_name);
-      });
+        return actions.order.capture().then(function(details) {
+            alert('Transaction complétée par ' + details.payer.name.given_name);
+            // Tu peux rediriger ici ou faire un appel AJAX pour enregistrer le paiement
+        });
     }
-  }).render('#paypal-button-container');
+}).render('#paypal-button-container');
 </script>
 
 

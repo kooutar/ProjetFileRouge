@@ -209,54 +209,31 @@
   
   <section class="mt-10 bg-white p-6 rounded-xl shadow-md max-w-6xl mx-auto mb-10">
     <h3 class="text-xl font-semibold text-gray-800 mb-4">Évaluations et avis</h3>
+    <form action="{{ route('cours.noter', $cours->id) }}" method="POST">
+      @csrf
+      <div class="flex flex-row-reverse justify-center">
+                @for($i = 5; $i >= 1; $i--)
+                <input  type="radio"
+                        id="star-{{ $i }}"
+                        name="note[]"
+                        value="{{ $i }}"
+                        class="peer hidden"
+                        {{ old('note') == $i ? 'checked' : '' }}>
+                <label for="star-{{ $i }}" class="cursor-pointer text-3xl
+                    text-gray-300 peer-checked:text-yellow-400 peer-hover:text-yellow-500">
+                    ★
+                </label>
+            @endfor
+      </div>
+  
+      <button type="submit" class="mt-2 px-4 py-1 bg-blue-600 text-white rounded">
+          Noter
+      </button>
+  </form>
   
     <!-- Note globale -->
-    <div class="flex items-center gap-6">
-      <div class="text-center">
-        <div class="text-4xl font-bold text-yellow-500">4.7</div>
-        <div class="text-sm text-gray-600">328 avis</div>
-      </div>
-  
-      <!-- Barre de notation -->
-      <div class="flex-1 space-y-1">
-        <div class="flex items-center gap-2">
-          <span class="text-sm text-gray-600 w-10">5 étoiles</span>
-          <div class="w-full h-2 bg-gray-200 rounded-full">
-            <div class="h-2 bg-yellow-400 rounded-full" style="width: 80%;"></div>
-          </div>
-          <span class="text-xs text-gray-500 w-6">80%</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-sm text-gray-600 w-10">4 étoiles</span>
-          <div class="w-full h-2 bg-gray-200 rounded-full">
-            <div class="h-2 bg-yellow-400 rounded-full" style="width: 15%;"></div>
-          </div>
-          <span class="text-xs text-gray-500 w-6">15%</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-sm text-gray-600 w-10">3 étoiles</span>
-          <div class="w-full h-2 bg-gray-200 rounded-full">
-            <div class="h-2 bg-yellow-400 rounded-full" style="width: 3%;"></div>
-          </div>
-          <span class="text-xs text-gray-500 w-6">3%</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-sm text-gray-600 w-10">2 étoiles</span>
-          <div class="w-full h-2 bg-gray-200 rounded-full">
-            <div class="h-2 bg-yellow-400 rounded-full" style="width: 1%;"></div>
-          </div>
-          <span class="text-xs text-gray-500 w-6">1%</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <span class="text-sm text-gray-600 w-10">1 étoile</span>
-          <div class="w-full h-2 bg-gray-200 rounded-full">
-            <div class="h-2 bg-yellow-400 rounded-full" style="width: 1%;"></div>
-          </div>
-          <span class="text-xs text-gray-500 w-6">1%</span>
-        </div>
-      </div>
-    </div>
-  
+   
+   
     <!-- Avis étudiants -->
     <div class="mt-8">
       <h4 class="text-lg font-semibold text-gray-700 mb-4">Avis des étudiants</h4>

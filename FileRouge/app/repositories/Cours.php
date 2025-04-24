@@ -10,7 +10,7 @@ class Cours implements InterfaceCours
 {
     public function all()
     {
-        return vueCours::all();
+        return vueCours::where('status','accepted')->get();
     }
 
     public function find($id)

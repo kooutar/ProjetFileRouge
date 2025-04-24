@@ -101,6 +101,14 @@ class CoursController extends Controller
         return redirect('/coursAdmin')->with('success', 'Cours accepté avec succès !');
     }
 
+    public function refusercours($id)
+    {
+        $cours = Cours::findOrFail($id);
+        $cours->status = 'rejected';
+        $cours->save();
+        return redirect('/coursAdmin')->with('success', 'Cours refusé avec succès !');
+    }
+
 
     
 }

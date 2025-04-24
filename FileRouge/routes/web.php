@@ -102,6 +102,8 @@ Route::middleware(['auth',AdminMiddleware::class])->group(function(){
             return view('pages.AdminPage.pageStatistique');
         });
 
+        Route::get('/coursAdmin ',[CoursController::class,'indexadmin'])->name('allCours');
+
 
 });
 

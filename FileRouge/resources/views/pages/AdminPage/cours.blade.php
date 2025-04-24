@@ -151,14 +151,14 @@
                         <!-- Actions -->
                         <td class="px-6 py-4 whitespace-nowrap text-sm">
                             <div class="flex space-x-2">
-                                <form method="POST" action="">
+                                <form method="POST" action="{{route('accepter.cours', $course->id)}}">
                                     @csrf
                                     <button
                                         class="px-3 py-1 bg-green-500 text-white rounded-lg text-xs hover:bg-green-600">
                                         Accepter
                                     </button>
                                 </form>
-                                <form method="POST" action="">
+                                <form method="POST" action="{{route('refuser.cours', $course->id)}}">
                                     @csrf
                                     <button
                                         class="px-3 py-1 bg-red-500 text-white rounded-lg text-xs hover:bg-red-600">

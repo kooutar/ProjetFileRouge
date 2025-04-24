@@ -63,10 +63,6 @@ class CoursController extends Controller
     {
         $courses = Cours::with(['Professeur', 'Categorie', 'chapitres'])
                   ->get();
-
-    // pour une vue Blade :
-    
-
         return view('pages.AdminPage.cours', compact('courses'));
     }
 
@@ -95,6 +91,14 @@ class CoursController extends Controller
       ->where('id_etudiant', auth()->id())
       ->first();
        return view('pages.EtudiantPage.detailleCours' ,compact('cours','estInscrite','chapitres','inscription'));
+    }
+
+    public function acceptercours($id)
+    {
+        $cours = Cours::findOrFail($id);
+        $cours->status = 'accepted';
+        $cours->save();
+        return redirect('/coursAdmin')->with('success', 'Cours accepté avec succès !');
     }
 
 

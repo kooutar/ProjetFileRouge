@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cours;
 use App\Models\Inscription;
 use Illuminate\Http\Request;
 use App\services\ServiceCours;
@@ -57,6 +58,17 @@ class CoursController extends Controller
         return view('pages.profPage.mesCours', compact('cours'));
     }
 
+
+    public function indexadmin()
+    {
+        $courses = Cours::with(['Professeur', 'Categorie', 'chapitres'])
+                  ->get();
+
+    // pour une vue Blade :
+    
+
+        return view('pages.AdminPage.cours', compact('courses'));
+    }
 
     public function delete($id)
     {

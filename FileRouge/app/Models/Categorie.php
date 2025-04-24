@@ -8,4 +8,10 @@ class Categorie extends Model
 {
     protected $fillable=['categorie','parent_id'];
     protected $table="categorie";
+    
+
+    public function cours()
+    {
+        return $this->hasMany(Cours::class,'id_categrie');
+    }
 }

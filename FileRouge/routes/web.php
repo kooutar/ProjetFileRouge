@@ -92,6 +92,9 @@ Route::middleware(['auth',AdminMiddleware::class])->group(function(){
 
         Route::get('/accepter-prof/{id}', [ProfesseurController::class, 'accepterprof'])->name('accepter.prof');
         Route::get('/refuser-prof/{id}', [ProfesseurController::class, 'refuserprof'])->name('refuser.prof');
+        
+        Route::get('/accepter-cours/{id}', [CoursController::class, 'acceptercours'])->name('accepter.prof');
+        Route::get('/refuser-cours/{id}', [CoursController::class, 'refusercours'])->name('refuser.prof');
         Route::get('/get-cv/{id}', [ProfesseurController::class, 'getCv']);
         Route::post('/ajoutCatecegorie',[CategorieController::class,'store'])->name('ajoutCatecegorie');
         Route::delete('/deleteCategorie/{id}',[CategorieController::class,'deleteCategorie'])->name('deleteCategorie');

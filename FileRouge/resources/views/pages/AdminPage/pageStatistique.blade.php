@@ -109,13 +109,9 @@
                         <h2 class="text-lg font-semibold text-gray-800 mb-6">Répartition des cours</h2>
                         <canvas id="myChart" width="400" height="200"></canvas>
 
-                        @php
-                            $colors = ['#5932EA', '#7B61FF', '#9E8CFC', '#C3B5FD', '#D9CEFF']; // Ajoute autant de couleurs que nécessaire
-                        @endphp
                         @foreach($parCategorie as $index => $item)
                         <div class="flex items-center">
-                            <div class="w-3 h-3 rounded mr-2" style="background-color: {{ $colors[$index % count($colors)] }};"></div>
-                            <span>{{ $item->categorie->categorie ?? 'Non défini' }} ({{ $item->pourcentage }}%)</span>
+                         
                             <input type="hidden" class="pourcentage-{{$item->categorie->categorie}}" value="{{ $item->pourcentage }}">
                         </div>
                     @endforeach
@@ -259,7 +255,24 @@
                         
                         let labels = [];
                         let data = [];
-                    
+                        const backgroundColors = [
+    'rgba(255, 99, 132, 0.5)',   // Rouge
+    'rgba(54, 162, 235, 0.5)',   // Bleu
+    'rgba(255, 206, 86, 0.5)',   // Jaune
+    'rgba(75, 192, 192, 0.5)',   // Vert clair
+    'rgba(153, 102, 255, 0.5)',  // Violet
+    'rgba(255, 159, 64, 0.5)'    // Orange
+];
+
+const borderColors = [
+    'rgba(255, 99, 132, 1)',
+    'rgba(54, 162, 235, 1)',
+    'rgba(255, 206, 86, 1)',
+    'rgba(75, 192, 192, 1)',
+    'rgba(153, 102, 255, 1)',
+    'rgba(255, 159, 64, 1)'
+];
+
                         inputs.forEach(input => {
                             // Récupère la classe complète (ex: "pourcentage-tech")
                             let className = input.className;
@@ -279,8 +292,8 @@
                                 datasets: [{
                                     label: 'Pourcentage par Catégorie',
                                     data: data,
-                                    backgroundColor: 'rgba(75, 192, 192, 0.5)', // couleur des barres
-                                    borderColor: 'rgba(75, 192, 192, 1)',       // bordure
+                                    backgroundColor: backgroundColors.slice(0, data.length),
+            borderColor: borderColors.slice(0, data.length),      // bordure
                                     borderWidth: 1
                                 }]
                             },

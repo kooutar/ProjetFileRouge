@@ -22,7 +22,7 @@
                     📚
                 </div>
                 <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Total cours</p>
-                <p class="text-2xl font-bold text-gray-800">total</p>
+                <p class="text-2xl font-bold text-gray-800">{{ $courses->count()}} total</p>
                 <p class="text-xs text-green-500 mt-2">↑ 70% depuis le mois dernier</p>
             </div>
 
@@ -32,7 +32,7 @@
                     ⏳
                 </div>
                 <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">En attente</p>
-                <p class="text-2xl font-bold text-gray-800">attente</p>
+                <p class="text-2xl font-bold text-gray-800">{{$pendingCount}} en attente</p>
                 <p class="text-xs text-red-500 mt-2">↑ 30% depuis le mois dernier</p>
             </div>
 

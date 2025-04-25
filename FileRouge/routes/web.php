@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use App\Http\Controllers\certificat;
@@ -103,9 +104,7 @@ Route::middleware(['auth',AdminMiddleware::class])->group(function(){
         Route::put('/updateCategorie/{id}',[CategorieController::class,'updateCategorie'])->name('updateCategorie');
         Route::get('/tageCategorie ',[CategorieController::class,'getAllcategories']);
         Route::get('/ProfesseursAdmin ',[ProfesseurController::class,'getAllProf'])->name('allProf');
-        Route::get('/statistiqueAdmin ',function(){
-            return view('pages.AdminPage.pageStatistique');
-        });
+        Route::get('/statistiqueAdmin ',[AdminController::class,'index']);
 
         Route::get('/coursAdmin ',[CoursController::class,'indexadmin'])->name('allCours');
 

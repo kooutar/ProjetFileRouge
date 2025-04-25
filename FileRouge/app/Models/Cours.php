@@ -17,7 +17,7 @@ class Cours extends Model
 
     public function categorie()
     {
-        return $this->belongsTo(Categorie::class, 'id_categorie');
+        return $this->belongsTo(Categorie::class, 'id_categrie');
     }
 
     public function etudiants()

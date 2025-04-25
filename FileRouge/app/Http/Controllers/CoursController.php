@@ -40,6 +40,8 @@ class CoursController extends Controller
                 'chapters.*.titrechapitre' => 'required|string|max:255',
                 'chapters.*.pathVedio' => 'required|file|mimes:mp4,mov,avi,wmv|max:2048',
             ]);
+
+
             $data['id_professeur'] = auth()->user()->id;
             if ($request->hasFile('image')) {
                 $imagePath = $request->file('image')->store('ficheCours', 'public'); 
@@ -63,7 +65,8 @@ class CoursController extends Controller
     {
         $courses = Cours::with(['Professeur', 'Categorie', 'chapitres'])
                   ->get();
-        return view('pages.AdminPage.cours', compact('courses'));
+      $pendingCount = Cours::where('status', 'pending')->count();
+        return view('pages.AdminPage.cours', compact('courses','pendingCount'));
     }
 
     public function delete($id)

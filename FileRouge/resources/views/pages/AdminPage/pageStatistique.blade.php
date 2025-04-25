@@ -74,7 +74,7 @@
                         </div>
                         
                         <!-- Simple bar chart -->
-                        <div class="h-32 md:h-64 flex items-end space-x-1">
+                        {{-- <div class="h-32 md:h-64 flex items-end space-x-1">
                             <div class="h-3/5 custom-purple rounded-t w-full"></div>
                             <div class="h-4/5 custom-purple rounded-t w-full"></div>
                             <div class="h-2/3 custom-purple rounded-t w-full"></div>
@@ -87,9 +87,9 @@
                             <div class="h-4/5 custom-purple rounded-t w-full"></div>
                             <div class="h-3/4 custom-purple rounded-t w-full"></div>
                             <div class="h-5/6 custom-purple rounded-t w-full"></div>
-                        </div>
+                        </div> --}}
                         
-                        <div class="flex justify-between text-xs text-gray-500 mt-2">
+                        {{-- <div class="flex justify-between text-xs text-gray-500 mt-2">
                             <span>Jan</span>
                             <span>Fév</span>
                             <span>Mar</span>
@@ -102,7 +102,9 @@
                             <span>Oct</span>
                             <span>Nov</span>
                             <span>Déc</span>
-                        </div>
+                        </div> --}}
+
+                        <canvas id="chartInscription" width="600" height="400"></canvas>
                     </div>
 
                     <div class="bg-white rounded-xl shadow p-4 md:p-6">
@@ -283,9 +285,9 @@ const borderColors = [
                         });
                     
                         // Initialise le graphique
-                        const ctx = document.getElementById('myChart').getContext('2d');
+                        const ctxpie = document.getElementById('myChart').getContext('2d');
                     
-                        new Chart(ctx, {
+                        new Chart(ctxpie, {
                             type: 'pie',
                             data: {
                                 labels: labels,
@@ -293,7 +295,7 @@ const borderColors = [
                                     label: 'Pourcentage par Catégorie',
                                     data: data,
                                     backgroundColor: backgroundColors.slice(0, data.length),
-            borderColor: borderColors.slice(0, data.length),      // bordure
+                                     borderColor: borderColors.slice(0, data.length),      // bordure
                                     borderWidth: 1
                                 }]
                             },
@@ -306,6 +308,35 @@ const borderColors = [
                                 }
                             }
                         });
+
+  // *****************************
+
+                 
+  const ctxbare = document.getElementById('chartInscription').getContext('2d');
+        const chart = new Chart(ctxbare, {
+            type: 'bar',
+            data: {
+                labels: @json($labels),
+                datasets: [{
+                    label: 'Inscriptions',
+                    data: @json($data),
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        precision: 0
+                    }
+                }
+            }
+        });
+
+                        
                     });
-                    </script>
+                  
+        </script>
                     

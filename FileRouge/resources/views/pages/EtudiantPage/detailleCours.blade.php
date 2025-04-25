@@ -209,27 +209,8 @@
   
   <section class="mt-10 bg-white p-6 rounded-xl shadow-md max-w-6xl mx-auto mb-10">
     <h3 class="text-xl font-semibold text-gray-800 mb-4">Évaluations et avis</h3>
-    {{-- <form action="{{ route('cours.noter', $cours->id) }}" method="POST">
-      @csrf
-      <div class="flex flex-row-reverse justify-center">
-                @for($i = 5; $i >= 1; $i--)
-                <input  type="radio"
-                        id="star-{{ $i }}"
-                        name="note[]"
-                        value="{{ $i }}"
-                        class="peer hidden"
-                        {{ old('note') == $i ? 'checked' : '' }}>
-                <label for="star-{{ $i }}" class="cursor-pointer text-3xl
-                    text-gray-300 peer-checked:text-yellow-400 peer-hover:text-yellow-500">
-                    ★
-                </label>
-            @endfor
-      </div>
   
-      <button type="submit" class="mt-2 px-4 py-1 bg-blue-600 text-white rounded">
-          Noter
-      </button>
-  </form> --}}
+  </form>
 
   @if($inscription )
     {{-- FORMULAIRE POUR NOTER --}}

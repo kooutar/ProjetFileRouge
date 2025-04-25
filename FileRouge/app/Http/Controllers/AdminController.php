@@ -1,8 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Carbon\Carbon;
 use App\Models\Cours;
 use Illuminate\Support\Facades\DB;
 
@@ -34,15 +32,23 @@ class AdminController extends Controller
         ->get();
       
     // Convertir les numéros de mois en noms (1 => Janvier, etc.)
-    $labels = [];
-    $data = [];
+        $labels = [];
+        $data = [];
 
-    foreach ($inscriptions as $inscription) {
-        $labels[] = trim($inscription->mois); // supprimer les espaces
-        $data[] = $inscription->total;
-    }
+        foreach ($inscriptions as $inscription) {
+            $labels[] = trim($inscription->mois); // supprimer les espaces
+            $data[] = $inscription->total;
+        }
+
+        $top3Cours = DB::table('cours')
+        ->join('inscriptions', 'cours.id', '=', 'inscriptions.id_cours')
+        ->select('cours.titre', DB::raw('COUNT(inscriptions.id_etudiant) as total_inscriptions'))
+        ->groupBy('cours.id')
+        ->orderByDesc('total_inscriptions')
+        ->limit(3)
+        ->get();
     
-        return view('pages.AdminPage.pageStatistique', compact('parCategorie','labels', 'data'));
+        return view('pages.AdminPage.pageStatistique', compact('parCategorie','labels', 'data', 'top3Cours'));
     }
 
 

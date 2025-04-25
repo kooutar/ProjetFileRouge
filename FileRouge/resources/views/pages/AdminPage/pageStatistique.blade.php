@@ -67,42 +67,12 @@
                         <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-6">
                             <h2 class="text-lg font-semibold text-gray-800 mb-3 md:mb-0">Inscriptions mensuelles</h2>
                             <div class="flex bg-gray-100 rounded-lg text-xs md:text-sm">
-                                <button class="px-3 py-1 rounded-lg text-gray-600">Semaine</button>
+                               
                                 <button class="px-3 py-1 rounded-lg custom-purple text-white">Mois</button>
-                                <button class="px-3 py-1 rounded-lg text-gray-600">Année</button>
+                               
                             </div>
                         </div>
                         
-                        <!-- Simple bar chart -->
-                        {{-- <div class="h-32 md:h-64 flex items-end space-x-1">
-                            <div class="h-3/5 custom-purple rounded-t w-full"></div>
-                            <div class="h-4/5 custom-purple rounded-t w-full"></div>
-                            <div class="h-2/3 custom-purple rounded-t w-full"></div>
-                            <div class="h-4/5 custom-purple rounded-t w-full"></div>
-                            <div class="h-3/4 custom-purple rounded-t w-full"></div>
-                            <div class="h-full custom-purple rounded-t w-full"></div>
-                            <div class="h-4/5 custom-purple rounded-t w-full"></div>
-                            <div class="h-2/3 custom-purple rounded-t w-full"></div>
-                            <div class="h-5/6 custom-purple rounded-t w-full"></div>
-                            <div class="h-4/5 custom-purple rounded-t w-full"></div>
-                            <div class="h-3/4 custom-purple rounded-t w-full"></div>
-                            <div class="h-5/6 custom-purple rounded-t w-full"></div>
-                        </div> --}}
-                        
-                        {{-- <div class="flex justify-between text-xs text-gray-500 mt-2">
-                            <span>Jan</span>
-                            <span>Fév</span>
-                            <span>Mar</span>
-                            <span>Avr</span>
-                            <span>Mai</span>
-                            <span>Jui</span>
-                            <span>Jul</span>
-                            <span>Aoû</span>
-                            <span>Sep</span>
-                            <span>Oct</span>
-                            <span>Nov</span>
-                            <span>Déc</span>
-                        </div> --}}
 
                         <canvas id="chartInscription" width="600" height="400"></canvas>
                     </div>
@@ -137,8 +107,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($top3Cours as $cours)
                             <tr class="border-b">
-                                <td class="py-4 pr-2">Développement Web Complet</td>
+                                <td class="py-4 pr-2">{{$cours->titre}}</td>
                                 <td class="py-4 px-2"><span class="px-2 py-1 bg-custom-purple-10 text-custom-purple rounded-full text-xs">Développement</span></td>
                                 <td class="py-4 px-2">1,245</td>
                                 <td class="py-4 px-2">4.8/5</td>
@@ -148,7 +119,8 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="border-b">
+                            @endforeach
+                            {{-- <tr class="border-b">
                                 <td class="py-4 pr-2">Marketing Digital Avancé</td>
                                 <td class="py-4 px-2"><span class="px-2 py-1 bg-custom-purple-10 text-custom-purple rounded-full text-xs">Business</span></td>
                                 <td class="py-4 px-2">968</td>
@@ -191,7 +163,7 @@
                                         <div class="custom-purple h-2 rounded-full" style="width: 60%"></div>
                                     </div>
                                 </td>
-                            </tr>
+                            </tr> --}}
                         </tbody>
                     </table>
                 </div>
@@ -257,23 +229,23 @@
                         
                         let labels = [];
                         let data = [];
-                        const backgroundColors = [
-    'rgba(255, 99, 132, 0.5)',   // Rouge
-    'rgba(54, 162, 235, 0.5)',   // Bleu
-    'rgba(255, 206, 86, 0.5)',   // Jaune
-    'rgba(75, 192, 192, 0.5)',   // Vert clair
-    'rgba(153, 102, 255, 0.5)',  // Violet
-    'rgba(255, 159, 64, 0.5)'    // Orange
-];
+                                    const backgroundColors = [
+                                    'rgba(255, 99, 132, 0.5)',   // Rouge
+                                    'rgba(54, 162, 235, 0.5)',   // Bleu
+                                    'rgba(255, 206, 86, 0.5)',   // Jaune
+                                    'rgba(75, 192, 192, 0.5)',   // Vert clair
+                                    'rgba(153, 102, 255, 0.5)',  // Violet
+                                    'rgba(255, 159, 64, 0.5)'    // Orange
+                                ];
 
-const borderColors = [
-    'rgba(255, 99, 132, 1)',
-    'rgba(54, 162, 235, 1)',
-    'rgba(255, 206, 86, 1)',
-    'rgba(75, 192, 192, 1)',
-    'rgba(153, 102, 255, 1)',
-    'rgba(255, 159, 64, 1)'
-];
+                                const borderColors = [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                    'rgba(255, 206, 86, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(255, 159, 64, 1)'
+                                ];
 
                         inputs.forEach(input => {
                             // Récupère la classe complète (ex: "pourcentage-tech")
@@ -322,7 +294,7 @@ const borderColors = [
                     data: @json($data),
                     backgroundColor: 'rgba(54, 162, 235, 0.5)',
                     borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
+                    borderWidth: 0
                 }]
             },
             options: {

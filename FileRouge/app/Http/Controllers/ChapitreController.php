@@ -16,24 +16,34 @@ class ChapitreController extends Controller
         $this->chapitreService = $chapitreService;
     }
 
-    public function store($data,$coursid)
-    {
-       
-            foreach ($data as $chapter) {
-                        $chapitreData= [
-                            'titrechapitre' => $chapter['titrechapitre'],
-                            'pathVedio' => $chapter['pathVedio']->store('chapitres', 'public'),
-                            'id_cours' => $coursid,
-                        ];
+    // public function store(Request $request)
+    // {
+    //    dd($request->all());
 
-                    // dd($data);
-                   
-                    $this->chapitreService->create($chapitreData);
-
-                }
+    //         $this->chapitreService->create($request->all());
                
-                return redirect('/mesCours')->with('success', 'Chapitre créé avec succès !');
+    //             return redirect('/mesCours')->with('success', 'Chapitre créé avec succès !');
+    // }
+
+    public function store(Request $request)
+{
+    
+
+    $filename = null;
+    if ($request->hasFile('pathVedio')) {
+        $filename = time() . '.' . $request->file('pathVedio')->store('chapitres', 'public');
+        // $request->file('pathVedio')->move(public_path('chapitres'), $filename);
     }
+
+    Chapitre::create([
+        'id_cours' => $request->id_cours,
+        'titrechapitre' => $request->titrechapitre,
+        'pathVedio' => $filename,
+    ]);
+
+    return redirect('/mesCours')->with('success', 'Chapitre créé avec succès !');
+}
+
     public function getchapitresCours($idcours)
     {
         return  $this->chapitreService->getchapitresCours($idcours);  

@@ -17,7 +17,11 @@ class ServiceCours
     {
         return $this->courRepo->all();
     }
-
+    
+    public function getAllpourEtudiant()
+    {
+        return $this->courRepo->getAllpourEtudiant();
+    }
     public function getById($id)
     {
         return $this->courRepo->find($id);

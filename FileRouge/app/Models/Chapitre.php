@@ -8,7 +8,7 @@ class Chapitre extends Model
 {
     //
     protected $fillable = [
-        'titreChapitre',
+        'titrechapitre',
         'pathVedio',
         'id_cours',
     ];

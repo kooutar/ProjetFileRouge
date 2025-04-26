@@ -70,6 +70,7 @@ Route::middleware(['auth',ProfMiddleware::class])->group(function(){
         Route::get('/mesCours',[CoursController::class,'index'])->name('mesCours');
 
         Route::post('/addCours',[CoursController::class,'store'])->name('addCours');
+        Route::post('/addChpaitre',[ChapitreController::class,'store'])->name('store.chapitre');
 
 });
 

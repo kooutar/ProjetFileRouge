@@ -71,7 +71,7 @@
           </div>
   
           <!-- Chapitre -->
-          <div>
+          {{-- <div>
             <h2 class="text-xl font-semibold text-gray-700 mb-4 flex items-center gap-2">
               <span class="text-indigo-600">📚</span> Chapitre
             </h2>
@@ -85,7 +85,7 @@
               </svg>
               Ajouter un Chapitre
             </button>
-          </div>
+          </div> --}}
   
           <!-- Bouton d'enregistrement -->
           <div class="text-center">
@@ -230,7 +230,7 @@
   });
 </script> --}}
 
-<script>
+{{-- <script>
   document.addEventListener('DOMContentLoaded', function() {
   const chapitresContainer = document.getElementById('chapitres-container');
   const ajouterChapitreBtn = document.getElementById('ajouter-chapitre');
@@ -355,7 +355,7 @@
 
   // Ajouter le premier chapitre automatiquement
   ajouterChapitre();
-});
+}); --}}
 
 </script>
 

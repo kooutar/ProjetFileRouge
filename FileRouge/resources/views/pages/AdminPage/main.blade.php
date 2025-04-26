@@ -50,7 +50,7 @@
                     </div>
                     
                     <nav class="space-y-2">
-                        <a href="#" class="flex items-center px-4 py-3 rounded-lg custom-purple text-white">
+                        <a href="/statistiqueAdmin" class="flex items-center px-4 py-3 rounded-lg custom-purple text-white">
                             <span class="mr-3">📊</span>
                             <span>Tableau de bord</span>
                         </a>

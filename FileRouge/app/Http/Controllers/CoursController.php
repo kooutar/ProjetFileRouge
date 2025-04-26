@@ -37,8 +37,7 @@ class CoursController extends Controller
                 'image' => 'required|file|mimes:jpeg,png,jpg,gif|max:2048',
                 'prix' => 'required|numeric',
                 'id_categrie' => 'required',
-                'chapters.*.titrechapitre' => 'required|string|max:255',
-                'chapters.*.pathVedio' => 'required|file|mimes:mp4,mov,avi,wmv|max:2048',
+        
             ]);
 
 
@@ -49,7 +48,7 @@ class CoursController extends Controller
             }
             $cours= $this->courService->create($data);
             $cours->id;
-            $this->chapitreController->store($data['chapters'], $cours->id);
+            // $this->chapitreController->store($data['chapters'], $cours->id);
             return redirect('/mesCours')->with('success', 'Cours créé avec succès !');
     }
 
@@ -79,7 +78,7 @@ class CoursController extends Controller
 
     public function afficheCouresdansDachboordEtudiant()
     {
-        $courses = $this->courService->getAll();
+        $courses = $this->courService->getAllpourEtudiant();
 
         return view('pages.EtudiantPage.courses', compact('courses'));
     }

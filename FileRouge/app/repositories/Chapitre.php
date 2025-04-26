@@ -13,7 +13,7 @@ class Chapitre implements InterfaceChapitre
    
 
     public function create( array $data){
-        return ChapitreModel::insert($data);
+        return ChapitreModel::create($data);
     }
     public function update(array $data ,$id){
 

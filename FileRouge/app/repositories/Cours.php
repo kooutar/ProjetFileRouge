@@ -10,7 +10,15 @@ class Cours implements InterfaceCours
 {
     public function all()
     {
-        return vueCours::where('status','accepted')->get();
+        $idprof=auth()->user()->id;
+
+        return CoursModel::where('id_professeur',$idprof)->get();
+       
+    }
+
+    public function getAllpourEtudiant()
+    {
+        return CoursModel::where('status','accepted')->get();
     }
 
     public function find($id)

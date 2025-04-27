@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Cours;
 use App\Models\Chapitre;
 use App\Models\Inscription;
@@ -56,8 +57,8 @@ class CoursController extends Controller
     public function index()
     {
         $cours = $this->courService->getAll();
-      
-        return view('pages.profPage.mesCours', compact('cours'));
+        $categories = Categorie::all();
+        return view('pages.profPage.mesCours', compact('cours','categories'));
     }
 
 

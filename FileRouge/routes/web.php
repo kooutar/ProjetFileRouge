@@ -73,6 +73,7 @@ Route::middleware(['auth',ProfMiddleware::class])->group(function(){
         Route::post('/addChpaitre',[ChapitreController::class,'store'])->name('store.chapitre');
         Route::get('/chapitres/{idcours}',[ChapitreController::class,'getchapitresCours'])->name('mesChapitres');
         Route::delete('/supprimer-chapitre/{id}',[ChapitreController::class,'delete'])->name('chapitres.destroy');
+        Route::put('/updateChapitre/{id}',[ChapitreController::class,'update'])->name('chapitres.update');
 
 });
 

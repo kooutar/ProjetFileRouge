@@ -6,6 +6,7 @@ use App\Models\Chapitre;
 use App\Models\Completion;
 use App\Models\Inscription;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ChapitreController extends Controller
 {
@@ -99,11 +100,37 @@ class ChapitreController extends Controller
         }
 
         public function update(Request $request, $id)
-        {
-            $chapitre = Chapitre::findOrFail($id);
-            $chapitre->update($request->all());
-            return redirect('/mesCours')->with('success', 'Chapitre mis à jour avec succès !');
+{
+    $chapitre = Chapitre::findOrFail($id);
+
+    // Validation du formulaire
+    $request->validate([
+        'titrechapitre' => 'string|max:255',
+        'pathVedio' => 'nullable|file|mimes:mp4,mov,ogg,qt|max:51200', // max 50MB
+    ]);
+
+    // Mise à jour du titre (et autres données simples)
+    $chapitre->titrechapitre = $request->titrechapitre;
+
+    // Si une nouvelle vidéo est envoyée
+    if ($request->hasFile('pathVedio')) {
+        // Supprimer l'ancienne vidéo si elle existe
+        if ($chapitre->pathVedio) {
+            Storage::delete('public/' . $chapitre->pathVedio);
         }
+
+        // Stocker la nouvelle vidéo
+        $videoPath = $request->file('pathVedio')->store('videos', 'public');
+
+        // Enregistrer le nouveau chemin
+        $chapitre->pathVedio = $videoPath;
+    }
+
+    $chapitre->save();
+
+    return redirect('/mesCours')->with('success', 'Chapitre mis à jour avec succès !');
+}
+
     public function delete($id)
     {
         $chapitre = Chapitre::findOrFail($id);

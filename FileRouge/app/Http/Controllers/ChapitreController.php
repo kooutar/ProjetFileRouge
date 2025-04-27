@@ -16,14 +16,7 @@ class ChapitreController extends Controller
         $this->chapitreService = $chapitreService;
     }
 
-    // public function store(Request $request)
-    // {
-    //    dd($request->all());
-
-    //         $this->chapitreService->create($request->all());
-               
-    //             return redirect('/mesCours')->with('success', 'Chapitre créé avec succès !');
-    // }
+ 
 
     public function store(Request $request)
 {
@@ -46,7 +39,8 @@ class ChapitreController extends Controller
 
     public function getchapitresCours($idcours)
     {
-        return  $this->chapitreService->getchapitresCours($idcours);  
+        $chapitres=  $this->chapitreService->getchapitresCours($idcours);  
+        return view('pages.profPage.chapitres', compact('chapitres'));
     }
 
 
@@ -104,4 +98,16 @@ class ChapitreController extends Controller
             return response()->json(['message' => 'Chapitre terminé']);
         }
 
+        public function update(Request $request, $id)
+        {
+            $chapitre = Chapitre::findOrFail($id);
+            $chapitre->update($request->all());
+            return redirect('/mesCours')->with('success', 'Chapitre mis à jour avec succès !');
+        }
+    public function delete($id)
+    {
+        $chapitre = Chapitre::findOrFail($id);
+        $chapitre->delete();
+        return redirect('/mesCours')->with('success', 'Chapitre supprimé avec succès !');
+    }
 }

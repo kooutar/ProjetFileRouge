@@ -71,6 +71,8 @@ Route::middleware(['auth',ProfMiddleware::class])->group(function(){
 
         Route::post('/addCours',[CoursController::class,'store'])->name('addCours');
         Route::post('/addChpaitre',[ChapitreController::class,'store'])->name('store.chapitre');
+        Route::get('/chapitres/{idcours}',[ChapitreController::class,'getchapitresCours'])->name('mesChapitres');
+        Route::delete('/supprimer-chapitre/{id}',[ChapitreController::class,'delete'])->name('chapitres.destroy');
 
 });
 

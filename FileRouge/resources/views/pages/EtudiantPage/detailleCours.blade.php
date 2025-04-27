@@ -104,30 +104,7 @@
     @endif
 @endforeach
 
-    <!-- Chapitre 1 -->
-    
    
-    <!-- Autres chapitres (collapsed) -->
-    {{-- <details class="mb-2">
-      <summary class="cursor-pointer bg-gray-100 p-4 rounded-md font-medium text-gray-800 flex items-center justify-between">
-        <span>Chapitre 2 : Variables, types de données et opérateurs</span>
-        <span class="text-sm text-gray-500">6 vidéos • 4h15min</span>
-      </summary>
-    </details>
-  
-    <details class="mb-2">
-      <summary class="cursor-pointer bg-gray-100 p-4 rounded-md font-medium text-gray-800 flex items-center justify-between">
-        <span>Chapitre 3 : Structures de contrôle</span>
-        <span class="text-sm text-gray-500">5 vidéos • 3h45min</span>
-      </summary>
-    </details>
-  
-    <details class="mb-2">
-      <summary class="cursor-pointer bg-gray-100 p-4 rounded-md font-medium text-gray-800 flex items-center justify-between">
-        <span>Chapitre 4 : Fonctions et modules</span>
-        <span class="text-sm text-gray-500">5 vidéos • 4h</span>
-      </summary>
-    </details> --}}
   
     <div class="mt-4 text-center">
       <a href="#" class="text-indigo-600 hover:underline text-sm font-medium">Voir les 4 autres chapitres ↓</a>

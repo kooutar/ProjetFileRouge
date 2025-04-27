@@ -12,7 +12,7 @@ class Cours implements InterfaceCours
     {
         $idprof=auth()->user()->id;
 
-        return CoursModel::where('id_professeur',$idprof)->get();
+        return CoursModel::where('id_professeur',$idprof)->paginate(5);
        
     }
 

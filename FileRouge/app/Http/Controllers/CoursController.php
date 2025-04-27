@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cours;
+use App\Models\Chapitre;
 use App\Models\Inscription;
 use Illuminate\Http\Request;
 use App\services\ServiceCours;
@@ -55,7 +56,7 @@ class CoursController extends Controller
     public function index()
     {
         $cours = $this->courService->getAll();
-
+      
         return view('pages.profPage.mesCours', compact('cours'));
     }
 
@@ -109,6 +110,14 @@ class CoursController extends Controller
         $cours->status = 'rejected';
         $cours->save();
         return redirect('/coursAdmin')->with('success', 'Cours refusé avec succès !');
+    }
+
+
+    public function updateChapitre(Request $request, $id)
+    {
+        $chapitre = Chapitre::findOrFail($id);
+        $chapitre->update($request->all());
+        return redirect('/mesCours')->with('success', 'Chapitre mis à jour avec succès !');
     }
 
 

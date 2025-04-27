@@ -21,7 +21,7 @@
                             📚
                         </div>
                         <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mb-1">TOTAL DE MES COURS</div>
-                        <div class="text-xl md:text-2xl font-bold text-gray-800">50</div>
+                        <div class="text-xl md:text-2xl font-bold text-gray-800">{{$cours->count()}}</div>
                         <div class="text-xs md:text-sm text-green-500 mt-2 flex items-center">
                             ↑ 40% depuis le mois dernier
                         </div>
@@ -133,7 +133,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-custom-purple-10 text-custom-purple">
-                                        {{ $course->nom_categorie }}
+                                        {{ $course->categorie->categorie}}
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
@@ -155,7 +155,10 @@
                                     <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
                                         en attente
                                     </span>
-                                    
+                                    @elseif($course->status == 'rejected')
+                                    <span class="px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                        Rejeté
+                                    </span>
                                     @endif
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -216,52 +219,7 @@
 @endforeach
                 
                 <!-- Pagination -->
-                <div class="bg-white rounded-xl shadow p-4 flex items-center justify-between">
-                    <div class="flex-1 flex justify-between sm:hidden">
-                        <a href="" class="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 ">
-                            Précédent
-                        </a>
-                        <a href="" class="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 ">
-                            Suivant
-                        </a>
-                    </div>
-                    <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
-                        <div>
-                            <p class="text-sm text-gray-700">
-                                Affichage de <span class="font-medium"></span> à <span class="font-medium"></span> sur <span class="font-medium">500</span> résultats
-                            </p>
-                        </div>
-                        <div>
-                            <nav class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
-                                <a href="" class="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 ">
-                                    <span class="sr-only">Précédent</span>
-                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                                
-                                {{-- @foreach ($cours->getUrlRange(1, $cours->lastPage()) as $page => $url)
-                                    @if ($page == $cours->currentPage()) --}}
-                                        <a href="#" aria-current="page" class="z-10 bg-custom-purple border-custom-purple text-white relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                                            {{-- {{ $page }} --}}
-                                        </a>
-                                    {{-- @else --}}
-                                        <a href="" class="bg-white border-gray-300 text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 border text-sm font-medium">
-                                            {{-- {{ $page }} --}}
-                                        </a>
-                                    {{-- @endif
-                                @endforeach --}}
-                                
-                                <a href="" class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 ">
-                                    <span class="sr-only">Suivant</span>
-                                    <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
+                {{ $cours->links() }}
                 
             </div>
         </div>

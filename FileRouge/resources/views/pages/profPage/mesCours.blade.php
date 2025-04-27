@@ -110,7 +110,7 @@
                                     Statut
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Évaluation
+                                    chapitres
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Actions
@@ -163,18 +163,14 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                     <div class="flex items-center">
-                                        {{-- <span class="mr-1">{{ number_format($course->evaluation_moyenne, 1) }}</span> --}}
-                                        <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                        </svg>
-                                        {{-- <span class="text-xs text-gray-400 ml-1">({{ $course->evaluations_count }})</span> --}}
+                                      <a href="/chapitres/{{$course->id}}">{{$course->chapitres->count()}} chapitres</a>
                                     </div>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                     <div class="flex space-x-2">
-                                        <a href="" class="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-xs">
+                                        <button onclick="toggleEditModal({{$course->id}})" class="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-xs">
                                             Éditer
-                                        </a>
+                                        </button>
                                         
                                             <button onclick="toggleCommentModal({{$course->id}})"  id="btnAjouterChapitre" class="px-3 py-1 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 text-xs">
                                                 add chapitre
@@ -191,6 +187,57 @@
                         </tbody>
                     </table>
                 </div>
+                {{-- moadel pour editer cours  --}}
+
+
+                @foreach ($cours as $course)
+<div id="modalEditCourse-{{$course->id}}" class="fixed inset-0 bg-black bg-opacity-40 hidden flex justify-center items-center z-50 ">
+    <div class="bg-white p-6 rounded-xl w-full max-w-lg relative">
+        <h2 class="text-xl font-bold mb-4 text-indigo-700">Éditer le cours</h2>
+        <form action="" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="mb-4">
+                <label class="block font-medium mb-1">Titre du cours</label>
+                <input type="text" name="titre" value="{{ $course->titre }}" class="w-full p-2 border rounded-xl" />
+            </div>
+            <div class="mb-4">
+                <label class="block font-medium mb-1">Catégorie</label>
+                <select name="categorie_id" class="w-full p-2 border rounded-xl">
+                    <option value="">{{$course->categorie->categorie}}</option>
+                    @foreach ($categories as $categorie)
+                     @if($categorie->categorie != $course->categorie->categorie)
+                        <option >
+                            {{ $categorie->categorie }}
+                        </option>
+                        @endif
+                    @endforeach
+    </select>
+               
+               
+            </div>
+            <div class="mb-4">
+                <label class="block font-medium mb-1">Description</label>
+                <textarea  class="w-full p-2 border rounded-xl " id="" cols="" rows="">{{$course->Description}}</textarea>
+            </div>
+            <div class="mb-4">
+                <label class="block font-medium mb-1">Image</label>
+                <div class="flex items-center">
+                    {{-- <img src="{{ asset('storage/'.$course->image)}}" alt="Couverture du cours" class="w-32 h-32 object-cover rounded-lg mb-2"> --}}
+                    <img src="{{ asset('storage/'.$course->image)}}" alt="Couverture du cours" class="w-32 h-32 object-cover rounded-lg mb-2">
+                    <input type="file" name="image" accept="image/*" class="w-full p-2 border rounded-xl" />
+                </div>
+              
+            </div>
+          
+            <div class="mt-6 flex justify-end gap-4">
+                <button type="button" onclick="toggleEditModal({{ $course->id }})" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Annuler</button>
+                <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Enregistrer</button>
+            </div>
+        </form>
+    </div>
+</div>
+@endforeach
    @foreach ($cours as $course)
                    <!-- Modal pour ajouter un chapitre -->
                    <div id="modalChapitre-{{$course->id}}" class="fixed inset-0 bg-black bg-opacity-40 hidden  flex justify-center items-center z-50">
@@ -265,7 +312,7 @@
             });
 
             // ************************************
-            const modal = document.getElementById("modalChapitre");
+            
   const ajouterChapitre = document.getElementById("ajouterChapitre");
   const annulerChapitre = document.getElementById("annulerChapitre");
   const chapitresContainer = document.getElementById("chapitresContainer");
@@ -279,7 +326,14 @@
                 secmodal.classList.add('hidden');
             }
         }
-
+        function toggleEditModal(id) {
+        const modal = document.getElementById('modalEditCourse-' + id);
+        if (modal.classList.contains('hidden')) {
+            modal.classList.remove('hidden');
+        } else {
+            modal.classList.add('hidden');
+        }
+    }
 //   annulerChapitre.addEventListener("click", () => {
 //     modal.classList.add("hidden");
 //   });

@@ -22,7 +22,7 @@ class Cours extends Model
 
     public function etudiants()
     {
-        return $this->belongsToMany(Etudiant::class, 'inscriptions', 'id_cours', 'id_etudiant');
+        return $this->belongsToMany(Etudiant::class, 'inscriptions', 'id_cours', 'id_etudiant') ->withPivot('note', 'progress');
     }
 
     public function chapitres() {

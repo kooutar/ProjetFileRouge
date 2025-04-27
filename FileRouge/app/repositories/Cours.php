@@ -11,9 +11,7 @@ class Cours implements InterfaceCours
     public function all()
     {
         $idprof=auth()->user()->id;
-
-        return CoursModel::where('id_professeur',$idprof)->paginate(5);
-       
+        return CoursModel::with('etudiants')->where('id_professeur',$idprof)->paginate(5);
     }
 
     public function getAllpourEtudiant()

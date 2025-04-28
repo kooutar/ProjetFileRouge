@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categorie;
 use App\Models\Cours;
 use App\Models\Chapitre;
+use App\Models\Categorie;
 use App\Models\Inscription;
 use Illuminate\Http\Request;
 use App\services\ServiceCours;
 use App\services\ServiceCategorie;
+use Illuminate\Support\Facades\Storage;
 
 
 class CoursController extends Controller
@@ -49,7 +50,10 @@ class CoursController extends Controller
                 $data['image'] = $imagePath; 
             }
             $cours= $this->courService->create($data);
-            $cours->id;
+            $tagController = new TagController();
+           $tagController->storeTags($request, $cours->id);
+          
+
             // $this->chapitreController->store($data['chapters'], $cours->id);
             return redirect('/mesCours')->with('success', 'Cours créé avec succès !');
     }

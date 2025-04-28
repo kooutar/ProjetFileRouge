@@ -64,9 +64,17 @@
                 </select>
               </div>
               <div>
-                <label class="block text-gray-600 font-medium">Tags</label>
-                <input type="text" placeholder="Entrez des tags" class="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-300" />
-              </div>
+                <label class="block text-gray-600 font-medium mb-2">Tags</label>
+                <div id="tags-container" class="flex flex-wrap gap-2 p-2 border rounded-xl">
+                    <input 
+                        type="text" 
+                        id="tag-input" 
+                        placeholder="Entrez des tags" 
+                        class="flex-grow p-2 focus:outline-none focus:ring-2 focus:ring-indigo-300" 
+                    />
+                </div>
+            </div>
+            
             </div>
           </div>
   
@@ -78,9 +86,34 @@
         </form>
       </div>
 </div>
+<script>
+  
+  const tagInput = document.getElementById('tag-input');
+  const tagsContainer = document.getElementById('tags-container');
 
+  tagInput.addEventListener('keyup', function (e) {
+      if (e.key === 'Enter' || e.key === ',') {
+          e.preventDefault();
+          const tagText = tagInput.value.trim().replace(',', '');
+          if (tagText.length > 0) {
+              const tag = document.createElement('span');
+              tag.className = 'flex items-center bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm';
+              tag.innerHTML = `
+                  ${tagText}
+                  <button type="button" class="ml-2 text-indigo-500 hover:text-indigo-700" onclick="this.parentElement.remove()">&times;</button>
+                  <input type="hidden" name="tags[]" value="${tagText}">
+              `;
+              tagsContainer.insertBefore(tag, tagInput);
+              tagInput.value = '';
+          }
+      }
+  });
+</script>
 
 @endsection
+
+
+
 
 
 

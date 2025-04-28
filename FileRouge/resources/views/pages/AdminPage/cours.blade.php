@@ -121,7 +121,7 @@
                        
                         <!-- Professeur -->
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                          {{  $course->professeur->user->name }}
+                          {{  $course->professeur->name }}
                         </td>
                         <!-- Date -->
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">

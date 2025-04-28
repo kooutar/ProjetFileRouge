@@ -88,13 +88,12 @@ class CoursController extends Controller
 
     public function detailleCoures($id)
     {
-       $cours = $this->courService->getById($id);
+        $cours = Cours::with('chapitres')->findOrFail($id);
        $estInscrite = $this->InscriptionController->EstInscrite($id);
-      $chapitres = $this->chapitreController->getchapitresCours($id);
       $inscription = Inscription::where('id_cours', $id)
       ->where('id_etudiant', auth()->id())
       ->first();
-       return view('pages.EtudiantPage.detailleCours' ,compact('cours','estInscrite','chapitres','inscription'));
+       return view('pages.EtudiantPage.detailleCours' ,compact('cours','estInscrite','inscription'));
     }
 
     public function acceptercours($id)
@@ -121,6 +120,34 @@ class CoursController extends Controller
         return redirect('/mesCours')->with('success', 'Chapitre mis à jour avec succès !');
     }
 
+    public function update(Request $request, $id)
+    {
+        $cours = Cours::findOrFail($id);
+
+        $cours->titre = $request->titre;
+        $cours->Description = $request->Description;
+        $cours->prix = $request->prix;
+        $cours->id_categrie = $request->id_categrie;
+    
+        // Si une nouvelle image est envoyée
+        if ($request->hasFile('image')) {
+            // Supprimer l'ancienne image si elle existe
+            if ($cours->image) {
+                Storage::delete('public/' . $cours->image);
+            }
+    
+            // Stocker la nouvelle image
+            $imagePath = $request->file('image')->store('ficheCours', 'public');
+    
+            // Enregistrer le chemin dans la base
+            $cours->image = $imagePath;
+        }
+    
+        $cours->save();
+    
+        return redirect('/mesCours')->with('success', 'Cours mis à jour avec succès !');
+    }
+    
 
     
 }

@@ -190,11 +190,11 @@
                 {{-- moadel pour editer cours  --}}
 
 
-                @foreach ($cours as $course)
+ @foreach ($cours as $course)
 <div id="modalEditCourse-{{$course->id}}" class="fixed inset-0 bg-black bg-opacity-40 hidden flex justify-center items-center z-50 ">
     <div class="bg-white p-6 rounded-xl w-full max-w-lg relative">
         <h2 class="text-xl font-bold mb-4 text-indigo-700">Éditer le cours</h2>
-        <form action="" method="POST" enctype="multipart/form-data">
+        <form id="editForm" action="" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="mb-4">
@@ -203,27 +203,32 @@
             </div>
             <div class="mb-4">
                 <label class="block font-medium mb-1">Catégorie</label>
-                <select name="categorie_id" class="w-full p-2 border rounded-xl">
-                    <option value="">{{$course->categorie->categorie}}</option>
+                <select name="id_categrie" class="w-full p-2 border rounded-xl">
+                    <option value="{{ $course->categorie->id}}">{{$course->categorie->categorie}}</option>
                     @foreach ($categories as $categorie)
                      @if($categorie->categorie != $course->categorie->categorie)
                         <option >
                             {{ $categorie->categorie }}
                         </option>
                         @endif
-                    @endforeach
+ @endforeach
     </select>
                
                
             </div>
             <div class="mb-4">
                 <label class="block font-medium mb-1">Description</label>
-                <textarea  class="w-full p-2 border rounded-xl " id="" cols="" rows="">{{$course->Description}}</textarea>
+                <textarea name="Description"  class="w-full p-2 border rounded-xl " id="" cols="" rows="">{{$course->Description}}</textarea>
+            </div>
+
+            <div class="mb-4">
+                <label class="block font-medium mb-1">Prix</label>
+                <input type="number" name="prix"  class="w-full p-2 border rounded-xl " value="{{$course->prix}}">
             </div>
             <div class="mb-4">
                 <label class="block font-medium mb-1">Image</label>
                 <div class="flex items-center">
-                    {{-- <img src="{{ asset('storage/'.$course->image)}}" alt="Couverture du cours" class="w-32 h-32 object-cover rounded-lg mb-2"> --}}
+                   
                     <img src="{{ asset('storage/'.$course->image)}}" alt="Couverture du cours" class="w-32 h-32 object-cover rounded-lg mb-2">
                     <input type="file" name="image" accept="image/*" class="w-full p-2 border rounded-xl" />
                 </div>
@@ -231,8 +236,9 @@
             </div>
           
             <div class="mt-6 flex justify-end gap-4">
-                <button type="button" onclick="toggleEditModal({{ $course->id }})" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Annuler</button>
                 <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Enregistrer</button>
+                <button type="button"  onclick="toggleEditModal({{$course->id}})" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Annuler</button>
+               
             </div>
         </form>
     </div>
@@ -263,19 +269,10 @@
                     </form>
                     </div>
                 </div>
-@endforeach
                 
-                <!-- Pagination -->
-                {{ $cours->links() }}
                 
-            </div>
-        </div>
-
-
-  
-
-        <!-- Modal de confirmation de suppression -->
-        <div id="deleteModal" class="fixed inset-0 bg-gray-800 bg-opacity-75  hidden flex items-center justify-center z-50">
+                
+            <div id="deleteModal" class="fixed inset-0 bg-gray-800 bg-opacity-75  hidden flex items-center justify-center z-50">
             <div class="bg-white rounded-lg p-6 max-w-sm w-full">
                 <h3 class="text-lg font-bold text-gray-900 mb-4">Confirmer la suppression</h3>
                 <p class="text-gray-700 mb-6">Êtes-vous sûr de vouloir supprimer ce cours ? Cette action est irréversible.</p>
@@ -293,6 +290,19 @@
                 </div>
             </div>
         </div>
+@endforeach
+                
+                <!-- Pagination -->
+                {{ $cours->links() }}
+                
+            </div>
+        </div>
+
+
+  
+
+        <!-- Modal de confirmation de suppression -->
+      
 
         <script>
             function confirmerSuppression(id) {
@@ -327,6 +337,7 @@
             }
         }
         function toggleEditModal(id) {
+        document.getElementById('editForm').action = `/updateCours/${id}`;
         const modal = document.getElementById('modalEditCourse-' + id);
         if (modal.classList.contains('hidden')) {
             modal.classList.remove('hidden');
@@ -334,54 +345,6 @@
             modal.classList.add('hidden');
         }
     }
-//   annulerChapitre.addEventListener("click", () => {
-//     modal.classList.add("hidden");
-//   });
 
-//   ajouterChapitre.addEventListener("click", () => {
-//     const titre = document.getElementById("titreChapitreInput").value;
-//     const fichier = document.getElementById("videoChapitreInput").files[0];
-
-//     if (!titre || !fichier) {
-//       alert("Veuillez remplir tous les champs du chapitre.");
-//       return;
-//     }
-
-//     compteurChapitres++;
-
-//     const chapitre = document.createElement("div");
-//     chapitre.className = "p-4 border rounded-xl space-y-2 bg-gray-50";
-
-//     chapitre.innerHTML = `
-//       <div class="flex justify-between items-center">
-//         <p class="text-indigo-600 font-bold">Chapitre ${compteurChapitres}</p>
-//         <button type="button" class="supprimer-chapitre text-red-500 hover:text-red-700">
-//           Supprimer
-//         </button>
-//       </div>
-
-//       <input type="hidden" name="chapters[${compteurChapitres}][titrechapitre]" value="${titre}" />
-//       <input type="hidden" name="chapters[${compteurChapitres}][pathVedio_temp]" value="${fichier.name}" />
-
-//       <p><strong>Titre :</strong> ${titre}</p>
-//       <p><strong>Vidéo sélectionnée :</strong> ${fichier.name}</p>
-
-//       <input type="file" name="chapters[${compteurChapitres}][pathVedio]" class="hidden" />
-//     `;
-
-//     // Insérer le fichier dans l'input "file" caché
-//     const inputFichier = chapitre.querySelector(`input[type="file"]`);
-//     const dataTransfer = new DataTransfer();
-//     dataTransfer.items.add(fichier);
-//     inputFichier.files = dataTransfer.files;
-
-//     // Bouton suppression
-//     chapitre.querySelector('.supprimer-chapitre').addEventListener('click', () => {
-//       chapitre.remove();
-//     });
-
-//     chapitresContainer.appendChild(chapitre);
-//     modal.classList.add("hidden");
-//   });
         </script>
 @endSection

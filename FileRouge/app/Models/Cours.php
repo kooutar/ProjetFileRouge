@@ -12,7 +12,7 @@ class Cours extends Model
 
     public function professeur()
     {
-        return $this->belongsTo(Professeur::class, 'id_professeur');
+        return $this->belongsTo(user::class, 'id_professeur');
     }
 
     public function categorie()

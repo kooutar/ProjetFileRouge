@@ -12,7 +12,7 @@
         <div class="flex items-center gap-2 text-yellow-500">
           ⭐⭐⭐⭐✩ <span class="text-gray-600 text-sm">(4.7 - 328 avis)</span>
         </div>
-        <p class="text-sm text-gray-600">👨‍🏫 Prof. {{$cours->nom_professeur}} — Experte en développement Python</p>
+        <p class="text-sm text-gray-600">👨‍🏫 Prof. {{$cours->professeur->name}} — {{$cours->professeur->professeur->domaine}}</p>
         <p class="text-gray-700 leading-relaxed text-sm">
         {{$cours->Description}}
         </p>
@@ -46,15 +46,11 @@
           @else
               <p class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-xl font-medium">deja inscrit</p> 
           @endif
-
-           
-          <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-xl font-medium">Ajouter aux favoris</button>
+            <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-xl font-medium">Ajouter aux favoris</button>
           @else
-          <button onclick="document.getElementById('paypalModal').classList.remove('hidden')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-xl font-medium">S'inscrire au cours</button>
-          <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-xl font-medium">Ajouter au panier</button>
+              <button onclick="document.getElementById('paypalModal').classList.remove('hidden')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-xl font-medium">S'inscrire au cours</button>
+              <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-xl font-medium">Ajouter au panier</button>
           @endif
-         
-         
         </div>
       </div>
     </div>
@@ -68,7 +64,7 @@
       8 chapitres · 42 vidéos · Durée totale : 35h
       <a href="#" class="text-indigo-600 hover:underline float-right">Tout développer</a>
     </div>
-  @foreach($chapitres as $chapitre)
+  @foreach($cours->chapitres as $chapitre)
     @if($estInscrite)
     <details class="mb-4">
         <summary class="cursor-pointer bg-gray-100 p-4 rounded-md font-medium text-gray-800 flex items-center justify-between">
@@ -78,16 +74,12 @@
         <div class="mt-3 space-y-3 px-4">
           <div class="mt-3 space-y-3 px-4">
             <div class="flex items-start justify-between bg-gray-50 p-3 rounded-md border">
-              {{-- <span class="text-gray-700">1.1 Présentation de Python et son écosystème</span>
-              <button class="bg-indigo-100 text-indigo-600 text-xs px-3 py-1 rounded-full hover:bg-indigo-200">Commencer</button> --}}
+            
               <video controls class="myVideo" data-chapitre-id="{{ $chapitre->id }}" >
                 <source src="{{ asset('storage/'.$chapitre->pathVedio) }}" type="video/mp4">
                 Votre navigateur ne supporte pas la vidéo.
               </video>
             </div>
-            
-            
-           
           </div>
         </div>
     </details>
@@ -103,11 +95,8 @@
     </details>
     @endif
 @endforeach
-
-   
-  
     <div class="mt-4 text-center">
-      <a href="#" class="text-indigo-600 hover:underline text-sm font-medium">Voir les 4 autres chapitres ↓</a>
+         <a href="#" class="text-indigo-600 hover:underline text-sm font-medium">Voir les 4 autres chapitres ↓</a>
     </div>
   </section>
 

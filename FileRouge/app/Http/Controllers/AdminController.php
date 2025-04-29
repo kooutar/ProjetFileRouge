@@ -25,10 +25,8 @@ class AdminController extends Controller
         }
 
         $inscriptions = DB::table('users')
-      
         ->selectRaw("TO_CHAR(created_at, 'Month') as mois, COUNT(*) as total")
         ->groupByRaw("TO_CHAR(created_at, 'Month')")
-        
         ->get();
       
     // Convertir les numéros de mois en noms (1 => Janvier, etc.)

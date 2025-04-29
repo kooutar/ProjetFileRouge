@@ -96,8 +96,18 @@ public function gotoDashboordProf() {
   foreach ($parCategorie as $item) {
       $item->pourcentage = $total > 0 ? round(($item->nbr / $total) * 100, 1) : 0;
   }
+  // *******************************
+  $top3Cours = DB::table('cours')
+    ->join('inscriptions', 'cours.id', '=', 'inscriptions.id_cours')
+    ->select('cours.titre', DB::raw('COUNT(inscriptions.id_etudiant) as total_inscriptions'))
+    ->where('cours.id_professeur', auth()->user()->id) // filtre par professeur connecté
+    ->groupBy('cours.id', 'cours.titre') // important : ajouter 'cours.titre' car il est dans SELECT
+    ->orderByDesc('total_inscriptions')
+    ->limit(3)
+    ->get();
 
-  return view('pages.profPage.DashboordProf', compact('nombreEtudiants', 'totalCoursAccepted', 'parCategorie'));
+
+  return view('pages.profPage.DashboordProf', compact('nombreEtudiants', 'totalCoursAccepted', 'parCategorie','top3Cours'));
 }
 
 

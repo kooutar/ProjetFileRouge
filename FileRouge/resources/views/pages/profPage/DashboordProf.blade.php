@@ -112,8 +112,9 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach($top3Cours as $cours)
                             <tr class="border-b">
-                                <td class="py-4 pr-2">Développement Web Complet</td>
+                                <td class="py-4 pr-2">{{$cours->titre}}</td>
                                 <td class="py-4 px-2"><span class="px-2 py-1 bg-custom-purple-10 text-custom-purple rounded-full text-xs">Développement</span></td>
                                 <td class="py-4 px-2">1,245</td>
                                 <td class="py-4 px-2">4.8/5</td>
@@ -123,107 +124,14 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="border-b">
-                                <td class="py-4 pr-2">Marketing Digital Avancé</td>
-                                <td class="py-4 px-2"><span class="px-2 py-1 bg-custom-purple-10 text-custom-purple rounded-full text-xs">Business</span></td>
-                                <td class="py-4 px-2">968</td>
-                                <td class="py-4 px-2">4.7/5</td>
-                                <td class="py-4 pl-2">
-                                    <div class="w-full bg-gray-200 rounded-full h-2">
-                                        <div class="custom-purple h-2 rounded-full" style="width: 70%"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="py-4 pr-2">Design UX/UI Moderne</td>
-                                <td class="py-4 px-2"><span class="px-2 py-1 bg-custom-purple-10 text-custom-purple rounded-full text-xs">Design</span></td>
-                                <td class="py-4 px-2">856</td>
-                                <td class="py-4 px-2">4.9/5</td>
-                                <td class="py-4 pl-2">
-                                    <div class="w-full bg-gray-200 rounded-full h-2">
-                                        <div class="custom-purple h-2 rounded-full" style="width: 90%"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="py-4 pr-2">Intelligence Artificielle</td>
-                                <td class="py-4 px-2"><span class="px-2 py-1 bg-custom-purple-10 text-custom-purple rounded-full text-xs">Développement</span></td>
-                                <td class="py-4 px-2">732</td>
-                                <td class="py-4 px-2">4.6/5</td>
-                                <td class="py-4 pl-2">
-                                    <div class="w-full bg-gray-200 rounded-full h-2">
-                                        <div class="custom-purple h-2 rounded-full" style="width: 65%"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="py-4 pr-2">Comptabilité pour Débutants</td>
-                                <td class="py-4 px-2"><span class="px-2 py-1 bg-custom-purple-10 text-custom-purple rounded-full text-xs">Business</span></td>
-                                <td class="py-4 px-2">625</td>
-                                <td class="py-4 px-2">4.5/5</td>
-                                <td class="py-4 pl-2">
-                                    <div class="w-full bg-gray-200 rounded-full h-2">
-                                        <div class="custom-purple h-2 rounded-full" style="width: 60%"></div>
-                                    </div>
-                                </td>
-                            </tr>
+                            @endforeach
+                            
                         </tbody>
                     </table>
                 </div>
 
                 <!-- Last Charts Row -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-6">
-                    <div class="bg-white rounded-xl shadow p-4 md:p-6">
-                        <h2 class="text-lg font-semibold text-gray-800 mb-6">Sessions utilisateurs</h2>
-                        
-                        <div class="h-32 md:h-64 flex items-end space-x-2">
-                            <div class="h-4/5 custom-purple rounded-t w-full opacity-80"></div>
-                            <div class="h-3/5 custom-purple rounded-t w-full opacity-80"></div>
-                            <div class="h-5/6 custom-purple rounded-t w-full opacity-80"></div>
-                            <div class="h-2/3 custom-purple rounded-t w-full opacity-80"></div>
-                            <div class="h-3/4 custom-purple rounded-t w-full opacity-80"></div>
-                            <div class="h-3/5 custom-purple rounded-t w-full opacity-80"></div>
-                            <div class="h-4/5 custom-purple rounded-t w-full opacity-80"></div>
-                        </div>
-                        
-                        <div class="flex justify-between text-xs text-gray-500 mt-2">
-                            <span>Lun</span>
-                            <span>Mar</span>
-                            <span>Mer</span>
-                            <span>Jeu</span>
-                            <span>Ven</span>
-                            <span>Sam</span>
-                            <span>Dim</span>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl shadow p-4 md:p-6">
-                        <h2 class="text-lg font-semibold text-gray-800 mb-6">Plateformes d'accès</h2>
-                        
-                        <!-- Simple pie chart with custom colors -->
-                        <div class="relative mx-auto w-32 md:w-48 h-32 md:h-48 rounded-full bg-gray-200 mb-6">
-                            <div class="absolute inset-0 rounded-full" style="clip-path: polygon(50% 50%, 100% 0, 100% 70%, 50% 70%); background-color: #5932EA;"></div>
-                            <div class="absolute inset-0 rounded-full" style="clip-path: polygon(50% 50%, 50% 70%, 100% 70%, 100% 100%, 0 100%, 0 70%, 50% 70%); background-color: #7B61FF;"></div>
-                            <div class="absolute inset-0 rounded-full" style="clip-path: polygon(50% 50%, 0 70%, 0 0, 50% 0); background-color: #9E8CFC;"></div>
-                            <div class="absolute inset-2 rounded-full bg-white"></div>
-                        </div>
-                        
-                        <div class="grid grid-cols-3 gap-2 text-xs md:text-sm">
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 rounded mr-2" style="background-color: #5932EA;"></div>
-                                <span>Mobile (45%)</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 rounded mr-2" style="background-color: #7B61FF;"></div>
-                                <span>Desktop (40%)</span>
-                            </div>
-                            <div class="flex items-center">
-                                <div class="w-3 h-3 rounded mr-2" style="background-color: #9E8CFC;"></div>
-                                <span>Tablette (15%)</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                
  
 
                 <script>

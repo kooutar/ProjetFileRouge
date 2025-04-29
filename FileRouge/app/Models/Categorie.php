@@ -14,4 +14,12 @@ class Categorie extends Model
     {
         return $this->hasMany(Cours::class,'id_categrie');
     }
+
+    public function subcategories()
+    {
+    return $this->hasMany(Categorie::class, 'parent_id');
+    }
+
+    
+    
 }

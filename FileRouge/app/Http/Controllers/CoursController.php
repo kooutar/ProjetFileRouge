@@ -84,9 +84,10 @@ class CoursController extends Controller
 
     public function afficheCouresdansDachboordEtudiant()
     {
-        $courses = $this->courService->getAllpourEtudiant();
-
-        return view('pages.EtudiantPage.courses', compact('courses'));
+        $courses =Cours::where('status','accepted')->get();
+        $categories = Categorie::where('parent_id', '=', null)->get();
+ 
+        return view('pages.EtudiantPage.courses', compact('courses','categories'));
     }
 
 

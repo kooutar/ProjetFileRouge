@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\services\ServiceCategorie;
+use App\Models\Categorie;
 use Illuminate\Http\Request;
+use App\services\ServiceCategorie;
 
 class CategorieController extends Controller
 {
@@ -43,4 +44,12 @@ class CategorieController extends Controller
       
      return redirect('/tageCategorie')->with('success', 'Categorie modifié avec succès !');
    }
+
+   public function getSubcategories($id)
+{
+    $subcategories = Categorie::where('parent_id', $id)->get();
+
+    return response()->json($subcategories);
+}
+
 }

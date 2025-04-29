@@ -13,6 +13,7 @@ use App\Http\Middleware\EtudiantMiddleware;
 use App\Http\Controllers\ChapitreController;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\chatController;
 use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\InscriptionController;
 
@@ -39,8 +40,9 @@ Route::get('/inscriptionProf',function(){
 Route::post('/logout',[UserController::class,'logout'])->name('logout');
 
 Route::middleware(['auth',EtudiantMiddleware::class])->group(function(){
+
         Route::get('/detailleCoures/{id}',[CoursController::class,'detailleCoures'])->name('detailleCoures');
-        Route::get('/courses',[CoursController::class,'afficheCouresdansDachboordEtudiant']);
+        Route::get('/courses',[CoursController::class,'afficheCouresdansDachboordEtudiant'])->name('courses.index');
         Route::match(['get', 'post'], '/inscrireCours/{idcours}', [InscriptionController::class, 'inscrire'])->name('inscrireCours');
 
         Route::get('/profile',[EtudiantController::class,'getProfile'])->name('profile');
@@ -50,6 +52,12 @@ Route::middleware(['auth',EtudiantMiddleware::class])->group(function(){
         Route::get('/certificat/{iduser}/{idcours}', [certificat::class, 'generateCertificat'])->name('certificat.generate');
 
         Route::post('/cours/{id}/noter', [InscriptionController::class, 'noter'])->name('cours.noter');
+       Route::get('/chat/{cours_id}',function(){
+        return view('pages.EtudiantPage.chat');
+       });
+       Route::post('/envoyer-message',[chatController::class,'envoyerMessage']);
+
+       Route::get('/subcategories/{id}', [CategorieController::class, 'getSubcategories']);
 
 
 });

@@ -38,20 +38,33 @@
   
         <div class="flex flex-wrap gap-4 mt-6">
           @if($cours->prix == 0)
-              @if ($estInscrite == false)
-          <form action="/inscrireCours/{{$cours->id}}" method="POST">
-            @csrf
-            <button onclick="" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-xl font-medium">S'inscrire gratutement</button>
-          </form> 
-          @else
-              <p class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-xl font-medium">deja inscrit</p> 
+              @if(!$estInscrite)
+                  <form action="/inscrireCours/{{$cours->id}}" method="POST">
+                      @csrf
+                      <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-xl font-medium">
+                          S'inscrire gratuitement
+                      </button>
+                  </form>
+              @else
+                  <p class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-xl font-medium">
+                      Déjà inscrit
+                  </p>
+              @endif
+              @else
+              <button onclick="document.getElementById('paypalModal').classList.remove('hidden')" 
+                      class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-xl font-medium">
+                  S'inscrire au cours
+              </button>
+          
+              @if($estInscrite)
+                  <a href="/chat/{{$cours->id}}" 
+                     class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-xl font-medium">
+                      Voir chat
+                  </a>
+              @endif
           @endif
-            <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-xl font-medium">Ajouter aux favoris</button>
-          @else
-              <button onclick="document.getElementById('paypalModal').classList.remove('hidden')" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-xl font-medium">S'inscrire au cours</button>
-              <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 px-6 py-2 rounded-xl font-medium">Ajouter au panier</button>
-          @endif
-        </div>
+      </div>
+      
       </div>
     </div>
   </section>
@@ -333,7 +346,7 @@ paypal.Buttons({
     },
     onApprove: function(data, actions) {
       return actions.order.capture().then(function(details) {
-        alert("good")
+        
     // Rediriger vers la route Laravel après paiement
     window.location.href = `/inscrireCours/${coursid}`;
     

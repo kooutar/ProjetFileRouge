@@ -267,6 +267,7 @@
         </div>
     </div>
 </footer>
+@vite(['resources/css/app.css', 'resources/js/app.js'])
 <script>
    // Mobile menu toggle with animation
    const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -284,8 +285,14 @@ mobileServicesButton.addEventListener('click', function() {
     mobileServicesDropdown.classList.toggle('hidden');
 });
 
+
+
+
+
+
+
 </script>
-@if(session('success'))
+{{-- @if(session('success'))
     <script>
         Swal.fire({
             title: 'Succès !',
@@ -294,7 +301,7 @@ mobileServicesButton.addEventListener('click', function() {
             confirmButtonText: 'OK'
         });
     </script>
-@endif
+@endif --}}
 @yield('scripts');
 </body>
 </html>

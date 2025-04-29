@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\services\ServiceCategorie;
+use App\Models\Cours;
 use Illuminate\Http\Request;
+use App\services\ServiceCategorie;
+use Illuminate\Support\Facades\DB;
 use App\services\ServiceProfesseur;
 
 class ProfesseurController extends Controller
@@ -66,6 +68,39 @@ class ProfesseurController extends Controller
    $categories = $this->categorieService->GetAllCategoiesService();
     return view('pages.profPage.addCours', compact('categories'));
 }
+
+public function gotoDashboordProf() {
+  $userId = auth()->user()->id;
+
+  // Nombre d'étudiants uniques
+  $nombreEtudiants = DB::table('inscriptions')
+      ->join('cours', 'cours.id', '=', 'inscriptions.id_cours')
+      ->where('cours.id_professeur', $userId)
+      ->distinct()
+      ->count('inscriptions.id_etudiant');
+
+  // Total des cours acceptés
+  $totalCoursAccepted = DB::table('cours')
+      ->where('id_professeur', $userId)
+      ->where('status', 'accepted')
+      ->count();
+
+  // Statistiques par catégorie
+  $parCategorie = Cours::with('categorie:id,categorie')
+      ->select('id_categrie', DB::raw('count(*) as nbr'))
+      ->where('id_professeur', $userId)
+      ->groupBy('id_categrie')
+      ->get();
+
+  $total = $parCategorie->sum('nbr');
+  foreach ($parCategorie as $item) {
+      $item->pourcentage = $total > 0 ? round(($item->nbr / $total) * 100, 1) : 0;
+  }
+
+  return view('pages.profPage.DashboordProf', compact('nombreEtudiants', 'totalCoursAccepted', 'parCategorie'));
+}
+
+
 }
 
 

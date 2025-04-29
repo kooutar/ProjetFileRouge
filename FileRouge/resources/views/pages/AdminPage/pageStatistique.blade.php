@@ -81,7 +81,7 @@
                         <h2 class="text-lg font-semibold text-gray-800 mb-6">Répartition des cours</h2>
                         <canvas id="myChart" width="400" height="200"></canvas>
 
-                        @foreach($parCategorie as $index => $item)
+                    @foreach($parCategorie as $index => $item)
                         <div class="flex items-center">
                          
                             <input type="hidden" class="pourcentage-{{$item->categorie->categorie}}" value="{{ $item->pourcentage }}">
@@ -120,50 +120,7 @@
                                 </td>
                             </tr>
                             @endforeach
-                            {{-- <tr class="border-b">
-                                <td class="py-4 pr-2">Marketing Digital Avancé</td>
-                                <td class="py-4 px-2"><span class="px-2 py-1 bg-custom-purple-10 text-custom-purple rounded-full text-xs">Business</span></td>
-                                <td class="py-4 px-2">968</td>
-                                <td class="py-4 px-2">4.7/5</td>
-                                <td class="py-4 pl-2">
-                                    <div class="w-full bg-gray-200 rounded-full h-2">
-                                        <div class="custom-purple h-2 rounded-full" style="width: 70%"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="py-4 pr-2">Design UX/UI Moderne</td>
-                                <td class="py-4 px-2"><span class="px-2 py-1 bg-custom-purple-10 text-custom-purple rounded-full text-xs">Design</span></td>
-                                <td class="py-4 px-2">856</td>
-                                <td class="py-4 px-2">4.9/5</td>
-                                <td class="py-4 pl-2">
-                                    <div class="w-full bg-gray-200 rounded-full h-2">
-                                        <div class="custom-purple h-2 rounded-full" style="width: 90%"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr class="border-b">
-                                <td class="py-4 pr-2">Intelligence Artificielle</td>
-                                <td class="py-4 px-2"><span class="px-2 py-1 bg-custom-purple-10 text-custom-purple rounded-full text-xs">Développement</span></td>
-                                <td class="py-4 px-2">732</td>
-                                <td class="py-4 px-2">4.6/5</td>
-                                <td class="py-4 pl-2">
-                                    <div class="w-full bg-gray-200 rounded-full h-2">
-                                        <div class="custom-purple h-2 rounded-full" style="width: 65%"></div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="py-4 pr-2">Comptabilité pour Débutants</td>
-                                <td class="py-4 px-2"><span class="px-2 py-1 bg-custom-purple-10 text-custom-purple rounded-full text-xs">Business</span></td>
-                                <td class="py-4 px-2">625</td>
-                                <td class="py-4 px-2">4.5/5</td>
-                                <td class="py-4 pl-2">
-                                    <div class="w-full bg-gray-200 rounded-full h-2">
-                                        <div class="custom-purple h-2 rounded-full" style="width: 60%"></div>
-                                    </div>
-                                </td>
-                            </tr> --}}
+                            
                         </tbody>
                     </table>
                 </div>

@@ -66,9 +66,7 @@ Route::middleware(['auth',EtudiantMiddleware::class])->group(function(){
 
 Route::middleware(['auth',ProfMiddleware::class])->group(function(){
             // go to dachboord prof
-        Route::get('/dashboardProf',function(){
-                return view('pages.profPage.DashboordProf');
-            });
+        Route::get('/dashboardProf',[ProfesseurController::class,'gotoDashboordProf']);
             // go to add cours
         Route::get('/addCours',[ProfesseurController::class,'toFormAddCours'])->name('addCours');
         Route::delete('/supprimer-cours/{id}',[CoursController::class,'delete'])->name('supprimer.cours');

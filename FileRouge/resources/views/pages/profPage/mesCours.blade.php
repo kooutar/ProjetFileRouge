@@ -32,7 +32,7 @@
                             👨‍🎓
                         </div>
                         <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mb-1">NOMBRE D'ÉTUDIANTS</div>
-                        <div class="text-xl md:text-2xl font-bold text-gray-800">50</div>
+                        <div class="text-xl md:text-2xl font-bold text-gray-800">{{$nombreEtudiants}}</div>
                         <div class="text-xs md:text-sm text-green-500 mt-2 flex items-center">
                             ↑ 60% depuis le mois dernier
                         </div>
@@ -69,7 +69,7 @@
                             </select>
                             
                             <select id="category-select" class="border border-gray-300 rounded-lg px-4 py-2">
-                                   <option>Toutes les catégories</option>
+                                   <option value="">Toutes les catégories</option>
                                 @foreach($categories as $categorie)
                                     <option value="{{ $categorie->id }}">{{ $categorie->categorie }}</option>
                                 @endforeach
@@ -77,9 +77,7 @@
                         </div>
                         
                         <div class="flex items-center gap-2">
-                            <button class="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">
-                                Exporter Statistiques
-                            </button>
+                            
                             <a href="{{ route('addCours')}}" class="px-4 py-2 custom-purple text-white rounded-lg hover:bg-opacity-90">
                                 Nouveau Cours
                             </a>
@@ -345,6 +343,7 @@
     }
    // *************
  
+   
 document.addEventListener('DOMContentLoaded', function () {
     const categorySelect = document.getElementById('category-select');
     const searchInput = document.getElementById('search-input');
@@ -358,7 +357,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const rowCategory = row.getAttribute('data-id').trim();
             const rowText = row.textContent.toLowerCase();
 
-            const matchesCategory = (selectedCategory === "Toutes les catégories" || rowCategory === selectedCategory);
+            const matchesCategory = (selectedCategory === "" || rowCategory === selectedCategory);
             const matchesSearch = rowText.includes(searchQuery);
 
             if (matchesCategory && matchesSearch) {
@@ -372,6 +371,8 @@ document.addEventListener('DOMContentLoaded', function () {
     categorySelect.addEventListener('change', filterCourses);
     searchInput.addEventListener('input', filterCourses);
 });
+
+
 
 
 

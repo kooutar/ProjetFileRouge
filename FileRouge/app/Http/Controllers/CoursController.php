@@ -9,6 +9,7 @@ use App\Models\Inscription;
 use Illuminate\Http\Request;
 use App\services\ServiceCours;
 use App\services\ServiceCategorie;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 
@@ -62,7 +63,12 @@ class CoursController extends Controller
     {
         $cours = $this->courService->getAll();
         $categories = Categorie::all();
-        return view('pages.profPage.mesCours', compact('cours','categories'));
+        $nombreEtudiants = DB::table('inscriptions')
+        ->join('cours', 'cours.id', '=', 'inscriptions.id_cours')
+        ->where('cours.id_professeur', 1)
+        ->distinct('inscriptions.id_etudiant')
+        ->count('inscriptions.id_etudiant');
+        return view('pages.profPage.mesCours', compact('cours','categories','nombreEtudiants'));
     }
 
 

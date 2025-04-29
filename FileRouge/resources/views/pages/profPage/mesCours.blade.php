@@ -55,7 +55,7 @@
                     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                         <div class="flex flex-col sm:flex-row gap-3">
                             <div class="relative">
-                                <input type="text" placeholder="Rechercher un cours..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full sm:w-64">
+                                <input id="search-input" type="text" placeholder="Rechercher un cours..." class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full sm:w-64">
                                 <svg class="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
@@ -64,17 +64,15 @@
                             <select class="border border-gray-300 rounded-lg px-4 py-2">
                                 <option>Tous les statuts</option>
                                 <option>Publié</option>
-                                <option>Brouillon</option>
-                                <option>En révision</option>
+                                <option>en attente</option>
+                                <option>refusé</option>
                             </select>
                             
-                            <select class="border border-gray-300 rounded-lg px-4 py-2">
-                                <option>Toutes les catégories</option>
-                                <option>Développement</option>
-                                <option>Design</option>
-                                <option>Business</option>
-                                <option>Marketing</option>
-                                <option>Autres</option>
+                            <select id="category-select" class="border border-gray-300 rounded-lg px-4 py-2">
+                                   <option>Toutes les catégories</option>
+                                @foreach($categories as $categorie)
+                                    <option value="{{ $categorie->id }}">{{ $categorie->categorie }}</option>
+                                @endforeach
                             </select>
                         </div>
                         
@@ -119,8 +117,8 @@
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($cours as $course)
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                            <tr data-id="{{ $course->categorie->categorie}}">
+                                <td  class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
                                         <div class="flex-shrink-0 h-10 w-10">
                                             <img class="h-10 w-10 rounded object-cover" src="{{ asset('storage/'.$course->image)}}" alt="Couverture du cours">
@@ -345,6 +343,37 @@
             modal.classList.add('hidden');
         }
     }
+   // *************
+ 
+document.addEventListener('DOMContentLoaded', function () {
+    const categorySelect = document.getElementById('category-select');
+    const searchInput = document.getElementById('search-input');
+    const rows = document.querySelectorAll('tr[data-id]');
+
+    function filterCourses() {
+        const selectedCategory = categorySelect.value.trim();
+        const searchQuery = searchInput.value.toLowerCase().trim();
+
+        rows.forEach(row => {
+            const rowCategory = row.getAttribute('data-id').trim();
+            const rowText = row.textContent.toLowerCase();
+
+            const matchesCategory = (selectedCategory === "Toutes les catégories" || rowCategory === selectedCategory);
+            const matchesSearch = rowText.includes(searchQuery);
+
+            if (matchesCategory && matchesSearch) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    }
+
+    categorySelect.addEventListener('change', filterCourses);
+    searchInput.addEventListener('input', filterCourses);
+});
+
+
 
         </script>
 @endSection

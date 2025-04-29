@@ -71,13 +71,9 @@ Route::middleware(['auth',ProfMiddleware::class])->group(function(){
             });
             // go to add cours
         Route::get('/addCours',[ProfesseurController::class,'toFormAddCours'])->name('addCours');
-
         Route::delete('/supprimer-cours/{id}',[CoursController::class,'delete'])->name('supprimer.cours');
         Route::put('/updateCours/{id}',[CoursController::class,'update'])->name('update.cours');
-
-
         Route::get('/mesCours',[CoursController::class,'index'])->name('mesCours');
-
         Route::post('/addCours',[CoursController::class,'store'])->name('addCours');
         Route::post('/addChpaitre',[ChapitreController::class,'store'])->name('store.chapitre');
         Route::get('/chapitres/{idcours}',[ChapitreController::class,'getchapitresCours'])->name('mesChapitres');

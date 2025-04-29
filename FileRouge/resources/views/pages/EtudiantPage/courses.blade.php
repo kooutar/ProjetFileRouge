@@ -15,7 +15,7 @@
                 <!-- Search bar -->
                 <div class="flex-1">
                     <div class="relative">
-                        <input type="text" placeholder="Rechercher des cours..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                        <input id="search-input" type="text" placeholder="Rechercher des cours..." class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                         <div class="absolute left-3 top-2.5">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -95,62 +95,64 @@
 
 <!-- Script -->
 <script>
-document.getElementById('category-select').addEventListener('change', function () {
-    const categoryId = this.value;
-
-     // ajouter ici le changement des carte if(data-id==categoryId)
-     const cards = document.querySelectorAll('[data-id]');
-    cards.forEach(card => {
-        if (categoryId === '' || card.getAttribute('data-id') === categoryId) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
-    });
+    const categorySelect = document.getElementById('category-select');
     const subcategorySelect = document.getElementById('subcategory-select');
-   
-   
-    subcategorySelect.innerHTML = '<option value="">Chargement...</option>';
-
-    if (categoryId) {
-        fetch(`/subcategories/${categoryId}`)
-            .then(response => response.json())
-            .then(data => {
-                subcategorySelect.innerHTML = '<option value="">Choisir une sous-catégorie</option>';
-                data.forEach(subcat => {
-                    const option = document.createElement('option');
-                    option.value = subcat.id;
-                    option.textContent = subcat.categorie;
-                    subcategorySelect.appendChild(option);
-                });
-            });
-   //ajouter ici mem logique de feltre pour les seus categorie
-
-   document.getElementById('subcategory-select').addEventListener('change', function () {
-    const subcategoryId = this.value;
-    const categoryId = document.getElementById('category-select').value;
+    const searchInput = document.getElementById('search-input');
     const cards = document.querySelectorAll('[data-id]');
-
-    cards.forEach(card => {
-        const cardCat = card.getAttribute('data-id');
-        const cardSub = card.getAttribute('data-subid');
-
-        const matchCategory = categoryId === '' || cardCat === categoryId;
-        const matchSubcategory = subcategoryId === '' || cardSub === subcategoryId;
-
-        // Show only if both match
-        if (matchCategory && matchSubcategory) {
-            card.style.display = 'block';
+    
+    function filterCards() {
+        const categoryId = categorySelect.value;
+        const subcategoryId = subcategorySelect.value;
+        const searchQuery = searchInput.value.toLowerCase();
+    
+        cards.forEach(card => {
+            const cardCat = card.getAttribute('data-id');
+            const cardSub = card.getAttribute('data-subid');
+            const title = card.querySelector('h3')?.textContent.toLowerCase() || '';
+            const description = card.querySelector('p')?.textContent.toLowerCase() || '';
+    
+            const matchCategory = categoryId === '' || cardCat === categoryId;
+            const matchSubcategory = subcategoryId === '' || cardSub === subcategoryId;
+            const matchSearch = title.includes(searchQuery) || description.includes(searchQuery);
+    
+            if (matchCategory && matchSubcategory && matchSearch) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+    
+    // Filtrage sur changement de catégorie
+    categorySelect.addEventListener('change', function () {
+        const categoryId = this.value;
+        subcategorySelect.innerHTML = '<option value="">Chargement...</option>';
+    
+        if (categoryId) {
+            fetch(`/subcategories/${categoryId}`)
+                .then(response => response.json())
+                .then(data => {
+                    subcategorySelect.innerHTML = '<option value="">Choisir une sous-catégorie</option>';
+                    data.forEach(subcat => {
+                        const option = document.createElement('option');
+                        option.value = subcat.id;
+                        option.textContent = subcat.categorie;
+                        subcategorySelect.appendChild(option);
+                    });
+                    filterCards(); // mettre à jour après le chargement
+                });
         } else {
-            card.style.display = 'none';
+            subcategorySelect.innerHTML = '<option value="">Choisir une sous-catégorie</option>';
+            filterCards();
         }
     });
-});
-        
-    } else {
-        subcategorySelect.innerHTML = '<option value="">Choisir une sous-catégorie</option>';
-    }
-});
-</script>
+    
+    // Filtrage sur changement de sous-catégorie
+    subcategorySelect.addEventListener('change', filterCards);
+    
+    // Filtrage sur saisie dans la barre de recherche
+    searchInput.addEventListener('input', filterCards);
+    </script>
+    
 
 @endSection

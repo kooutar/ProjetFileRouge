@@ -124,6 +124,29 @@ document.getElementById('category-select').addEventListener('change', function (
                     subcategorySelect.appendChild(option);
                 });
             });
+   //ajouter ici mem logique de feltre pour les seus categorie
+
+   document.getElementById('subcategory-select').addEventListener('change', function () {
+    const subcategoryId = this.value;
+    const categoryId = document.getElementById('category-select').value;
+    const cards = document.querySelectorAll('[data-id]');
+
+    cards.forEach(card => {
+        const cardCat = card.getAttribute('data-id');
+        const cardSub = card.getAttribute('data-subid');
+
+        const matchCategory = categoryId === '' || cardCat === categoryId;
+        const matchSubcategory = subcategoryId === '' || cardSub === subcategoryId;
+
+        // Show only if both match
+        if (matchCategory && matchSubcategory) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+});
+        
     } else {
         subcategorySelect.innerHTML = '<option value="">Choisir une sous-catégorie</option>';
     }

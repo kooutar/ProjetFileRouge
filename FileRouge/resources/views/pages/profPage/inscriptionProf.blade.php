@@ -103,11 +103,11 @@
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
                     </div>
                     
-                    <div class="mt-6">
+                    {{-- <div class="mt-6">
                         <label for="photo" class="block text-sm font-medium text-gray-700 mb-1">Photo de profil</label>
                         <input type="file" id="photo" name="photo" accept="image/*"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-                    </div>
+                    </div> --}}
                 </div>
 
                 <!-- Conditions générales -->

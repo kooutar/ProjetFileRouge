@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Cours;
+use App\Models\Etudiant;
+use App\Models\Professeur;
 use Illuminate\Support\Facades\DB;
 
 
@@ -11,6 +13,11 @@ class AdminController extends Controller
 
 
     public function index(){
+
+        $nbrEtudiant =Etudiant::count() ;
+        $coursActif= cours::where('status','accepted')->count();
+        $nbrProfesseur=Professeur::count();
+
         $parCategorie = Cours::select('id_categrie', DB::raw('count(*) as nbr'))
             ->groupBy('id_categrie')
             ->with('categorie:id,categorie')
@@ -46,7 +53,7 @@ class AdminController extends Controller
         ->limit(3)
         ->get();
     
-        return view('pages.AdminPage.pageStatistique', compact('parCategorie','labels', 'data', 'top3Cours'));
+        return view('pages.AdminPage.pageStatistique', compact('parCategorie','labels', 'data', 'top3Cours','nbrEtudiant','coursActif','nbrProfesseur'));
     }
 
 

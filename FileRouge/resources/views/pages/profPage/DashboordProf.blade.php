@@ -39,63 +39,7 @@
                 </div>
 
                 <!-- Charts Row -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
-                    <div class="bg-white rounded-xl shadow p-4 md:p-6 lg:col-span-2">
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-6">
-                            <h2 class="text-lg font-semibold text-gray-800 mb-3 md:mb-0">Inscriptions mensuelles</h2>
-                            <div class="flex bg-gray-100 rounded-lg text-xs md:text-sm">
-                                <button class="px-3 py-1 rounded-lg text-gray-600">Semaine</button>
-                                <button class="px-3 py-1 rounded-lg custom-purple text-white">Mois</button>
-                                <button class="px-3 py-1 rounded-lg text-gray-600">Année</button>
-                            </div>
-                        </div>
-                        
-                        <!-- Simple bar chart -->
-                        <div class="h-32 md:h-64 flex items-end space-x-1">
-                            <div class="h-3/5 custom-purple rounded-t w-full"></div>
-                            <div class="h-4/5 custom-purple rounded-t w-full"></div>
-                            <div class="h-2/3 custom-purple rounded-t w-full"></div>
-                            <div class="h-4/5 custom-purple rounded-t w-full"></div>
-                            <div class="h-3/4 custom-purple rounded-t w-full"></div>
-                            <div class="h-full custom-purple rounded-t w-full"></div>
-                            <div class="h-4/5 custom-purple rounded-t w-full"></div>
-                            <div class="h-2/3 custom-purple rounded-t w-full"></div>
-                            <div class="h-5/6 custom-purple rounded-t w-full"></div>
-                            <div class="h-4/5 custom-purple rounded-t w-full"></div>
-                            <div class="h-3/4 custom-purple rounded-t w-full"></div>
-                            <div class="h-5/6 custom-purple rounded-t w-full"></div>
-                        </div>
-                        
-                        <div class="flex justify-between text-xs text-gray-500 mt-2">
-                            <span>Jan</span>
-                            <span>Fév</span>
-                            <span>Mar</span>
-                            <span>Avr</span>
-                            <span>Mai</span>
-                            <span>Jui</span>
-                            <span>Jul</span>
-                            <span>Aoû</span>
-                            <span>Sep</span>
-                            <span>Oct</span>
-                            <span>Nov</span>
-                            <span>Déc</span>
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl shadow p-4 md:p-6">
-                        <h2 class="text-lg font-semibold text-gray-800 mb-6">Répartition des cours</h2>
-                        <canvas id="myChart" width="400" height="200"></canvas>
-
-                    @foreach($parCategorie as $index => $item)
-                        <div class="flex items-center">
-                         
-                            <input type="hidden" class="pourcentage-{{$item->categorie->categorie}}" value="{{ $item->pourcentage }}">
-                        </div>
-                    @endforeach
-
-                     
-                </div>
-                </div>
+                
 
                 <!-- Table -->
                 <div class="bg-white rounded-xl shadow p-4 md:p-6 mb-6 md:mb-8 overflow-x-auto">
@@ -115,7 +59,7 @@
                             @foreach($top3Cours as $cours)
                             <tr class="border-b">
                                 <td class="py-4 pr-2">{{$cours->titre}}</td>
-                                <td class="py-4 px-2"><span class="px-2 py-1 bg-custom-purple-10 text-custom-purple rounded-full text-xs">Développement</span></td>
+                                <td class="py-4 px-2"><span class="px-2 py-1 bg-custom-purple-10 text-custom-purple rounded-full text-xs">ui/UX</span></td>
                                 <td class="py-4 px-2">1,245</td>
                                 <td class="py-4 px-2">4.8/5</td>
                                 <td class="py-4 pl-2">
@@ -130,8 +74,24 @@
                     </table>
                 </div>
 
-                <!-- Last Charts Row -->
-                
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
+                    
+                    <div class="bg-white rounded-xl shadow p-4 md:p-6">
+                        <h2 class="text-lg font-semibold text-gray-800 mb-6">Répartition des cours</h2>
+                        <canvas id="myChart" width="400" height="200"></canvas>
+
+                    @foreach($parCategorie as $index => $item)
+                        <div class="flex items-center">
+                         
+                            <input type="hidden" class="pourcentage-{{$item->categorie->categorie}}" value="{{ $item->pourcentage }}">
+                        </div>
+                    @endforeach
+
+                     
+                </div>
+                </div>
+
+               
  
 
                 <script>

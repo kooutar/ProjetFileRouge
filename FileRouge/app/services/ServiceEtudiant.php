@@ -23,9 +23,6 @@ class ServiceEtudiant
         $user = $this->EtudiantRepositery->findByEmail($socialUser->getEmail());
        
         if (!$user) {
-           
-            
-
             // Si l'utilisateur n'existe pas, le créer
             $user = $this->EtudiantRepositery->registre([
                 'name' => $socialUser->getName(),

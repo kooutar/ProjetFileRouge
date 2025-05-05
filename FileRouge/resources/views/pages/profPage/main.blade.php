@@ -62,25 +62,10 @@
                             <span>Professeurs</span>
                         </a> --}}
                         
-                        <a href="#" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
-                            <span class="mr-3">📝</span>
-                            <span>Évaluations</span>
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
-                            <span class="mr-3">💬</span>
-                            <span>Discussions</span>
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
-                            <span class="mr-3">📈</span>
-                            <span>Rapports</span>
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
-                            <span class="mr-3">⚙️</span>
-                            <span>Paramètres</span>
-                        </a>
-                        <form action="{{ route('logout') }}" method="POST" class="mt-4">
+                       
+                        <form action="{{ route('logout') }}" method="POST"   class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150 ">
                             @csrf
-                            <button class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
+                            <button >
                                 <span class="mr-3">⚙️</span>
                                 <span>Deconnexion</span>
                             </button>

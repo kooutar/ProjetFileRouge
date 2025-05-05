@@ -39,6 +39,10 @@ class EtudiantController extends Controller
        $etudiant = $this->EtudiantService->getCoursEtudiant($idetudiant);
        return view('pages.EtudiantPage.profile',compact('etudiant'));
    }
+
+   public function redirectToProvider($userSocaible){
+     $this->EtudiantService->socialLoginService($userSocaible);
+   }
    
 
 }

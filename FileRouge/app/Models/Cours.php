@@ -28,5 +28,13 @@ class Cours extends Model
     public function chapitres() {
         return $this->hasMany(Chapitre::class,'id_cours');
     }
+
+// Cours.php
+public function inscriptions()
+{
+    return $this->hasMany(Inscription::class, 'id_cours');
+}
+
+
     
 }

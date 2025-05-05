@@ -22,9 +22,7 @@
                         </div>
                         <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mb-1">TOTAL DE MES COURS</div>
                         <div class="text-xl md:text-2xl font-bold text-gray-800">{{$cours->count()}}</div>
-                        <div class="text-xs md:text-sm text-green-500 mt-2 flex items-center">
-                            ↑ 40% depuis le mois dernier
-                        </div>
+                       
                     </div>
 
                     <div class="bg-white rounded-xl shadow p-4 md:p-6">
@@ -33,9 +31,7 @@
                         </div>
                         <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mb-1">NOMBRE D'ÉTUDIANTS</div>
                         <div class="text-xl md:text-2xl font-bold text-gray-800">{{$nombreEtudiants}}</div>
-                        <div class="text-xs md:text-sm text-green-500 mt-2 flex items-center">
-                            ↑ 60% depuis le mois dernier
-                        </div>
+                       
                     </div>
 
                     <div class="bg-white rounded-xl shadow p-4 md:p-6">
@@ -44,9 +40,7 @@
                         </div>
                         <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mb-1">ÉVALUATION MOYENNE</div>
                         <div class="text-xl md:text-2xl font-bold text-gray-800">5/5</div>
-                        <div class="text-xs md:text-sm text-green-500 mt-2 flex items-center">
-                            ↑ 30% depuis le mois dernier
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -97,7 +91,7 @@
                                     Catégorie
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                    Étudiants
+                                    prix
                                 </th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     Date de création
@@ -134,7 +128,7 @@
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                                     {{-- {{ $course->etudiants_count }} --}}
-                                    0
+                                    {{ $course->prix}}
                                     <div class="text-xs text-gray-500 mt-1">
                                         {{-- {{ $course->completed_count }} terminés --}}
                                     </div>
@@ -186,59 +180,59 @@
                 {{-- moadel pour editer cours  --}}
 
 
- @foreach ($cours as $course)
-<div id="modalEditCourse-{{$course->id}}" class="fixed inset-0 bg-black bg-opacity-40 hidden flex justify-center items-center z-50 ">
-    <div class="bg-white p-6 rounded-xl w-full max-w-lg relative">
-        <h2 class="text-xl font-bold mb-4 text-indigo-700">Éditer le cours</h2>
-        <form id="editForm" action="" method="POST" enctype="multipart/form-data">
-            @csrf
-            @method('PUT')
-            <div class="mb-4">
-                <label class="block font-medium mb-1">Titre du cours</label>
-                <input type="text" name="titre" value="{{ $course->titre }}" class="w-full p-2 border rounded-xl" />
-            </div>
-            <div class="mb-4">
-                <label class="block font-medium mb-1">Catégorie</label>
-                <select name="id_categrie" class="w-full p-2 border rounded-xl">
-                    <option value="{{ $course->categorie->id}}">{{$course->categorie->categorie}}</option>
-                    @foreach ($categories as $categorie)
-                     @if($categorie->categorie != $course->categorie->categorie)
-                        <option >
-                            {{ $categorie->categorie }}
-                        </option>
-                        @endif
- @endforeach
-    </select>
-               
-               
-            </div>
-            <div class="mb-4">
-                <label class="block font-medium mb-1">Description</label>
-                <textarea name="Description"  class="w-full p-2 border rounded-xl " id="" cols="" rows="">{{$course->Description}}</textarea>
-            </div>
+        @foreach ($cours as $course)
+            <div id="modalEditCourse-{{$course->id}}" class="fixed inset-0 bg-black bg-opacity-40 hidden flex justify-center items-center z-50 ">
+                <div class="bg-white p-6 rounded-xl w-full max-w-lg relative">
+                    <h2 class="text-xl font-bold mb-4 text-indigo-700">Éditer le cours</h2>
+                    <form id="editForm" action="" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="mb-4">
+                            <label class="block font-medium mb-1">Titre du cours</label>
+                            <input type="text" name="titre" value="{{ $course->titre }}" class="w-full p-2 border rounded-xl" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-medium mb-1">Catégorie</label>
+                            <select name="id_categrie" class="w-full p-2 border rounded-xl">
+                                <option value="{{ $course->categorie->id}}">{{$course->categorie->categorie}}</option>
+                                @foreach ($categories as $categorie)
+                                @if($categorie->categorie != $course->categorie->categorie)
+                                    <option >
+                                        {{ $categorie->categorie }}
+                                    </option>
+                                    @endif
+            @endforeach
+                </select>
+                        
+                        
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-medium mb-1">Description</label>
+                            <textarea name="Description"  class="w-full p-2 border rounded-xl " id="" cols="" rows="">{{$course->Description}}</textarea>
+                        </div>
 
-            <div class="mb-4">
-                <label class="block font-medium mb-1">Prix</label>
-                <input type="number" name="prix"  class="w-full p-2 border rounded-xl " value="{{$course->prix}}">
-            </div>
-            <div class="mb-4">
-                <label class="block font-medium mb-1">Image</label>
-                <div class="flex items-center">
-                   
-                    <img src="{{ asset('storage/'.$course->image)}}" alt="Couverture du cours" class="w-32 h-32 object-cover rounded-lg mb-2">
-                    <input type="file" name="image" accept="image/*" class="w-full p-2 border rounded-xl" />
+                        <div class="mb-4">
+                            <label class="block font-medium mb-1">Prix</label>
+                            <input type="number" name="prix"  class="w-full p-2 border rounded-xl " value="{{$course->prix}}">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block font-medium mb-1">Image</label>
+                            <div class="flex items-center">
+                            
+                                <img src="{{ asset('storage/'.$course->image)}}" alt="Couverture du cours" class="w-32 h-32 object-cover rounded-lg mb-2">
+                                <input type="file" name="image" accept="image/*" class="w-full p-2 border rounded-xl" />
+                            </div>
+                        
+                        </div>
+                    
+                        <div class="mt-6 flex justify-end gap-4">
+                            <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Enregistrer</button>
+                            <button type="button"  onclick="toggleEditModal({{$course->id}})" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Annuler</button>
+                        
+                        </div>
+                    </form>
                 </div>
-              
             </div>
-          
-            <div class="mt-6 flex justify-end gap-4">
-                <button type="submit" class="px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700">Enregistrer</button>
-                <button type="button"  onclick="toggleEditModal({{$course->id}})" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Annuler</button>
-               
-            </div>
-        </form>
-    </div>
-</div>
 @endforeach
    @foreach ($cours as $course)
                    <!-- Modal pour ajouter un chapitre -->

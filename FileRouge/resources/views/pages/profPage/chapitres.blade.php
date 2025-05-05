@@ -1,7 +1,16 @@
 @extends('pages.profPage.main')
 @section('content')
 <div class="flex-1 md:ml-64 overflow-y-auto custom-scrollbar">
+    @if (session('success'))
+    <div class="bg-green-200 p-4">
+        
+            <p>{{session('success')}}</p> 
+
+
+    </div>
+    @endif
 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+   
     @foreach($chapitres as $chapitre)
         <div class=" rounded-lg shadow-md overflow-hidden">
             <div class="p-4">

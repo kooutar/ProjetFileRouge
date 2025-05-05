@@ -2,7 +2,7 @@
 @section('title', 'cours')
 @section('content')
 
-<div id="messages"  class="bg-amber-300 mt-6" style="padding: 10px; border: 1px solid #ccc; height: 400px; overflow-y: scroll;">
+<div id="messages"  class="bg-gray-300  mt-6" style="padding: 10px; border: 1px solid #ccc; height: 400px; overflow-y: scroll;">
     <!-- Les messages apparaîtront ici -->
 </div>
 

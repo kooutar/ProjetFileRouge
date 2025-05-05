@@ -38,8 +38,11 @@
             <div class="flex justify-between h-16">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <span class="text-primary text-xl font-bold">LOGO</span>
+                    <a href="/">
+                        <img src="/images/logo.png" alt="Logo" class="h-32 w-auto">
+                    </a>
                 </div>
+                
                 
                 <!-- Menu desktop -->
                 <div class="hidden md:flex items-center justify-center flex-1">
@@ -62,7 +65,7 @@
                
                 @auth
                     <!-- Menu déroulant pour utilisateurs connectés -->
-                    <div class="relative hidden md:block">
+                    <div class="relative hidden  md:flex items-center justify-center ">
                         <button id="user-menu-button" class="flex items-center text-gray-700 hover:text-primary focus:outline-none" 
                                 onclick="document.getElementById('user-dropdown').classList.toggle('hidden')">
                             <span class="mr-2">{{ Auth::user()->name }}</span>
@@ -72,9 +75,9 @@
                         </button>
                         
                         <!-- Dropdown menu -->
-                        <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                        <div id="user-dropdown" class="hidden absolute right-0 top-2 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
                             <a href="/profile" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Mon profil</a>
-                            <a href="/dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Tableau de bord</a>
+                            {{-- <a href="/dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Tableau de bord</a> --}}
                             <div class="border-t border-gray-100"></div>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -122,7 +125,7 @@
                 <div class="flex flex-col space-y-3 px-4">
                     <span class="text-gray-700 font-medium px-3 py-2">{{ Auth::user()->name }}</span>
                     <a href="/profile" class="text-gray-700 hover:text-primary block px-3 py-2 text-base">Mon profil</a>
-                    <a href="/dashboard" class="text-gray-700 hover:text-primary block px-3 py-2 text-base">Tableau de bord</a>
+                    {{-- <a href="/dashboard" class="text-gray-700 hover:text-primary block px-3 py-2 text-base">Tableau de bord</a> --}}
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button type="submit" class="text-gray-700 hover:text-primary block w-full text-left px-3 py-2 text-base">
@@ -160,8 +163,7 @@
             <!-- Company Info -->
             <div>
                 <div class="flex items-center mb-4">
-                    <img src="path/to/logo-white.png" alt="Influozy" class="h-8">
-                    <span class="ml-2 text-xl font-bold">influozy</span>
+                    <img src="/images/logo.png" alt="Influozy" class="h-28 w-auto">
                 </div>
                 <p class="text-gray-400 mb-6">
                     Influencer marketing platform connecting brands with the right influencers to reach their target audience effectively.

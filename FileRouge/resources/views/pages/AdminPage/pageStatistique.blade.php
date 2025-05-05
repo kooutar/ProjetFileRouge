@@ -9,7 +9,7 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8">
                     <h1 class="text-2xl font-bold text-gray-800 mb-4 md:mb-0">Tableau de bord</h1>
                     <div class="flex items-center bg-white py-2 px-4 rounded-full shadow">
-                        <img src="/api/placeholder/40/40" alt="Avatar" class="w-8 h-8 rounded-full mr-2">
+                        <img src="{{asset('images/ana.jpg')}}" class="w-8 h-8 rounded-full mr-2" alt="Avatar">
                         <span class="text-gray-700">Admin</span>
                     </div>
                 </div>
@@ -21,10 +21,8 @@
                             👥
                         </div>
                         <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mb-1">TOTAL DES ÉTUDIANTS</div>
-                        <div class="text-xl md:text-2xl font-bold text-gray-800">4,835</div>
-                        <div class="text-xs md:text-sm text-green-500 mt-2 flex items-center">
-                            ↑ 12.5% depuis le mois dernier
-                        </div>
+                        <div class="text-xl md:text-2xl font-bold text-gray-800">{{$nbrEtudiant}}</div>
+                        
                     </div>
 
                     <div class="bg-white rounded-xl shadow p-4 md:p-6">
@@ -32,33 +30,20 @@
                             📚
                         </div>
                         <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mb-1">COURS ACTIFS</div>
-                        <div class="text-xl md:text-2xl font-bold text-gray-800">128</div>
-                        <div class="text-xs md:text-sm text-green-500 mt-2 flex items-center">
-                            ↑ 8.2% depuis le mois dernier
-                        </div>
+                        <div class="text-xl md:text-2xl font-bold text-gray-800">{{$coursActif}}</div>
+                        
                     </div>
 
                     <div class="bg-white rounded-xl shadow p-4 md:p-6">
                         <div class="w-12 h-12 rounded-lg bg-custom-purple-10 text-custom-purple flex items-center justify-center mb-4 text-xl">
-                            💰
+                            🧑‍🏫
                         </div>
-                        <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mb-1">REVENU MENSUEL</div>
-                        <div class="text-xl md:text-2xl font-bold text-gray-800">38,450 €</div>
-                        <div class="text-xs md:text-sm text-green-500 mt-2 flex items-center">
-                            ↑ 15.3% depuis le mois dernier
-                        </div>
+                        <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mb-1">TOTAL DES Professeurs</div>
+                        <div class="text-xl md:text-2xl font-bold text-gray-800">{{$nbrProfesseur}}</div>
+                        
                     </div>
 
-                    <div class="bg-white rounded-xl shadow p-4 md:p-6">
-                        <div class="w-12 h-12 rounded-lg bg-custom-purple-10 text-custom-purple flex items-center justify-center mb-4 text-xl">
-                            🎓
-                        </div>
-                        <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mb-1">TAUX D'ACHÈVEMENT</div>
-                        <div class="text-xl md:text-2xl font-bold text-gray-800">68.7%</div>
-                        <div class="text-xs md:text-sm text-red-500 mt-2 flex items-center">
-                            ↓ 2.1% depuis le mois dernier
-                        </div>
-                    </div>
+                   
                 </div>
 
                 <!-- Charts Row -->

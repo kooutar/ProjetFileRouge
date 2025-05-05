@@ -9,46 +9,12 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8">
                     <h1 class="text-2xl font-bold text-gray-800 mb-4 md:mb-0">Gestion des Tags et Catégories</h1>
                     <div class="flex items-center bg-white py-2 px-4 rounded-full shadow">
-                        <img src="/api/placeholder/40/40" alt="Avatar" class="w-8 h-8 rounded-full mr-2">
+                        <img src="{{asset('images/ana.jpg')}}" class="w-8 h-8 rounded-full mr-2" alt="Avatar">
                         <span class="text-gray-700">Admin</span>
                     </div>
                 </div>
 
-                <!-- Stats Summary -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6 mb-6 md:mb-8">
-                    <div class="bg-white rounded-xl shadow p-4 md:p-6">
-                        <div class="w-12 h-12 rounded-lg bg-custom-purple-10 text-custom-purple flex items-center justify-center mb-4 text-xl">
-                            📊
-                        </div>
-                        <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mb-1">TOTAL DES CATÉGORIES</div>
-                        <div class="text-xl md:text-2xl font-bold text-gray-800">42</div>
-                        <div class="text-xs md:text-sm text-green-500 mt-2 flex items-center">
-                            ↑ 12.5% depuis le mois dernier
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl shadow p-4 md:p-6">
-                        <div class="w-12 h-12 rounded-lg bg-custom-purple-10 text-custom-purple flex items-center justify-center mb-4 text-xl">
-                            🏷️
-                        </div>
-                        <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mb-1">TOTAL DES TAGS</div>
-                        <div class="text-xl md:text-2xl font-bold text-gray-800">156</div>
-                        <div class="text-xs md:text-sm text-green-500 mt-2 flex items-center">
-                            ↑ 8.7% depuis le mois dernier
-                        </div>
-                    </div>
-
-                    <div class="bg-white rounded-xl shadow p-4 md:p-6">
-                        <div class="w-12 h-12 rounded-lg bg-custom-purple-10 text-custom-purple flex items-center justify-center mb-4 text-xl">
-                            🔄
-                        </div>
-                        <div class="text-xs md:text-sm text-gray-500 uppercase tracking-wider mb-1">DERNIÈRE MISE À JOUR</div>
-                        <div class="text-xl md:text-2xl font-bold text-gray-800">Aujourd'hui</div>
-                        <div class="text-xs md:text-sm text-gray-500 mt-2 flex items-center">
-                            à 14:32
-                        </div>
-                    </div>
-                </div>
+              
 
                 <!-- Tabs -->
                 <div class="mb-6">
@@ -56,9 +22,7 @@
                         <button id="categoriesTab" class="py-2 px-4 border-b-2 border-custom-purple text-custom-purple font-medium">
                             Catégories
                         </button>
-                        <button id="tagsTab" class="py-2 px-4 border-b-2 border-transparent text-gray-500 hover:text-gray-700 font-medium">
-                            Tags
-                        </button>
+                        
                     </div>
                 </div>
                 @if (session('success'))
@@ -126,9 +90,7 @@
                                         Sous-catégorie
                                     </th>
                                     
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Nombre de cours
-                                    </th>
+                                   
                                     <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Actions
                                     </th>
@@ -147,9 +109,7 @@
                                         </span>
                                     </td>
                                     
-                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        42
-                                    </td>
+                                   
                                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                         <div class="flex space-x-2">
                                             <button onclick="editModal({{$categorie->id}}, '{{$categorie->categorie}}' , {{$categorie->parent_id}})" class="px-3 py-1 bg-blue-500 text-white rounded-lg hover:bg-blue-600 text-xs">

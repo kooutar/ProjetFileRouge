@@ -128,13 +128,13 @@ class ChapitreController extends Controller
 
     $chapitre->save();
 
-    return redirect('/mesCours')->with('success', 'Chapitre mis à jour avec succès !');
+    return back()->with('success', 'Chapitre mis à jour avec succès !');
 }
 
     public function delete($id)
     {
         $chapitre = Chapitre::findOrFail($id);
         $chapitre->delete();
-        return redirect('/mesCours')->with('success', 'Chapitre supprimé avec succès !');
+        return back()->with('success', 'Chapitre supprimé avec succès !');
     }
 }

@@ -4,6 +4,14 @@
 <div class="flex-1 md:ml-64 overflow-y-auto custom-scrollbar">
     <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8">
         <h1 class="text-3xl font-bold text-center text-indigo-600 mb-8">Ajouter Cours</h1>
+        @if (session('success'))
+                <div class="bg-green-200 p-4">
+                    
+                        <p>{{session('success')}}</p> 
+
+
+                </div>
+                @endif
   
         <form action="{{route('addCours')}}"  method="POST" class="space-y-10" enctype="multipart/form-data">
             @csrf
@@ -16,10 +24,17 @@
               <div>
                 <label class="block text-gray-600 font-medium">Titre</label>
                 <input type="text" name="titre" placeholder="Titre du cours" class="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-300" />
+                @error('titre')
+                   <div style="color: red;">{{ $message }}</div>
+               @enderror
+                
               </div>
               <div>
                 <label class="block text-gray-600 font-medium">Description</label>
                 <textarea name="Description" placeholder="Description du cours" class="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-300 h-28"></textarea>
+                @error('Description')
+                     <div style="color: red;">{{ $message }}</div>
+                @enderror
                </div>
   
   
@@ -27,6 +42,9 @@
               <div>
                 <label class="block text-gray-600 font-medium">Prix</label>
                 <input type="number" name="prix"  class="w-full p-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-300" />
+                @error('prix')
+                    <div style="color: red;">{{ $message }}</div>
+                @enderror
               </div>
             </div>
           </div>
@@ -45,6 +63,9 @@
               <small class="block mt-2 text-gray-400">Format conseillé : JPG, PNG (max. 5MB)</small>
               <input name="image" id="courseImage" type="file" class="hidden" accept="image/*" />
             </label>
+            @error('image')
+               <div style="color: red;">{{ $message }}</div>
+            @enderror
           </div>
   
           <!-- Catégorisation -->
@@ -73,12 +94,13 @@
                         class="flex-grow p-2 focus:outline-none focus:ring-2 focus:ring-indigo-300" 
                     />
                 </div>
+                
             </div>
             
             </div>
           </div>
   
-          <div class="text-center">
+          <div class="text-center mt-2">
             <button type="submit" class="bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition">
               📤 Enregistrer le Cours
             </button>

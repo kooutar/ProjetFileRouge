@@ -43,10 +43,8 @@
             <div class="flex flex-col flex-grow overflow-y-auto custom-scrollbar">
                 <div class="p-6">
                     <div class="flex items-center mb-8">
-                        <div class="custom-purple w-10 h-10 flex items-center justify-center rounded-lg mr-3">
-                            <span class="font-bold text-lg text-white">E</span>
-                        </div>
-                        <span class="text-xl font-bold text-custom-purple">EdLearn Pro</span>
+                        
+                        <img src="/images/logo.png" alt="Logo" class="h-32 w-auto">
                     </div>
                     
                     <nav class="space-y-2">
@@ -64,23 +62,12 @@
                         </a>
                         <a href="/tageCategorie" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
                             <span class="mr-3">📝</span>
-                            <span>tag & categories</span>
+                            <span>categories</span>
                         </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
-                            <span class="mr-3">💬</span>
-                            <span>Discussions</span>
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
-                            <span class="mr-3">📈</span>
-                            <span>Rapports</span>
-                        </a>
-                        <a href="#" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
-                            <span class="mr-3">⚙️</span>
-                            <span>Paramètres</span>
-                        </a>
-                         <form action="{{ route('logout') }}" method="POST" class="mt-4">
+                       
+                         <form action="{{ route('logout') }}" method="POST" class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150 ">
                         @csrf
-                        <button class="flex items-center px-4 py-3 rounded-lg text-gray-600 hover-custom-purple transition duration-150">
+                        <button ">
                             <span class="mr-3">⚙️</span>
                             <span>Deconnexion</span>
                         </button>

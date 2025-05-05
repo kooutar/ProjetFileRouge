@@ -5,7 +5,7 @@
     <div class="container mx-auto px-4">
         <div class="flex flex-col-reverse md:flex-row items-center">
             <!-- Left Side Content -->
-            <div class="md:w-1/2 mt-8 md:mt-0">
+            <div class="md:w-1/2 mt-8 md:mt-0 px-4">
                 <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">Apprenez à votre rythme, où que vous soyez.</h1>
                 <p class="mt-4 text-gray-600 md:pr-12">Découvrez des cours interactifs, conçus par des experts, pour développer vos compétences et atteindre vos objectifs. Rejoignez notre communauté d’apprenants dès aujourd’hui !</p>
                 <button class="mt-6 bg-purple-600 hover:bg-purple-700 text-white font-medium py-3 px-8 rounded-full transition duration-300">
@@ -76,87 +76,45 @@
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <!-- Cours 1 -->
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105">
-                <div class="h-48 bg-gray-200 relative">
-                    <div class="absolute top-4 left-4 bg-purple-600 text-white px-3 py-1 rounded-full text-sm font-medium">Bestseller</div>
-                </div>
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="text-blue-500 font-medium">Marketing</span>
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <span class="text-gray-700 ml-1">4.9 (128)</span>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Stratégies avancées de marketing d'influence</h3>
-                    <p class="text-gray-600 mb-4">
-                        Maîtrisez les techniques les plus efficaces pour créer des campagnes d'influence à fort impact et mesurer précisément vos résultats.
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-purple-600 font-bold text-lg">299€</span>
-                        <span class="text-gray-500 text-sm">12 modules • 6h de contenu</span>
-                    </div>
-                </div>
-            </div>
+            @forEach($top3Cours as $course)
+            <div   class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105">
+              <div class="h-48 bg-gray-200 relative">
+                  <img src="{{ asset('storage/'.$course->image)}}" alt="Marketing Strategy" class="w-full h-full object-cover">    
+              </div>
+              <div class="p-6">
+                  <div class="flex justify-between items-center mb-3">
+                      <span class="text-blue-500 font-medium">{{$course->nom_categorie}}</span>
+                      <div class="flex items-center">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                          </svg>
+                          <span class="text-gray-700 ml-1">4.9 (128)</span>
+                      </div>
+                  </div>
+                  <h3 class="text-xl font-semibold text-gray-800 mb-3">{{$course->titre}}</h3>
+                  <p class="text-gray-600 mb-4 truncate">
+                    {{$course->Description}}
+                  </p>
+                  <div class="flex justify-between items-center mb-4">
+                      <span class="text-purple-600 font-bold text-lg">{{$course->prix}}€</span>
+                      <span class="text-gray-500 text-sm">{{$course->chapitres->count()}} Chapitres</span>
+                  </div>
+
+                  <a href="{{ route('detailleCoures',$course->id)}}" class="w-full py-3 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                      </svg>
+                      Inscrivez-vous
+                  </a >
+              </div>
+          </div>
+            @endforeach
 
             <!-- Cours 2 -->
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105">
-                <div class="h-48 bg-gray-200 relative">
-                    <div class="absolute top-4 left-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-medium">Nouveau</div>
-                </div>
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="text-blue-500 font-medium">Content Creation</span>
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <span class="text-gray-700 ml-1">4.8 (94)</span>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Création de contenu viral pour les réseaux sociaux</h3>
-                    <p class="text-gray-600 mb-4">
-                        Apprenez à créer du contenu engageant qui se démarque et génère un maximum d'interactions sur toutes les plateformes.
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-purple-600 font-bold text-lg">249€</span>
-                        <span class="text-gray-500 text-sm">10 modules • 5h de contenu</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Cours 3 -->
-            <div class="bg-white rounded-xl overflow-hidden shadow-sm border border-gray-100 transition-transform hover:scale-105">
-                <div class="h-48 bg-gray-200 relative">
-                    <div class="absolute top-4 left-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">Populaire</div>
-                </div>
-                <div class="p-6">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="text-blue-500 font-medium">Analytics</span>
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                            </svg>
-                            <span class="text-gray-700 ml-1">4.7 (156)</span>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Analyse de données pour optimiser vos campagnes</h3>
-                    <p class="text-gray-600 mb-4">
-                        Transformez les données en insights stratégiques pour améliorer vos performances et maximiser votre retour sur investissement.
-                    </p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-purple-600 font-bold text-lg">199€</span>
-                        <span class="text-gray-500 text-sm">8 modules • 4h de contenu</span>
-                    </div>
-                </div>
-            </div>
+            
         </div>
 
-        <div class="mt-10 text-center">
-            <button class="bg-purple-600 text-white px-8 py-3 rounded-full font-medium hover:bg-purple-700 transition-colors">Voir tous les cours</button>
-        </div>
+        
     </div>
 </section>
 
@@ -405,7 +363,7 @@
 <section class="bg-white py-12 px-4 md:px-8">
     <div class=" flex-col gap-2 mx-auto md:flex">
       <!-- Header Section -->
-      <div class="mb-10">
+      <div class="mb-10 px-4">
         <p class="text-green-500 font-medium mb-2">Nos services </p>
         <h2 class="text-4xl font-bold text-gray-800 mb-4">Our influencer marketing services</h2>
         <p class="text-gray-600 max-w-2xl">

@@ -18,9 +18,7 @@ use App\Http\Controllers\ProfesseurController;
 use App\Http\Controllers\InscriptionController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [UserController::class,'index']);
 Route::get('/about', function () {
     return view('About');
 });

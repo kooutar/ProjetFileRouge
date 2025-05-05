@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cours;
 use App\Models\Chapitre;
 use App\Models\Categorie;
+use App\Models\Etudiant;
 use App\Models\Inscription;
 use Illuminate\Http\Request;
 use App\services\ServiceCours;
@@ -56,12 +57,14 @@ class CoursController extends Controller
           
 
             // $this->chapitreController->store($data['chapters'], $cours->id);
-            return redirect('/mesCours')->with('success', 'Cours créé avec succès !');
+            return redirect('/addCours')->with('success', 'Cours créé avec succès !');
     }
 
     public function index()
     {
         $cours = $this->courService->getAll();
+        
+
         $categories = Categorie::all();
         $nombreEtudiants = DB::table('inscriptions')
         ->join('cours', 'cours.id', '=', 'inscriptions.id_cours')

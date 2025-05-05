@@ -75,7 +75,7 @@
                     </p>
                     <div class="flex justify-between items-center mb-4">
                         <span class="text-purple-600 font-bold text-lg">{{$course->prix}}€</span>
-                        <span class="text-gray-500 text-sm">12 modules • 6h de contenu</span>
+                        <span class="text-gray-500 text-sm">{{$course->chapitres->count()}} Chapitres</span>
                     </div>
 
                     <a href="{{ route('detailleCoures',$course->id)}}" class="w-full py-3 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition-colors flex items-center justify-center">
